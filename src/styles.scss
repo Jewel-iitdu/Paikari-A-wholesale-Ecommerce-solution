@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+@import './styles/fonts.scss';
+@import '~@angular/material/theming';
+@import './styles/core-style.scss';
+
+html,
+body {
+	height: 100% !important;
+	// min-height: 100% !important;
+}
+body {
+	margin: 0;
+	font-family: 'DIN-Regular','Varela Round', "Helvetica Neue", sans-serif !important;
+}
+$custom-typography: mat-typography-config($font-family: 'DIN-Regular');
+@include mat-core($custom-typography);

@@ -1,0 +1,11 @@
+@import '~@angular/material/theming';
+@import 'color.scss';
+@include mat-core();
+
+$dupay-primary: mat-palette($mat-light-blue,A200, A100, A400);
+$dupay-accent: mat-palette($mat-cyan, A200, A100, A400);
+$dupay-warn: mat-palette($mat-red);
+
+$dupay-theme: mat-light-theme($dupay-primary, $dupay-accent, $dupay-warn);
+
+@include angular-material-theme($dupay-theme);
