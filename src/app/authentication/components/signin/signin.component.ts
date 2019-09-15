@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-// import "@material/textfield/mdc-text-field";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { group } from '@angular/animations';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -8,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SigninComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+		private fb: FormBuilder,
+		private router: Router,
+		) { }
+
+  signinform: FormGroup;
 
   ngOnInit() {
+   this.makingSignInForm();
+  }
+  makingSignInForm() {
+    this.signinform = this.fb.group({
+      email: [ '', [ Validators.required, Validators.email ] ],
+			password: [ '', Validators.required ]
+    });
   }
 
 }

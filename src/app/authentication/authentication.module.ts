@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SigninComponent } from './components/signin/signin.component';
 import { SharedModule } from '../shared/shared.module';
+import { SignupComponent } from './components/signup/signup.component';
 
 
 const routes:Routes=[
@@ -18,7 +19,7 @@ const routes:Routes=[
 ]
 
 @NgModule({
-  declarations: [ SigninComponent],
+  declarations: [ SigninComponent, SignupComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
