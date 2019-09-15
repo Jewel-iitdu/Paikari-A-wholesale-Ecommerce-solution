@@ -1,1 +1,33 @@
-<p>signin works!</p>
+<form [formGroup]="signinform">
+  <div
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxLayoutGap="16px"
+    class="mt-164"
+  >
+    <div class="font-size-36 mb-48">Welcome to Paikari</div>
+    <mat-card class="p-40">
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>email</mat-label>
+            <input matInput placeholder="email" />
+            <mat-icon matSuffix>email</mat-icon>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>password</mat-label>
+            <input matInput placeholder="password" />
+            <mat-icon matSuffix>lock</mat-icon>
+          </mat-form-field>
+        </div>
+        <div><button mat-raised-button color="primary" class="w-180">login</button></div>
+      </div>
+    </mat-card>
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="4px">
+      <div> <a href="url">create account</a></div>
+      <div><a href="url">forgot password</a></div>
+    </div>
+  </div>
+</form>

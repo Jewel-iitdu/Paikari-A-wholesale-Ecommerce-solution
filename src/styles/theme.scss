@@ -2,10 +2,10 @@
 @import 'color.scss';
 @include mat-core();
 
-$dupay-primary: mat-palette($mat-light-blue,A200, A100, A400);
-$dupay-accent: mat-palette($mat-cyan, A200, A100, A400);
-$dupay-warn: mat-palette($mat-red);
+$paikari-primary: mat-palette($mat-teal, 900);
+$paikari-accent: mat-palette($mat-brown, 700, 800, 900);
+$paikari-warn: mat-palette($mat-red);
 
-$dupay-theme: mat-light-theme($dupay-primary, $dupay-accent, $dupay-warn);
+$paikari-theme: mat-light-theme($paikari-primary, $paikari-accent, $paikari-warn);
 
-@include angular-material-theme($dupay-theme);
+@include angular-material-theme($paikari-theme);
