@@ -6,28 +6,28 @@
     class="mt-164"
   >
     <div class="font-size-36 mb-48">Welcome to Paikari</div>
-    <mat-card class="p-40">
+    <mat-card class="p-40" [class.mat-elevation-z10]="true">
       <div fxLayout="column" fxLayoutAlign="center center">
         <div>
           <mat-form-field appearance="outline">
-            <mat-label>email</mat-label>
+            <mat-label>Email</mat-label>
             <input matInput placeholder="email" />
             <mat-icon matSuffix>email</mat-icon>
           </mat-form-field>
         </div>
         <div>
           <mat-form-field appearance="outline">
-            <mat-label>password</mat-label>
+            <mat-label>Password</mat-label>
             <input matInput placeholder="password" />
             <mat-icon matSuffix>lock</mat-icon>
           </mat-form-field>
         </div>
-        <div><button mat-raised-button color="primary" class="w-180">login</button></div>
+        <div><button mat-raised-button color="primary" class="w-180">Login</button></div>
       </div>
     </mat-card>
     <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="4px">
-      <div> <a href="url">create account</a></div>
-      <div><a href="url">forgot password</a></div>
+      <div> <a href="url">Create Account</a></div>
+      <div><a href="url">Forgot Password</a></div>
     </div>
   </div>
 </form>

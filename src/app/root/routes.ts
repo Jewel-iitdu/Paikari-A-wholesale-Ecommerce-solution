@@ -3,11 +3,11 @@ import { NavSideBarComponent } from './nav-side-bar/nav-side-bar.component';
 import { BlankComponent } from './blank/blank.component';
 
 export const routes: Routes = [
-    {
-		path: '',
-		redirectTo: 'authentication',
-		pathMatch: 'full'
-	},
+    // {
+	// 	path: '',
+	// 	redirectTo: 'authentication',
+	// 	pathMatch: 'full'
+	// },
 	{
 		path: '',
 		component: NavSideBarComponent,
@@ -29,6 +29,7 @@ export const routes: Routes = [
 			},
 			
 		]
-	},
+	}
+
 
 ];

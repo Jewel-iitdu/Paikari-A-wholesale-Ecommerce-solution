@@ -17,9 +17,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { SharedService } from './services/shared.service';
+import { SnackbarComponent } from './components/snackbar/snackbar.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [SnackbarComponent],
   imports: [
     CommonModule,
     MatToolbarModule,

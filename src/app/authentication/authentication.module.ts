@@ -15,7 +15,12 @@ const routes:Routes=[
   {
 		path: 'sign-in',
 		component:SigninComponent
-	}
+  },
+  {
+		path: 'sign-up',
+		component:SignupComponent
+  }
+
 ]
 
 @NgModule({
