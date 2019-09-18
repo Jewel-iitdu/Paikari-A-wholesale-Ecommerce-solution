@@ -17,6 +17,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../../environments/environment';
 
 
 
@@ -40,7 +44,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     MatListModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    
+    AngularFirestoreModule,
+    
+     
   ],
   providers: [RootService],
   bootstrap: [AppComponent]

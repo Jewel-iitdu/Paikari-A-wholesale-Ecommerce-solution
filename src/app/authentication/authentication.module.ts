@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { SigninComponent } from './components/signin/signin.component';
 import { SharedModule } from '../shared/shared.module';
 import { SignupComponent } from './components/signup/signup.component';
+import { AuthenticationService } from './services/authentication.service';
 
 
 const routes:Routes=[
@@ -29,6 +30,7 @@ const routes:Routes=[
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule
-  ]
+  ],
+  providers:[AuthenticationService]
 })
 export class AuthenticationModule { }

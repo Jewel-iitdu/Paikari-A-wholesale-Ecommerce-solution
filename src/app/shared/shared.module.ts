@@ -61,6 +61,7 @@ import { SnackbarComponent } from './components/snackbar/snackbar.component';
     MatDialogModule,
     MatButtonToggleModule
   ],
-  providers:[SharedService]
+  providers:[SharedService],
+  entryComponents:[SnackbarComponent]
 })
 export class SharedModule { }
