@@ -12,6 +12,7 @@ import { UtilityService } from 'src/app/core/utility-service/utility.service';
 })
 export class AuthenticationService {
 
+
   constructor(private angularfireauth: AngularFireAuth, private angularfirestore: AngularFirestore, private util:UtilityService) { }
   
   signUp(user: UserInformation): Observable<any> {

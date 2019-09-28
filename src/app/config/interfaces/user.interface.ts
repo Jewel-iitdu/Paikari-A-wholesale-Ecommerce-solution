@@ -1,9 +1,12 @@
-import { Roles } from '../enums/paikariEnum';
+import { Roles } from './../enums/paikariEnum';
+import { first } from 'rxjs/operators';
+
 
 export interface UserInformation {
 	password: string;
 	email: string;
-	displayName?:string;
+	firstname?:string;
+	lastname?:string;
 	metaData?:CustomerUserInformation;
 
 }

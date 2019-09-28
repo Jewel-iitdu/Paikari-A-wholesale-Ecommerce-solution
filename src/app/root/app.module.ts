@@ -21,6 +21,10 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../../environments/environment';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { SharedService } from '../shared/services/shared.service';
 
 
 
@@ -34,25 +38,26 @@ import { environment } from '../../environments/environment';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     SharedModule,
-    CoreModule,
     ConfigModule,
+    CoreModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
+    AngularFirestoreModule,
+    AngularFireAuthGuardModule,
+    AngularFireStorageModule ,
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule,
-    
-    AngularFirestoreModule,
+    MatListModule
     
      
   ],
-  providers: [RootService],
+  providers: [RootService, SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

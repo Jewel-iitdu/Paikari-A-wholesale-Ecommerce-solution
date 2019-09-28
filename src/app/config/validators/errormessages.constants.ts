@@ -1,5 +1,6 @@
 export const errorMessages={
-    'name':'Name is required',
+    'firstname':'First Name is required',
+    'lastname':'Last Name is required',
     'password_mismatch':'Password does not match',
     'invalid_email':'Invalid email address',
     'email_exists':'Email already exists',

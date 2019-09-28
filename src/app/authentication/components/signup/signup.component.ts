@@ -63,12 +63,13 @@ export class SignupComponent implements OnInit, OnDestroy {
       this.userInformation = {
         email: this.signupform.value.email,
         password: this.signupform.value.password,
-        displayName: this.signupform.value.firstname,
+        firstname: this.signupform.value.firstname,
+        lastname: this.signupform.value.lastname,
         metaData: {
           firstname: this.signupform.value.firstname,
           lastname: this.signupform.value.lastname,
           email: this.signupform.value.email,
-          role: [...this.signupform.value.role],
+          role: this.signupform.value.role,
           phoneNumber: this.signupform.value.phone
           // homeAddress: this.signupform.value.homeAddress,
           // shopAddress: this.signupform.value.shopAddress,
@@ -95,7 +96,7 @@ export class SignupComponent implements OnInit, OnDestroy {
           });
         } else {
           this.openVerificationBar();
-          this.routeToHome();
+          this.routeToSignin();
         }
         this.isLoading = false;
       });
