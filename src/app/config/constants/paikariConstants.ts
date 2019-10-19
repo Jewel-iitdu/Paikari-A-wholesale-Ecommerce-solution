@@ -85,5 +85,16 @@ export const urlPaths = {
 		customerhome: {
 			url: 'home'
 		}
+	},
+	Product: {
+		AddProduct: {
+			url: 'product/add-products'
+		},
+		ModifyProduct: {
+			url: 'product/modify-products'
+		},
+		ProductList: {
+			url: 'product/product-list'
+		}
 	}
 };
