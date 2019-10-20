@@ -15,12 +15,13 @@ import { AngularFireStorage } from "@angular/fire/storage";
 })
 export class AddProductComponent implements OnInit {
   addProductForm: FormGroup;
-  ProductService: ProductService;
+  
   productInfo: ProductInformation ={productname:'',productprice: null, productquantity: null};
   constructor(
     private storage: AngularFireStorage,
     private db: AngularFirestore,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private ProductService: ProductService
   ) {}
   ngOnInit() {
     this.makingAddProductForm();

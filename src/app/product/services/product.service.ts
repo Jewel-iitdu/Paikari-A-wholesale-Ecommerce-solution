@@ -42,8 +42,8 @@ export class ProductService {
   //     .collection("/Product").add(productInfo);
   // }
 
-  createProduct(productInfo: ProductInformation){
-    this.angularfirestore.collection("Product").add(this.productInfo);
+  createProduct(productInfo){
+    this.angularfirestore.collection("Product").add(productInfo);
   }
   addItem(item){
     this.angularfirestore.collection("items").add(item);

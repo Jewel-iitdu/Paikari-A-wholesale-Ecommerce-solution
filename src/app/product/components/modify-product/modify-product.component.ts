@@ -14,8 +14,8 @@ export class ModifyProductComponent implements OnInit {
     title: '',
     description:''
   }
-  ProductService: ProductService;
-  constructor(private db: AngularFirestore) { }
+  
+  constructor(private db: AngularFirestore,private ProductService: ProductService) { }
 
   ngOnInit() {
   }
