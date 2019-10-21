@@ -1,4 +1,4 @@
-<form (ngSubmit)="onSubmit()" [formGroup]="addProductForm">
+<form [formGroup]="addProductForm">
 <div
   fxLayout="row"
   fxLayoutAlign="center center"
@@ -61,7 +61,7 @@
               type="text"
               matInput
               placeholder="Type in product name "              
-              [(ngModel)]="productInfo.productname"
+              
               formControlName="productname"
             >
             <!-- <mat-error
@@ -81,7 +81,7 @@
               type="number"
               matInput
               placeholder="Type in product price "              
-              [(ngModel)]="productInfo.productprice"
+              
               formControlName="productprice"
             >
             <!-- <mat-error
@@ -101,7 +101,7 @@
               type="number"
               matInput
               placeholder="Type in product unit"
-              [(ngModel)]="productInfo.productquantity"
+             
               formControlName="productquantity"
               
             >

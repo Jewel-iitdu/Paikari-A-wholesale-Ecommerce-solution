@@ -16,7 +16,7 @@ import { AngularFireStorage } from "@angular/fire/storage";
 export class AddProductComponent implements OnInit {
   addProductForm: FormGroup;
   
-  productInfo: ProductInformation ={productname:'',productprice: null, productquantity: null};
+  productInfo: ProductInformation ={productname:'',productprice: null, productquantity: null, productImageUrl: ''};
   constructor(
     private storage: AngularFireStorage,
     private db: AngularFirestore,
@@ -37,7 +37,20 @@ export class AddProductComponent implements OnInit {
     // });
   }
 
+  
   onSubmit() {
+    
+    
+    this.productInfo = {
+      productname : this.addProductForm.value.productname,
+      productprice: this.addProductForm.value.productprice,
+      productquantity: this.addProductForm.value.productquantity,
+      productImageUrl: JSON.stringify(this.downloadURL.subscribe(url=>{
+        if(url){
+         this.productInfo.productImageUrl = url;
+        }}))
+      
+    };
      this.ProductService.createProduct(this.productInfo);
     // console.log(this.productInfo);
   }
@@ -81,6 +94,13 @@ export class AddProductComponent implements OnInit {
 
     // Progress monitoring
     this.percentage = this.task.percentageChanges();
+
+    // Download URL file
+    // this.snapshot.pipe(finalize(() => {
+    //   this.downloadURL = this.storage.ref(path).getDownloadURL();
+    //   console.log(this.downloadURL); // Get a Observable
+    // }) ).subscribe();
+
     this.snapshot = this.task.snapshotChanges().pipe(
       // The file's download URL
       finalize(() => (this.downloadURL = fileRef.getDownloadURL())),
@@ -88,10 +108,14 @@ export class AddProductComponent implements OnInit {
         console.log(snap);
         if (snap.bytesTransferred === snap.totalBytes) {
           // Update firestore on completion
+          
           this.db.collection("photos").add({ path, size: snap.totalBytes });
+          
+          
         }
       })
     );
+    return this.downloadURL;
   }
 
   // Determines if the upload task is active

@@ -43,6 +43,10 @@ export class ProductService {
   // }
 
   createProduct(productInfo){
+    this.angularfireauth.authState.subscribe(user => {
+      if (user) this.userId = user.uid;
+    });
+    // this.angularfirestore.collection("Product").doc(this.userId).set(productInfo);
     this.angularfirestore.collection("Product").add(productInfo);
   }
   addItem(item){
