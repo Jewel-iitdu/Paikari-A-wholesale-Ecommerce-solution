@@ -109,7 +109,7 @@ export class AddProductComponent implements OnInit {
         if (snap.bytesTransferred === snap.totalBytes) {
           // Update firestore on completion
           
-          this.db.collection("photos").add({ path, size: snap.totalBytes });
+          // this.db.collection("photos").add({ path, size: snap.totalBytes });
           // this.downloadURL.subscribe(url=>{if(url){
           //   this.imgDownloadUrl = url;
           // }});

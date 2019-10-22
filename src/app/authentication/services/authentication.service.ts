@@ -39,6 +39,10 @@ export class AuthenticationService {
 		return this.angularfireauth.auth.currentUser;
 	}
 
+	signOut() {
+		this.angularfireauth.auth.signOut();
+	}
+
   sendEmailVerification() {
     this.angularfireauth.auth.currentUser.sendEmailVerification();
   }

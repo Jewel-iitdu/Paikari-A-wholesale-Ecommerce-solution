@@ -20,7 +20,7 @@ export const routes: Routes = [
   },
   {
     path: "",
-    component: BlankComponent,
+    component: NavSideBarComponent,
     children: [
       {
         path: "product",

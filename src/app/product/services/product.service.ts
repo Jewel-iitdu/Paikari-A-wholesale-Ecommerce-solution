@@ -7,6 +7,7 @@ import { ProductInformation } from "src/app/config/interfaces/product.interface"
 import { Observable } from "rxjs";
 import { Item } from 'src/app/config/interfaces/item.interface';
 import { map } from 'rxjs/operators';
+import { Entities } from 'src/app/config/enums/paikariEnum';
 
 @Injectable({
   providedIn: "root"
@@ -32,6 +33,11 @@ export class ProductService {
     //     return data;
     //   });
     // }));
+    this.angularfireauth.authState.subscribe(user => {
+      if (user) this.userId = user.uid;
+    });
+
+    this.productCollection = angularfirestore.collection<ProductInformation>('Product');
   }
 
   // createProduct(productInfo) {
@@ -42,12 +48,17 @@ export class ProductService {
   //     .collection("/Product").add(productInfo);
   // }
 
+  
+
   createProduct(productInfo){
-    this.angularfireauth.authState.subscribe(user => {
-      if (user) this.userId = user.uid;
-    });
+    
     // this.angularfirestore.collection("Product").doc(this.userId).set(productInfo);
-    this.angularfirestore.collection("Product").add(productInfo);
+    // this.angularfirestore.collection("Product").add(productInfo);
+    // let productCollection = this.angularfirestore.collection<ProductInformation>(Entities.Product);
+    // productCollection.doc(this.userId).collection("productList").add(productInfo);
+
+    this.productCollection.doc(this.userId).collection("ProductList").add(productInfo);
+    
   }
   addItem(item){
     this.angularfirestore.collection("items").add(item);

@@ -1,37 +1,35 @@
 <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #drawer class="sidenav" fixedInViewport
-        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-        [mode]="(isHandset$ | async) ? 'over' : 'side'"
-        [opened]="(isHandset$ | async) === false">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
 
-        <mat-toolbar fxLayout="row" fxLayoutAlign="space-between center" class="white-color-foreground">
-          <div>{{title}}</div>
+    <mat-toolbar fxLayout="row" fxLayoutAlign="space-between center" class="white-color-foreground">
+      <div>{{title}}</div>
 
-          <div *ngIf="drawer.opened">
-            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
-                <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-            </button>
-        </div>
+      <div *ngIf="drawer.opened">
+        <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+      </div>
     </mat-toolbar>
 
-      <mat-nav-list >
-        <div *ngFor="let content of sidebar;let i = index">
-                <!-- <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="12px"> -->
-        
-                <a mat-list-item (click)="route(content.url) ; selectRow(i)" [class.active]="i == selectedRow"
-                  class="cursor-pointer px-24 font-size-16">
-                  <i class="material-icons-outlined mr-16">
-                    {{content.icon}}
-                  </i>
-                  <span> {{content.name}}</span>
-        
-                </a>
-              </div>
-      </mat-nav-list>
+    <mat-nav-list>
+      <div *ngFor="let content of sidebar;let i = index">
+        <!-- <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="12px"> -->
 
-    </mat-sidenav>
-    <mat-sidenav-content>
-      <!-- <mat-toolbar color="primary">
+        <a mat-list-item (click)="route(content.url) ; selectRow(i)" [class.active]="i == selectedRow"
+          class="cursor-pointer px-24 font-size-16">
+          <i class="material-icons-outlined mr-16">
+            {{content.icon}}
+          </i>
+          <span> {{content.name}}</span>
+
+        </a>
+      </div>
+    </mat-nav-list>
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <!-- <mat-toolbar color="primary">
         <button
           type="button"
           aria-label="Toggle sidenav"
@@ -42,27 +40,33 @@
         </button>
         <span>paikari</span> -->
 
-        <mat-toolbar color="primary" class="h-64 w-100-p ">
-          <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="16px" class="w-100-p">
-            <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="16px">
-              <div *ngIf="!drawer.opened">
-                <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
-                  <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-                </button>
+    <mat-toolbar color="primary" class="h-64 w-100-p ">
+      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="16px" class="w-100-p">
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="16px">
+          <div *ngIf="!drawer.opened">
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+              <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+            </button>
+          </div>
+          <div class='cursor-pointer'>
+            <span *ngIf="!drawer.opened">paikari</span>
+            <div *ngIf="drawer.opened" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+              <div>paikari</div>
+              <div><i class="material-icons">
+
+                </i></div>
+
+              <div>
+
               </div>
-              <div class='cursor-pointer'>
-                <span *ngIf="!drawer.opened">paikari</span>
-                <div *ngIf="drawer.opened" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
-                  <div>paikari</div>
-                  <div><i class="material-icons">
-                      whatshot
-                    </i></div>
-    
-                </div>
-    
-              </div>
+
             </div>
-            <!-- <div [matMenuTriggerFor]="menu" fxLayout="row" fxLayoutAlign="center center" class="mr-64">
+
+
+
+          </div>
+        </div>
+        <!-- <div [matMenuTriggerFor]="menu" fxLayout="row" fxLayoutAlign="center center" class="mr-64">
               <mat-icon class="material-icons-outlined cursor-pointer">
                 settings
               </mat-icon>
@@ -76,13 +80,28 @@
                 </button>
               </mat-menu>
             </div> -->
-          </div>
 
-      </mat-toolbar>
-      <!-- Add Content Here -->
-      
-      <router-outlet></router-outlet>
-    </mat-sidenav-content>
-    
-  </mat-sidenav-container>
-  
+
+        <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px">
+          <div>
+            <button (click)="routeToSignin()" mat-mini-fab aria-label="signIn">
+              <mat-icon>account_circle</mat-icon>
+            </button>
+          </div>
+          <div>
+            <button (click)="logOut()" mat-mini-fab aria-label="signout">
+              <mat-icon>exit_to_app</mat-icon>
+            </button>
+          </div>
+        </div>
+
+
+      </div>
+
+    </mat-toolbar>
+    <!-- Add Content Here -->
+
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

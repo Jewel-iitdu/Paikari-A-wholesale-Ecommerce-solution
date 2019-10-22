@@ -12,5 +12,5 @@ body {
 	margin: 0;
 	font-family: 'DIN-Regular','Varela Round', "Helvetica Neue", sans-serif !important;
 }
-$custom-typography: mat-typography-config($font-family: 'DIN-Regular');
+$custom-typography: mat-typography-config($font-family: 'DIN-Regular' !important);
 @include mat-core($custom-typography);

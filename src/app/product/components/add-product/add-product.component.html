@@ -1,38 +1,16 @@
 <form [formGroup]="addProductForm">
-<div
-  fxLayout="row"
-  fxLayoutAlign="center center"
-  fxLayoutGap="30px"
-  class="mt-100"
->
-  <mat-card class="p-100" [class.mat-elevation-z10]="true">
-    <div
-      fxLayout="column"
-      fxLayoutAlign="center center"
-      fxLayoutGap="20px"
-      class="p-50px"
-    >
-      <div
-        class="dropzone"
-        dropZone
-        (hovered)="toggleHover($event)"
-        (dropped)="startUpload($event)"
-        [class.hovering]="isHovering"
-        fxLayout="column"
-        fxLayoutAlign="center center"
-        fxLayoutGap="50px"
-      >
-        <h3>Paikari.com</h3>
-        <p>Drag and drop or select Product Image</p>
-        <div class="file">
-          <label class="file-label">
-            <input
-              class="file-input"
-              type="file"
-              (change)="startUpload($event.target.files)"
-            />
+  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="30px" class="mt-100">
+    <mat-card class="p-100" [class.mat-elevation-z10]="true">
+      <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px" class="p-50px">
+        <div class="dropzone" dropZone (hovered)="toggleHover($event)" (dropped)="startUpload($event)"
+          [class.hovering]="isHovering" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="50px">
+          <h3>Paikari.com</h3>
+          <p>Drag and drop or select Product Image</p>
+          <div class="file">
+            <label class="file-label">
+              <input class="file-input" type="file" (change)="startUpload($event.target.files)" />
 
-            <!-- <span class="file-cta">
+              <!-- <span class="file-cta">
               <span class="file-icon">
                 <i class="fa fa-upload"></i>
               </span>
@@ -40,137 +18,101 @@
                 or choose a file…
               </span>
             </span> -->
-          </label>
+            </label>
+          </div>
         </div>
-      </div>
 
-      <div *ngIf="percentage | async as pct">
-        <progress class="progress is-info" [value]="pct" max="100"> </progress>
+        <div *ngIf="percentage | async as pct">
+          <progress class="progress is-info" [value]="pct" max="100"> </progress>
 
-        {{ pct | number }}%
-      </div>
-
-      
-    
-
-      <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
-        <div>
-          <mat-form-field appearance="outline">
-            <mat-label>Product Name</mat-label>
-            <input
-              type="text"
-              matInput
-              placeholder="Type in product name "              
-              
-              formControlName="productname"
-            >
-            <!-- <mat-error
-                *ngIf="
-                  signupform.get('lastname').touched &&
-                  signupform.get('lastname').invalid
-                "
-              >
-                {{ errormessages.lastname }}</mat-error
-              > -->
-          </mat-form-field>
+          {{ pct | number }}%
         </div>
-        <div>
-          <mat-form-field appearance="outline">
-            <mat-label>Product price</mat-label>
-            <input
-              type="number"
-              matInput
-              placeholder="Type in product price "              
-              
-              formControlName="productprice"
-            >
-            <!-- <mat-error
-                *ngIf="
-                  signupform.get('lastname').touched &&
-                  signupform.get('lastname').invalid
-                "
-              >
-                {{ errormessages.lastname }}</mat-error
-              > -->
-          </mat-form-field>
-        </div>
-        <div>
-          <mat-form-field appearance="outline">
-            <mat-label>Product quanity</mat-label>
-            <input
-              type="number"
-              matInput
-              placeholder="Type in product unit"
-             
-              formControlName="productquantity"
-              
-            >
-            <!-- <mat-error
-                *ngIf="
-                  signupform.get('lastname').touched &&
-                  signupform.get('lastname').invalid
-                "
-              >
-                {{ errormessages.lastname }}</mat-error
-              > -->
-          </mat-form-field>
-        </div>
-        <div>
+
+
+
+
+        <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
           <div>
-            
-            <button type="submit" (click)="onSubmit()" mat-raised-button color="primary">Create Product</button>
-            
+            <mat-form-field appearance="outline">
+              <mat-label>Product Name</mat-label>
+              <input type="text" matInput placeholder="Type in product name " formControlName="productname">
+              <!-- <mat-error
+                *ngIf="
+                  signupform.get('lastname').touched &&
+                  signupform.get('lastname').invalid
+                "
+              >
+                {{ errormessages.lastname }}</mat-error
+              > -->
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>Product price</mat-label>
+              <input type="number" matInput placeholder="Type in product price " formControlName="productprice">
+              <!-- <mat-error
+                *ngIf="
+                  signupform.get('lastname').touched &&
+                  signupform.get('lastname').invalid
+                "
+              >
+                {{ errormessages.lastname }}</mat-error
+              > -->
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>Product quanity</mat-label>
+              <input type="number" matInput placeholder="Type in product unit" formControlName="productquantity">
+              <!-- <mat-error
+                *ngIf="
+                  signupform.get('lastname').touched &&
+                  signupform.get('lastname').invalid
+                "
+              >
+                {{ errormessages.lastname }}</mat-error
+              > -->
+            </mat-form-field>
+          </div>
+          <div>
+            <div>
+
+              <button type="submit" (click)="onSubmit()" mat-raised-button color="primary">Create Product</button>
+
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
 
-  </mat-card>
-
-  <div>
-    <div
-    fxLayout="row"
-    fxLayoutAlign="center center"
-    fxLayoutGap="30px"
-    class="mt-100"
-  >
-    <mat-card class="p-200" [class.mat-elevation-z4]="true">
-      <div *ngIf="snapshot | async as snap">
-        {{ snap.bytesTransferred | fileSize }} of
-        {{ snap.totalBytes | fileSize }}
-
-        <div *ngIf="downloadURL | async as url">
-          <h3>Results!</h3>
-          <img [src]="url" /><br />
-          <a [href]="url" target="_blank" rel="noopener">Download Me!</a>
-        </div>
-        <hr />
-
-        <button
-          (click)="task.pause()"
-          class="button is-warning"
-          [disabled]="!isActive(snap)"
-        >
-          Pause
-        </button>
-        <button
-          (click)="task.cancel()"
-          class="button is-danger"
-          [disabled]="!isActive(snap)"
-        >
-          Cancel
-        </button>
-        <button
-          (click)="task.resume()"
-          class="button is-info"
-          [disabled]="!(snap?.state === 'paused')"
-        >
-          Resume
-        </button>
-      </div>
     </mat-card>
+
+    <div>
+      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="30px" class="mt-100">
+        <mat-card class="p-200" [class.mat-elevation-z4]="true">
+          <div *ngIf="snapshot | async as snap">
+            {{ snap.bytesTransferred | fileSize }} of
+            {{ snap.totalBytes | fileSize }}
+
+            <div *ngIf="downloadURL | async as url">
+              <h3>Results!</h3>
+              <img [src]="url" /><br />
+              <a [href]="url" target="_blank" rel="noopener">Download Me!</a>
+            </div>
+            <hr />
+
+            <button (click)="task.pause()" class="button is-warning" [disabled]="!isActive(snap)">
+              Pause
+            </button>
+            <button (click)="task.cancel()" class="button is-danger" [disabled]="!isActive(snap)">
+              Cancel
+            </button>
+            <button (click)="task.Resume()" class="button is-info" [disabled]="!(snap?.state === 'paused')">
+              Resume
+            </button>
+          </div>
+        </mat-card>
+      </div>
+    </div>
   </div>
-  </div>
-</div>
 </form>
