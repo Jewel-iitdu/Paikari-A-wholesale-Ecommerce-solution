@@ -45,10 +45,7 @@ export class AddProductComponent implements OnInit {
       productname : this.addProductForm.value.productname,
       productprice: this.addProductForm.value.productprice,
       productquantity: this.addProductForm.value.productquantity,
-      productImageUrl: JSON.stringify(this.downloadURL.subscribe(url=>{
-        if(url){
-         this.productInfo.productImageUrl = url;
-        }}))
+      productImageUrl: this.imgDownloadUrl
       
     };
      this.ProductService.createProduct(this.productInfo);
@@ -65,6 +62,9 @@ export class AddProductComponent implements OnInit {
 
   // Download URL
   downloadURL: Observable<string>;
+
+  //download url string
+  imgDownloadUrl: string;
 
   // State for dropzone CSS toggling
   isHovering: boolean;
@@ -110,12 +110,16 @@ export class AddProductComponent implements OnInit {
           // Update firestore on completion
           
           this.db.collection("photos").add({ path, size: snap.totalBytes });
+          // this.downloadURL.subscribe(url=>{if(url){
+          //   this.imgDownloadUrl = url;
+          // }});
+          this.imgDownloadUrl = path;
           
           
         }
       })
     );
-    return this.downloadURL;
+    
   }
 
   // Determines if the upload task is active
