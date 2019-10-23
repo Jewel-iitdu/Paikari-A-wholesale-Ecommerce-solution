@@ -8,6 +8,7 @@ import { Observable } from "rxjs";
 import { Item } from 'src/app/config/interfaces/item.interface';
 import { map } from 'rxjs/operators';
 import { Entities } from 'src/app/config/enums/paikariEnum';
+import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: "root"
@@ -19,6 +20,7 @@ export class ProductService {
   // itemsCollection: AngularFirestoreCollection<Item>;
   item: Observable<Item[]>;
   // itemDoc: AngularFirestoreDocument<Item>;
+  
 
   constructor(
     private angularfireauth: AngularFireAuth,

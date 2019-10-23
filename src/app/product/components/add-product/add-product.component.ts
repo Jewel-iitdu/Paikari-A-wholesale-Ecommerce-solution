@@ -1,12 +1,13 @@
 import { ProductService } from "./../../services/product.service";
 import { ProductInformation } from "./../../../config/interfaces/product.interface";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { AngularFirestore } from "angularfire2/firestore";
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
 import { tap, finalize } from "rxjs/operators";
 import { AngularFireUploadTask } from "angularfire2/storage";
 import { AngularFireStorage } from "@angular/fire/storage";
+import * as firebase from 'firebase/app';
 
 @Component({
   selector: "app-add-product",
@@ -15,8 +16,7 @@ import { AngularFireStorage } from "@angular/fire/storage";
 })
 export class AddProductComponent implements OnInit {
   addProductForm: FormGroup;
-  
-  productInfo: ProductInformation ={productname:'',productprice: null, productquantity: null, productImageUrl: ''};
+  productInfo: ProductInformation ={productname:'',productprice: null, productquantity: null, productImageUrl: '', productDescription: 'string', created: null};
   constructor(
     private storage: AngularFireStorage,
     private db: AngularFirestore,
@@ -28,10 +28,11 @@ export class AddProductComponent implements OnInit {
   }
   makingAddProductForm() {
     this.addProductForm = this.fb.group({
-      productname: ["", [Validators.required]],
-      productprice: ["", [Validators.required]],
-      productquantity: ["", [Validators.required]]
-    });
+      productname: ['', [Validators.required]],
+      productprice: ['', [Validators.required]],
+      productquantity: ['', [Validators.required]],
+      productDescription: ['', [Validators.required]]
+    })
     // this.productInfo.subscribe(productInfo => {
     //   this.addProductForm.patchValue(productInfo);
     // });
@@ -45,8 +46,9 @@ export class AddProductComponent implements OnInit {
       productname : this.addProductForm.value.productname,
       productprice: this.addProductForm.value.productprice,
       productquantity: this.addProductForm.value.productquantity,
-      productImageUrl: this.imgDownloadUrl
-      
+      productDescription: this.addProductForm.value.productDescription,
+      productImageUrl: this.imgDownloadUrl,
+      created: firebase.firestore.FieldValue.serverTimestamp()
     };
      this.ProductService.createProduct(this.productInfo);
     // console.log(this.productInfo);

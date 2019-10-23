@@ -29,6 +29,7 @@
     "firebase": "^6.6.2",
     "font-awesome": "^4.7.0",
     "intl-tel-input": "^16.0.3",
+    "mdbootstrap": "^4.8.11",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

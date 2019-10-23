@@ -1,18 +1,27 @@
-<div class="card">
-    <div class="card-content">
-      <span class="card-title">Add Item</span>
-      <form (ngSubmit)="onSubmit()" class="col s6">
-        <div class="row">
-          <div class="input-field col s6">
-            <input type="text" placeholder="Add Title" [(ngModel)]="item.title" name="title">
-            <label>Title</label>
-          </div>
-          <div class="input-field col s6">
-            <input type="text" placeholder="Add Description" [(ngModel)]="item.description" name="description">
-            <label>Description</label>
-          </div>
-          <input type="submit" value="Submit" class="btn">
-        </div>
-      </form>
-    </div>
-  </div>
+<form [formGroup]="modForm">
+  Value: {{modForm.value |json}}
+
+  <hr>
+
+  <mat-form-field appearance="outline">
+      <mat-label>Product Name</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Type in product name "
+        formControlName="title"
+      />
+      
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Product Name</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder="Type in product name "
+          formControlName="description"
+        />
+        
+      </mat-form-field>
+</form>
