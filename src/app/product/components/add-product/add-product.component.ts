@@ -41,7 +41,6 @@ export class AddProductComponent implements OnInit {
   
   onSubmit() {
     
-    debugger;
     this.productInfo = {
       productname : this.addProductForm.value.productname,
       productprice: this.addProductForm.value.productprice,
@@ -50,7 +49,7 @@ export class AddProductComponent implements OnInit {
       productImageUrl: this.imgDownloadUrl,
       created: firebase.firestore.FieldValue.serverTimestamp()
     };
-    //  this.ProductService.createProduct(this.productInfo);
+     this.ProductService.createProduct(this.productInfo);
     // console.log(this.productInfo);
   }
 
