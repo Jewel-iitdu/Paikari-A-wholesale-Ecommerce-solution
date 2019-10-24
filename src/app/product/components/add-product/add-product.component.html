@@ -52,10 +52,12 @@
             (change)="startUpload($event.target.files)"
           />
 
+          <!-- <input class="file-input" type="file" (change)="startUpload($event.target.files)" /> -->
+
           <label for="file-upload" id="file-drag">
             <img id="file-image" src="#" alt="Preview" class="hidden" />
             <div id="start">
-              <i class="fa fa-download" aria-hidden="true"></i>
+              <i class="fa fa-upload" aria-hidden="true"></i>
               <div>Select a file or drag here</div>
               <div id="notimage" class="hidden">Please select an image</div>
               <span id="file-upload-btn" class="btn btn-primary"
@@ -199,9 +201,7 @@
               <!-- <a [href]="url" target="_blank" rel="noopener">Download Me!</a> -->
             </div>
             <hr />
-            <div>
-              <p> Value: {{addProductForm.value | json}}</p>
-            </div>
+            
             <!-- <button
               (click)="task.pause()"
               class="button is-warning"
@@ -223,6 +223,12 @@
             >
               Resume
             </button> -->
+          </div>
+          <div>
+            <h5>
+              {{addProductForm.value.productname}}
+            </h5> 
+            <!-- <p>Value: {{ad}} </p> -->
           </div>
         </mat-card>
       </div>
