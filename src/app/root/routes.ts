@@ -1,3 +1,4 @@
+import { MenuItemBarComponent } from './menu-item-bar/menu-item-bar.component';
 import { Routes } from "@angular/router";
 import { NavSideBarComponent } from "./nav-side-bar/nav-side-bar.component";
 import { BlankComponent } from "./blank/blank.component";
@@ -10,7 +11,7 @@ export const routes: Routes = [
   //   },
   {
     path: "",
-    component: NavSideBarComponent,
+    component: MenuItemBarComponent,
     children: [
       {
         path: "home",
@@ -20,7 +21,7 @@ export const routes: Routes = [
   },
   {
     path: "",
-    component: NavSideBarComponent,
+    component: MenuItemBarComponent,
     children: [
       {
         path: "product",

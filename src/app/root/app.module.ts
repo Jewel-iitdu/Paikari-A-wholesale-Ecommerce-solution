@@ -26,6 +26,7 @@ import { SharedService } from "../shared/services/shared.service";
 // import { AngularFireStorage} from 'angularfire2/storage';
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireStorageModule } from "@angular/fire/storage";
+import { MenuItemBarComponent } from './menu-item-bar/menu-item-bar.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { AngularFireStorageModule } from "@angular/fire/storage";
     NotFoundComponent,
     NavSideBarComponent,
     BlankComponent,
+    MenuItemBarComponent,
   ],
   imports: [
     BrowserModule,

@@ -45,8 +45,7 @@ export class NavSideBarComponent implements OnInit {
     
   }
   selectRow(index) {
-		this.selectedRow = index;
-		
+		this.selectedRow = index;		
   }
   
   logOut(){

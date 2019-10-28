@@ -183,10 +183,10 @@
       <div
         fxLayout="row"
         fxLayoutAlign="center center"
-        fxLayoutGap="30px"
+        fxLayoutGap="10px"
         class="mt-100"
       >
-        <mat-card class="p-200" [class.mat-elevation-z4]="true">
+        <mat-card [class.mat-elevation-z4]="true">
           
 
           <div *ngIf="snapshot | async as snap">
@@ -195,13 +195,11 @@
 
             <div *ngIf="downloadURL | async as url">
               <!-- <h3>Results!</h3> -->
-              <img width="200" height="200" [src]="url" /><br />
+              <img [src]="url" /><br />
               <!-- <a [href]="url" target="_blank" rel="noopener">Download Me!</a> -->
             </div>
             <hr />
-            <div>
-              <p> Value: {{addProductForm.value | json}}</p>
-            </div>
+            
             <!-- <button
               (click)="task.pause()"
               class="button is-warning"
@@ -223,6 +221,10 @@
             >
               Resume
             </button> -->
+          </div>
+
+          <div>
+            <p> {{addProductForm.value.productname}}</p>
           </div>
         </mat-card>
       </div>

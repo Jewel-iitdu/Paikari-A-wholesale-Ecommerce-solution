@@ -15,6 +15,31 @@ export const paikariconst={
 	checkEmail:'Verification email sent'
     
 }
+
+export const paikariMenuConst={
+    menubar: [
+		{
+			name: 'Home',
+			url: 'home'
+		},
+		{
+			name: 'Transaction History',
+			url:'transaction-history'
+		},
+		{
+			name: 'Category',
+			url: 'Category'
+		}
+	],
+	
+    siteName:{
+        name:"Paikari"
+	},
+	// defaultPhonenumberCode: 'bd',
+	// emailsent:'Email sent successfully',
+	// checkEmail:'Verification email sent'
+    
+}
 export const signinErrorCode = {
 	'Invalid Email': {
 		code: 'auth/invalid-email',
