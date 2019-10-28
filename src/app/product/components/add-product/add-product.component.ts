@@ -41,7 +41,6 @@ export class AddProductComponent implements OnInit {
   
   onSubmit() {
     
-    
     this.productInfo = {
       productname : this.addProductForm.value.productname,
       productprice: this.addProductForm.value.productprice,

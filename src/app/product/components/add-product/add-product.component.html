@@ -34,14 +34,14 @@
 
         <div
           class="dropzone"
-          dropZone
+          DropZone
           (hovered)="toggleHover($event)"
           (dropped)="startUpload($event)"
           [class.hovering]="isHovering"
           fxLayout="column"
           fxLayoutAlign="center center"
           fxLayoutGap="10px"
-          style="width: 100%;"
+          style="width: 150%;"
           class="pt-20"
         >
           <input
@@ -51,11 +51,10 @@
             accept="image/*"
             (change)="startUpload($event.target.files)"
           />
-
           <label for="file-upload" id="file-drag">
             <img id="file-image" src="#" alt="Preview" class="hidden" />
             <div id="start">
-              <i class="fa fa-download" aria-hidden="true"></i>
+              <i class="fa fa-upload" aria-hidden="true"></i>
               <div>Select a file or drag here</div>
               <div id="notimage" class="hidden">Please select an image</div>
               <span id="file-upload-btn" class="btn btn-primary"
@@ -79,11 +78,11 @@
           </label>
         </div>
 
-        <!-- <div *ngIf="percentage | async as pct">
+        <div *ngIf="percentage | async as pct">
           <progress class="progress is-info" [value]="pct" max="100"> </progress>
 
           {{ pct | number }}%
-        </div> -->
+        </div>
 
         <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
           <div>
@@ -222,9 +221,11 @@
               Resume
             </button> -->
           </div>
-
           <div>
-            <p> {{addProductForm.value.productname}}</p>
+            <h5>
+              {{addProductForm.value.productname}}
+            </h5> 
+            <!-- <p>Value: {{ad}} </p> -->
           </div>
         </mat-card>
       </div>
