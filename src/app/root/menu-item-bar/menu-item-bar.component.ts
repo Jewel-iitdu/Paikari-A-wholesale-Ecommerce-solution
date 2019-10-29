@@ -11,6 +11,8 @@ export class MenuItemBarComponent implements OnInit {
 
   title: string;
   menubar;
+  accountbar;
+  accountItems;
   Username: string;
   menuItems;
   selectedRow: number;
@@ -27,6 +29,7 @@ export class MenuItemBarComponent implements OnInit {
   }
   makeSideBar() {
     this.menubar = paikariMenuConst.menubar;
+    this.accountbar = paikariMenuConst.accountbar;
   }
   selectRow(index) {
 		this.selectedRow = index;		
