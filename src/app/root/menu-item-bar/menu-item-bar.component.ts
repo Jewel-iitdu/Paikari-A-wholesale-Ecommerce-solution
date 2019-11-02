@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { paikariconst, paikariMenuConst } from 'src/app/config/constants/paikariConstants';
+import {MatMenuTrigger} from '@angular/material'
 
 @Component({
   selector: 'app-menu-item-bar',
@@ -9,6 +10,7 @@ import { paikariconst, paikariMenuConst } from 'src/app/config/constants/paikari
 })
 export class MenuItemBarComponent implements OnInit {
 
+  @ViewChild(MatMenuTrigger, { static: true }) trigger: MatMenuTrigger;
   title: string;
   menubar;
   accountbar;
@@ -37,6 +39,13 @@ export class MenuItemBarComponent implements OnInit {
   route(url) {
     this.router.navigateByUrl(url);
     
+  }
+  openMyMenu() {
+    this.trigger.toggleMenu();
+  } 
+  closeMyMenu() {
+    this.trigger.closeMenu();
+    console.log('close')
   }
 
 }

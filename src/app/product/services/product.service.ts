@@ -6,7 +6,7 @@ import { UtilityService } from "src/app/core/utility-service/utility.service";
 import { ProductInformation } from "src/app/config/interfaces/product.interface";
 import { Observable } from "rxjs";
 import { Item } from 'src/app/config/interfaces/item.interface';
-import { map } from 'rxjs/operators';
+import { map, first } from 'rxjs/operators';
 import { Entities } from 'src/app/config/enums/paikariEnum';
 import * as firebase from 'firebase';
 
@@ -64,5 +64,22 @@ export class ProductService {
   }
   addItem(item){
     this.angularfirestore.collection("items").add(item);
+  }
+  
+  getAllCategory(){
+    // return this.angularfirestore.collection('/categories', {
+    //   query: {
+    //     orderByChild: 'name'
+    //   }
+    // });
+  //   return this.angularfirestore.collection("Catergories").get().then(querySnapshot=> {
+  //     querySnapshot.forEach(doc=> {
+  //         // doc.data() is never undefined for query doc snapshots
+  //         console.log(doc.id, " => ", doc.data());
+  //     });
+  // });
+  this.angularfirestore.collection('Categories').get().pipe(first()).subscribe(res=>{
+    console.log(res);
+  })
   }
 }

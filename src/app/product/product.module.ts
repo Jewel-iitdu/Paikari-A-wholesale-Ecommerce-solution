@@ -8,6 +8,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { DropZoneDirective } from './drop-zone.directive';
 import { FileSizePipe } from './file-size.pipe';
+import { ProductCardComponent } from './components/product-card/product-card.component';
 
 const routes:Routes=[
   {
@@ -31,7 +32,7 @@ const routes:Routes=[
 ]
 
 @NgModule({
-  declarations: [AddProductComponent, ModifyProductComponent, ProductListComponent, DropZoneDirective, FileSizePipe],
+  declarations: [AddProductComponent, ModifyProductComponent, ProductListComponent, DropZoneDirective, FileSizePipe, ProductCardComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

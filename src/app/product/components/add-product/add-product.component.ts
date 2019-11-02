@@ -16,7 +16,12 @@ import * as firebase from 'firebase/app';
 })
 export class AddProductComponent implements OnInit {
   addProductForm: FormGroup;
-  productInfo: ProductInformation ={productname:'',productprice: null, productquantity: null, productImageUrl: '', productDescription: 'string', created: null};
+  productInfo: ProductInformation ={productname:'',productprice: null, productquantity: null, productImageUrl: '', productDescription: '', created: null, category: ''};
+  isPreview=false;
+  roles={
+    "jhghfjhgf":"pant",
+
+  }
   constructor(
     private storage: AngularFireStorage,
     private db: AngularFirestore,
@@ -25,13 +30,15 @@ export class AddProductComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.makingAddProductForm();
+    this.ProductService.getAllCategory();
   }
   makingAddProductForm() {
     this.addProductForm = this.fb.group({
       productname: ['', [Validators.required]],
       productprice: ['', [Validators.required]],
       productquantity: ['', [Validators.required]],
-      productDescription: ['', [Validators.required]]
+      productDescription: ['', [Validators.required]],
+      category: ['',[Validators.required]]
     })
     // this.productInfo.subscribe(productInfo => {
     //   this.addProductForm.patchValue(productInfo);
@@ -75,6 +82,7 @@ export class AddProductComponent implements OnInit {
   }
 
   startUpload(event: FileList) {
+    this.isPreview=true;
     // The File object
     const file = event.item(0);
 

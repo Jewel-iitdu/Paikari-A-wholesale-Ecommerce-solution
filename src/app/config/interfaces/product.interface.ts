@@ -7,6 +7,7 @@ export interface ProductInformation{
     productImageUrl: string;
     // uid?: string;
     created: any;
+    category?: string;
 }
 export interface Productdata{
     

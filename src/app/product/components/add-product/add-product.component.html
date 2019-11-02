@@ -106,6 +106,22 @@
           </div>
           <div>
             <mat-form-field appearance="outline">
+              <mat-label>Categories</mat-label>
+              <mat-select
+                formControlName="category"
+                disableOptionCentering
+              >
+                <mat-option
+                  *ngFor="let role of roles | keyvalue"
+                  [value]="role.key"
+                  >{{ role.value }}</mat-option
+                >
+              </mat-select>
+              
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline">
               <mat-label>Product price</mat-label>
               <input
                 type="number"
@@ -178,7 +194,7 @@
       </div>
     </mat-card>
 
-    <div>
+    <div *ngIf='isPreview'>
       <div
         fxLayout="row"
         fxLayoutAlign="center center"
