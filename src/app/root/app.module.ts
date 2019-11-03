@@ -1,3 +1,4 @@
+import { MatSelectModule } from '@angular/material/select';
 import { SharedModule } from "./../shared/shared.module";
 import { ConfigModule } from "./../config/config.module";
 import { CoreModule } from "./../core/core.module";
@@ -27,6 +28,13 @@ import { SharedService } from "../shared/services/shared.service";
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireStorageModule } from "@angular/fire/storage";
 import { MenuItemBarComponent } from './menu-item-bar/menu-item-bar.component';
+import { MatTableModule, MatMenuModule, MatCardModule, MatFormFieldModule, MatInputModule, MatDividerModule, MatProgressBarModule, MatSnackBarModule, MatDialogModule, MatButtonToggleModule, MatPaginatorModule } from '@angular/material';
+import { CdkTableModule } from '@angular/cdk/table';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -50,11 +58,59 @@ import { MenuItemBarComponent } from './menu-item-bar/menu-item-bar.component';
     AngularFireAuthGuardModule,
     LayoutModule,
     MatToolbarModule,
+    MatIconModule,
+    FlexLayoutModule,
+    MatSelectModule,
+    MatMenuModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    AngularFontAwesomeModule,
+    MatDividerModule,
+    MatProgressBarModule,
+    MatSnackBarModule,
+    MatDialogModule,
+    MatButtonToggleModule,
+    MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    AngularFireStorageModule
+    HttpClientModule,
+    MatTableModule,
+    MatPaginatorModule,
+    AngularFireStorageModule,
+    CdkTableModule
+  ],
+  exports: [
+    MatToolbarModule,
+    MatIconModule,
+    FlexLayoutModule,
+    MatSelectModule,
+    MatMenuModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    AngularFontAwesomeModule,
+    MatDividerModule,
+    MatProgressBarModule,
+    MatSnackBarModule,
+    MatDialogModule,
+    MatButtonToggleModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    HttpClientModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [RootService, SharedService],
   bootstrap: [AppComponent]

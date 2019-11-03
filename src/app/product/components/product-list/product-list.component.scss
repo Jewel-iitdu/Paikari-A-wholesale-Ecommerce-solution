@@ -1,0 +1,29 @@
+/* Structure */
+
+.example-header {
+    min-height: 64px;
+    padding: 8px 24px 0;
+  }
+  
+  mat-cell {
+    display: flex !important;
+    justify-content: center !important;
+  }
+  
+  mat-header-cell {
+    display: flex;
+    justify-content: center;
+  }
+  mat-paginator {
+    height: 64px !important;
+  }
+  
+  .example-button-row button,
+  .example-button-row a {
+    margin-right: 8px;
+  }
+  
+  .fontSize-B {
+      font-size: 20px !important;
+  }
+  
