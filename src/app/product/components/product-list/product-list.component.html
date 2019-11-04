@@ -1,32 +1,41 @@
-
-  <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-          <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
+<div class="example-button-row m-40" fxLayout="column" fxLayoutAlign="end end">
+    <button (click)='openWithdrawRequestWindow()' mat-raised-button color="warn" class="w-250 h-58 fontSize-B">Withdraw Money</button>
+  </div>
   
-    <!-- Position Column -->
-    <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef> No. </th>
-        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+  <div fxLayout="column" class="m-40 mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource">
+      <!-- Position Column -->
+      <ng-container matColumnDef="transactionId">
+        <mat-header-cell *matHeaderCellDef> Transaction ID </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.transactionId }}
+        </mat-cell>
       </ng-container>
-    
+  
       <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      <ng-container matColumnDef="date">
+        <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.date }} </mat-cell>
       </ng-container>
-    
+  
       <!-- Weight Column -->
-      <ng-container matColumnDef="weight">
-        <th mat-header-cell *matHeaderCellDef> Weight </th>
-        <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+      <ng-container matColumnDef="amount">
+        <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.amount }} </mat-cell>
       </ng-container>
-    
+  
       <!-- Symbol Column -->
-      <ng-container matColumnDef="symbol">
-        <th mat-header-cell *matHeaderCellDef> Symbol </th>
-        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.status }} </mat-cell>
       </ng-container>
-    
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </mat-table>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+  
