@@ -18,6 +18,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { SharedService } from './services/shared.service';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
+import { MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
 
 @NgModule({
   declarations: [SnackbarComponent],
@@ -39,7 +40,10 @@ import { SnackbarComponent } from './components/snackbar/snackbar.component';
     MatProgressBarModule,
     MatSnackBarModule,
     MatDialogModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   exports: [
     
@@ -59,7 +63,10 @@ import { SnackbarComponent } from './components/snackbar/snackbar.component';
     MatProgressBarModule,
     MatSnackBarModule,
     MatDialogModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers:[SharedService],
   entryComponents:[SnackbarComponent]
