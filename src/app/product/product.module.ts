@@ -9,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import { DropZoneDirective } from './drop-zone.directive';
 import { FileSizePipe } from './file-size.pipe';
 import { ProductCardComponent } from './components/product-card/product-card.component';
+import { MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
 
 const routes:Routes=[
   {
@@ -36,7 +37,8 @@ const routes:Routes=[
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    SharedModule
+    SharedModule,
+    
   ],
   providers:[ProductService]
 })
