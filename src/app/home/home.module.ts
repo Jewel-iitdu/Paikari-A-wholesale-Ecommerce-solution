@@ -1,3 +1,4 @@
+import { SharedModule } from './../shared/shared.module';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -16,6 +17,7 @@ const routes:Routes=[
   declarations: [CustomerHomeComponent],
   imports: [
     CommonModule,
+    SharedModule,
     RouterModule.forChild(routes)
   ]
 })

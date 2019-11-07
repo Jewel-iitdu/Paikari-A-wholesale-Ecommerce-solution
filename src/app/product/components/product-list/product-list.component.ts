@@ -1,67 +1,59 @@
-import { ProductService } from './../../services/product.service';
-import { ProductInformation } from 'src/app/config/interfaces/product.interface';
+import { ProductService } from "./../../services/product.service";
+import { ProductInformation } from "src/app/config/interfaces/product.interface";
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
-import { Subscription } from 'rxjs';
-import { first } from 'rxjs/operators';
+import { MatTableDataSource, MatSort, MatPaginator } from "@angular/material";
+import { Subscription } from "rxjs";
+import { map } from "rxjs/operators";
 
-// export interface PeriodicElement {
-//   date: string;
-//   transactionId: number;
-//   amount: number;
-//   status: string;
-// }
+export interface PeriodicElement {
+  productname: string;
+  productprice: string;
+  created: string;
+}
 
-// const ELEMENT_DATA: PeriodicElement[] = [
-//   { transactionId: 1, date: "Hydrogen", amount: 1.0079, status: "H" },
-//   { transactionId: 2, date: "Helium", amount: 4.0026, status: "He" },
-//   { transactionId: 3, date: "Lithium", amount: 6.941, status: "Li" },
-//   { transactionId: 4, date: "Beryllium", amount: 9.0122, status: "Be" },
-//   { transactionId: 5, date: "Boron", amount: 10.811, status: "B" },
-//   { transactionId: 6, date: "Carbon", amount: 12.0107, status: "C" },
-//   { transactionId: 7, date: "Nitrogen", amount: 14.0067, status: "N" },
-//   { transactionId: 8, date: "Oxygen", amount: 15.9994, status: "O" },
-//   { transactionId: 9, date: "Fluorine", amount: 18.9984, status: "F" },
-//   { transactionId: 10, date: "Neon", amount: 20.1797, status: "Ne" }
-// ];
-
+const ELEMENT_DATA: PeriodicElement[] = [
+  { productname: "Hello", productprice: "BDT 200", created: "2019-1-5" },
+  { productname: "Hello1", productprice: "BDT 2200", created: "2019-1-5" },
+  { productname: "Hello2", productprice: "BDT 2100", created: "2019-1-5" },
+  { productname: "Hello3", productprice: "BDT 200", created: "2019-1-5" },
+  { productname: "Hello4", productprice: "BDT 2200", created: "2019-1-5" },
+  { productname: "Hello5", productprice: "BDT 6200", created: "2019-1-5" },
+  { productname: "Hello6", productprice: "BDT 9200", created: "2019-1-5" },
+  { productname: "Hello7", productprice: "BDT 7200", created: "2019-1-5" },
+  { productname: "Hello8", productprice: "BDT 22200", created: "2019-1-5" },
+  { productname: "Hello9", productprice: "BDT 4200", created: "2019-1-5" }
+];
 
 @Component({
-  selector: 'app-product-list',
-  templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.scss']
+  selector: "app-product-list",
+  templateUrl: "./product-list.component.html",
+  styleUrls: ["./product-list.component.scss"]
 })
 export class ProductListComponent implements OnInit {
-
   products: ProductInformation[];
-  subscription: Subscription;
-  
-  displayedColumns: string[] = ["transactionId", "date", "amount", "status"];
-  dataSource = new MatTableDataSource(this.products);
+
+  displayedColumns: string[] = ["productname", "productprice", "created"];
+  dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   constructor(private productService: ProductService) {
-    this.productService.getProductByUser().pipe(first()).subscribe((res) => {
-			if (res && res.code) {
-				console.log(res.code);
-				// this.validateSignIn(res.code);
-				// this.isLoading = false;
-			} else {
-				// this.router.navigate([ urlPaths.Home.customerhome.url ]);
-				// this.isLoading = false;
-        this.products =res;
-			}
-		});
+    //   this.productService.getProductByUser().subscribe(
+    //     list => {
+    //         this.products = list.map(item => {
+    //         return {
+    //           id: item.payload.doc.id,
+    //           ...item.payload.doc.data()
+    //         } as ProductInformation;
+    //       });
+    // })
   }
-
   ngOnInit() {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
 
-  openWithdrawRequestWindow(){
+  openWithdrawRequestWindow() {
     // this.withdrawRequestModalService.openWithdrawRequestModal();
   }
-
 }

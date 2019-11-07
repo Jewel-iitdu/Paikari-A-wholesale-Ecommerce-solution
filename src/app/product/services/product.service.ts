@@ -90,22 +90,9 @@ export class ProductService {
       });
   }
 
-  getProductByUser(): Observable<ProductInformation>{
+  getProductByUser() {
     // return this.angularfirestore.collection('Product').doc(this.userId).collection('ProductList').ref.get();
  
-    return new Observable((observer) =>{
-      let cityRef = this.angularfirestore.collection('cities').doc('SF');
-      let getDoc = cityRef.ref.get().then(doc => {
-      if (!doc.exists) {
-      console.log('No such document!');
-    } else {
-      console.log('Document data:', doc.data());
-            
-    }
-  })
-  .catch(err => {
-    console.log('Error getting document', err);
-  });
-    }
+    return this.angularfirestore.collection<ProductInformation>(Entities.Product).doc(this.userId).collection('ProductList').snapshotChanges();
   }
 }

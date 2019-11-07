@@ -1,34 +1,29 @@
 <div class="example-button-row m-40" fxLayout="column" fxLayoutAlign="end end">
-    <button mat-raised-button color="warn" class="w-250 h-58 fontSize-B">Withdraw Money</button>
+    <button mat-raised-button color="warn" class="w-250 h-58 fontSize-B">Create Product</button>
   </div>
   
   <div fxLayout="column" class="m-40 mat-elevation-z8">
     <mat-table #table [dataSource]="dataSource">
       <!-- Position Column -->
-      <ng-container matColumnDef="transactionId">
-        <mat-header-cell *matHeaderCellDef> Transaction ID </mat-header-cell>
+      <ng-container matColumnDef="productname">
+        <mat-header-cell *matHeaderCellDef> Product Name </mat-header-cell>
         <mat-cell *matCellDef="let element">
-          {{ element.transactionId }}
+          {{ element.productname }}
         </mat-cell>
       </ng-container>
   
       <!-- Name Column -->
-      <ng-container matColumnDef="date">
-        <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.date }} </mat-cell>
+      <ng-container matColumnDef="productprice">
+        <mat-header-cell *matHeaderCellDef> Product Price </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.productprice }} </mat-cell>
       </ng-container>
   
       <!-- Weight Column -->
-      <ng-container matColumnDef="amount">
-        <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.amount }} </mat-cell>
+      <ng-container matColumnDef="created">
+        <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.created }} </mat-cell>
       </ng-container>
-  
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="status">
-        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.status }} </mat-cell>
-      </ng-container>
+
   
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>

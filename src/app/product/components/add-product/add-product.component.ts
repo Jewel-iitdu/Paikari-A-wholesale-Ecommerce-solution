@@ -16,12 +16,9 @@ import * as firebase from 'firebase/app';
 })
 export class AddProductComponent implements OnInit {
   addProductForm: FormGroup;
-  productInfo: ProductInformation ={productname:'',productprice: null, productquantity: null, productImageUrl: '', productDescription: '', created: null, category: ''};
+  productInfo: ProductInformation = {id:'', productname:'',productprice: null, productquantity: null, productImageUrl: '', productDescription: '', created: null};
   isPreview=false;
-  roles={
-    "jhghfjhgf":"pant",
-
-  }
+ 
   constructor(
     private storage: AngularFireStorage,
     private db: AngularFirestore,
@@ -38,7 +35,7 @@ export class AddProductComponent implements OnInit {
       productprice: ['', [Validators.required]],
       productquantity: ['', [Validators.required]],
       productDescription: ['', [Validators.required]],
-      category: ['',[Validators.required]]
+      // category: ['',[Validators.required]]
     })
     // this.productInfo.subscribe(productInfo => {
     //   this.addProductForm.patchValue(productInfo);
@@ -49,6 +46,7 @@ export class AddProductComponent implements OnInit {
   onSubmit() {
     
     this.productInfo = {
+      id: '',
       productname : this.addProductForm.value.productname,
       productprice: this.addProductForm.value.productprice,
       productquantity: this.addProductForm.value.productquantity,
