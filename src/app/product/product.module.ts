@@ -35,9 +35,9 @@ const routes:Routes=[
 @NgModule({
   declarations: [AddProductComponent, ModifyProductComponent, ProductListComponent, DropZoneDirective, FileSizePipe, ProductCardComponent],
   imports: [
-    CommonModule,
+    CommonModule, 
     RouterModule.forChild(routes),
-    SharedModule,
+    SharedModule
     
   ],
   providers:[ProductService]

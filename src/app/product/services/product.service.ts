@@ -20,23 +20,14 @@ export class ProductService {
   userId: string;
   productCollection: AngularFirestoreCollection<ProductInformation>;
   productInfo: Observable<ProductInformation[]>;
-  // itemsCollection: AngularFirestoreCollection<Item>;
   item: Observable<Item[]>;
-  // itemDoc: AngularFirestoreDocument<Item>;
 
   constructor(
     private angularfireauth: AngularFireAuth,
     private angularfirestore: AngularFirestore,
     private util: UtilityService
   ) {
-    // this.itemsCollection = this.angularfirestore.collection('items', ref => ref.orderBy('title','asc'));
-    // this.items = this.itemsCollection.snapshotChanges().pipe(map(changes => {
-    //   return changes.map(a => {
-    //     const data = a.payload.doc.data() as Item;
-    //     data.id = a.payload.doc.id;
-    //     return data;
-    //   });
-    // }));
+
     this.angularfireauth.authState.subscribe(user => {
       if (user) this.userId = user.uid;
     });
@@ -81,6 +72,7 @@ export class ProductService {
     //         console.log(doc.id, " => ", doc.data());
     //     });
     // });
+
     this.angularfirestore
       .collection("Categories")
       .get()
@@ -90,9 +82,30 @@ export class ProductService {
       });
   }
 
-  getProductByUser() {
-    // return this.angularfirestore.collection('Product').doc(this.userId).collection('ProductList').ref.get();
- 
-    return this.angularfirestore.collection<ProductInformation>(Entities.Product).doc(this.userId).collection('ProductList').snapshotChanges();
+
+  getProductByUser():Observable<any> {
+    return new Observable(observer=>{
+      this.angularfireauth.authState.subscribe(user => {
+        if (user) {
+          this.userId = user.uid;
+          this.productCollection.doc(this.userId).collection('ProductList').snapshotChanges().subscribe(ress=>{
+            // console.log(ress);
+            observer.next(ress);
+          })
+          
+        }
+        else{
+          observer.next(null)
+        }
+
+      });
+    })
+    
+
+    
   }
+
+    getAllProducts(){
+
+    }
 }
