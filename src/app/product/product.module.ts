@@ -10,12 +10,13 @@ import { DropZoneDirective } from './drop-zone.directive';
 import { FileSizePipe } from './file-size.pipe';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
+import { SingleProductViewComponent } from './components/single-product-view/single-product-view.component';
 
 const routes:Routes=[
-  {
-    path:'',
-    redirectTo:'product-list'
-  },
+  // {
+  //   path:'',
+  //   redirectTo:'product-list'
+  // },
 
   {
 		path: 'add-products',
@@ -28,12 +29,20 @@ const routes:Routes=[
   {
     path: 'product-list',
     component:ProductListComponent
+  },
+  {
+    path: 'product-list/:id',
+    component: AddProductComponent
+  },
+  {
+    path: 'product-list/product/:id',
+    component: SingleProductViewComponent
   }
 
 ]
 
 @NgModule({
-  declarations: [AddProductComponent, ModifyProductComponent, ProductListComponent, DropZoneDirective, FileSizePipe, ProductCardComponent],
+  declarations: [AddProductComponent, ModifyProductComponent, ProductListComponent, DropZoneDirective, FileSizePipe, ProductCardComponent, SingleProductViewComponent],
   imports: [
     CommonModule, 
     RouterModule.forChild(routes),

@@ -101,11 +101,29 @@ export class ProductService {
       });
     })
     
-
     
   }
 
     getAllProducts(){
 
+    }
+    
+    getProductByProductID(){
+      return new Observable(observer=>{
+        this.angularfireauth.authState.subscribe(user => {
+          if (user) {
+            this.userId = user.uid;
+            this.productCollection.doc(this.userId).collection('ProductList').doc('id').snapshotChanges().subscribe(ress=>{
+              // console.log(ress);
+              observer.next(ress);
+            })
+            
+          }
+          else{
+            observer.next(null)
+          }
+  
+        });
+      })
     }
 }

@@ -3,13 +3,14 @@
   </div>
   
   <div fxLayout="column" class="m-40 mat-elevation-z8">
-    <mat-table #table [dataSource]="dataSource">
+    <mat-table #table [dataSource]="dataSource" matSort>
       <!-- Position Column -->
       <ng-container matColumnDef="productname">
-        <mat-header-cell *matHeaderCellDef> Product Name </mat-header-cell>
-        <mat-cell *matCellDef="let element">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Product Name </mat-header-cell>
+        <!-- <mat-cell *matCellDef="let element">
           {{ element.productname }}
-        </mat-cell>
+        </mat-cell> -->
+        <mat-cell *matCellDef="let element"> <a [routerLink]="[ '/product/product-list/product', element.id ]">{{ element.productname }}</a> </mat-cell>
       </ng-container>
   
       <!-- Name Column -->
@@ -20,10 +21,14 @@
   
       <!-- Weight Column -->
       <ng-container matColumnDef="created">
-        <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.created }} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.created.toDate() }} </mat-cell>
       </ng-container>
 
+      <ng-container matColumnDef="edit">
+        <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+        <mat-cell *matCellDef="let element"> <a [routerLink]="[ '/product/product-list', element.id ]">Modify Product</a> </mat-cell>
+      </ng-container>
   
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>

@@ -79,7 +79,8 @@
         </div>
 
         <div *ngIf="percentage | async as pct">
-          <progress class="progress is-info" [value]="pct" max="100"> </progress>
+          <progress class="progress is-info" [value]="pct" max="100">
+          </progress>
 
           {{ pct | number }}%
         </div>
@@ -179,6 +180,27 @@
           </div>
 
           <div>
+            <mat-form-field>
+              <mat-label>Category</mat-label>
+              <mat-select formControlName="category">
+                <mat-option>-- None --</mat-option>
+                <mat-optgroup
+                  *ngFor="let group of categoryData"
+                  [label]="group.name"
+                  [disabled]="group.disabled"
+                >
+                  <mat-option
+                    *ngFor="let pokemon of group.pokemon"
+                    [value]="pokemon.value"
+                  >
+                    {{ pokemon.viewValue }}
+                  </mat-option>
+                </mat-optgroup>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div>
             <div>
               <button
                 type="submit"
@@ -194,56 +216,48 @@
       </div>
     </mat-card>
 
-    <div *ngIf='isPreview'>
+    <div *ngIf="isPreview">
       <div
         fxLayout="row"
         fxLayoutAlign="center center"
         fxLayoutGap="10px"
         class="mt-100"
       >
-        <mat-card [class.mat-elevation-z4]="true">
-          
-
-          <div *ngIf="snapshot | async as snap">
-            <!-- {{ snap.bytesTransferred | fileSize }} of
-            {{ snap.totalBytes | fileSize }} -->
-
-            <div *ngIf="downloadURL | async as url">
-              <!-- <h3>Results!</h3> -->
-              <img [src]="url" /><br />
-              <!-- <a [href]="url" target="_blank" rel="noopener">Download Me!</a> -->
+      <div>
+          <mat-card class="example-card" [class.mat-elevation-z8]="true">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>Jewel Rana</mat-card-title>
+              <mat-card-subtitle>Paikari.com</mat-card-subtitle>
+            </mat-card-header>
+            <div *ngIf="snapshot | async as snap">
+              <div *ngIf="downloadURL | async as url">
+                  <img [src]="url" />
+              </div>
             </div>
-            <hr />
-            
-            <!-- <button
-              (click)="task.pause()"
-              class="button is-warning"
-              [disabled]="!isActive(snap)"
-            >
-              Pause
-            </button>
-            <button
-              (click)="task.cancel()"
-              class="button is-danger"
-              [disabled]="!isActive(snap)"
-            >
-              Cancel
-            </button>
-            <button
-              (click)="task.Resume()"
-              class="button is-info"
-              [disabled]="!(snap?.state === 'paused')"
-            >
-              Resume
-            </button> -->
-          </div>
-          <div>
-            <h5>
-              {{addProductForm.value.productname}}
-            </h5> 
-            <!-- <p>Value: {{ad}} </p> -->
-          </div>
-        </mat-card>
+
+            <mat-card-content>
+              <h1>{{ addProductForm.value.productname }}</h1>
+              <h3>BDT {{ addProductForm.value.productprice }} /Unit</h3>
+              <h4>
+                Minimum Order- {{ addProductForm.value.productquantity }}
+              </h4>
+              <p>{{ addProductForm.value.productDescription }}</p>
+            </mat-card-content>
+            <div fxLayoutAlign="end end">
+              <mat-card-actions>
+                <button
+                  class="cursor-pointer"
+                  color="primary"
+                  mat-fab
+                  aria-label="Example icon-button with a heart icon"
+                >
+                  <mat-icon>add_shopping_cart</mat-icon>
+                </button>
+              </mat-card-actions>
+            </div>
+          </mat-card>
+        </div>
       </div>
     </div>
   </div>

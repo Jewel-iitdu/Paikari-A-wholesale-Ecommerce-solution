@@ -1,13 +1,21 @@
+import { CatergoryService } from './../../services/catergory.service';
 import { ProductService } from "./../../services/product.service";
 import { ProductInformation } from "./../../../config/interfaces/product.interface";
-import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl
+} from "@angular/forms";
 import { AngularFirestore } from "angularfire2/firestore";
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
 import { tap, finalize } from "rxjs/operators";
 import { AngularFireUploadTask } from "angularfire2/storage";
 import { AngularFireStorage } from "@angular/fire/storage";
-import * as firebase from 'firebase/app';
+import * as firebase from "firebase/app";
+import { NestedTreeControl } from '@angular/cdk/tree';
+import { MatTreeNestedDataSource } from '@angular/material';
 
 @Component({
   selector: "app-add-product",
@@ -16,45 +24,63 @@ import * as firebase from 'firebase/app';
 })
 export class AddProductComponent implements OnInit {
   addProductForm: FormGroup;
-  productInfo: ProductInformation = {id:'', productname:'',productprice: null, productquantity: null, productImageUrl: '', productDescription: '', created: null};
-  isPreview=false;
- 
+  productInfo: ProductInformation = {
+    productname: "",
+    productprice: null,
+    productquantity: null,
+    productImageUrl: "",
+    productDescription: "",
+    category:"",
+    created: null
+  };
+  isPreview = false;
+
+  // treeControl = new NestedTreeControl<CategoryList>(node => node.children);
+  // categoryDataSource = new MatTreeNestedDataSource<CategoryList>();
+
+  categoryData: any;
+
   constructor(
     private storage: AngularFireStorage,
     private db: AngularFirestore,
     private fb: FormBuilder,
-    private ProductService: ProductService
-  ) {}
+    private ProductService: ProductService,
+    private catergoryService: CatergoryService
+  ) {
+    // this.categoryDataSource.data = catergoryService.getCategories();
+    this.categoryData = catergoryService.getCategories();
+  }
+
+  // hasChild = (_: number, node: CategoryList) => !!node.children && node.children.length > 0;
+
   ngOnInit() {
     this.makingAddProductForm();
     this.ProductService.getAllCategory();
   }
   makingAddProductForm() {
     this.addProductForm = this.fb.group({
-      productname: ['', [Validators.required]],
-      productprice: ['', [Validators.required]],
-      productquantity: ['', [Validators.required]],
-      productDescription: ['', [Validators.required]],
-      // category: ['',[Validators.required]]
-    })
+      productname: ["", [Validators.required]],
+      productprice: ["", [Validators.required]],
+      productquantity: ["", [Validators.required]],
+      productDescription: ["", [Validators.required]],
+      category: ['',[Validators.required]]
+    });
     // this.productInfo.subscribe(productInfo => {
     //   this.addProductForm.patchValue(productInfo);
     // });
   }
 
-  
   onSubmit() {
-    
     this.productInfo = {
-      id: '',
-      productname : this.addProductForm.value.productname,
+      productname: this.addProductForm.value.productname,
       productprice: this.addProductForm.value.productprice,
       productquantity: this.addProductForm.value.productquantity,
       productDescription: this.addProductForm.value.productDescription,
       productImageUrl: this.imgDownloadUrl,
-      created: firebase.firestore.FieldValue.serverTimestamp()
+      created: firebase.firestore.FieldValue.serverTimestamp(),
+      category: this.addProductForm.value.category
     };
-     this.ProductService.createProduct(this.productInfo);
+    this.ProductService.createProduct(this.productInfo);
     // console.log(this.productInfo);
   }
 
@@ -70,7 +96,7 @@ export class AddProductComponent implements OnInit {
   downloadURL: Observable<string>;
 
   //download url string
-  imgDownloadUrl: string;
+  imgDownloadUrl: any;
 
   // State for dropzone CSS toggling
   isHovering: boolean;
@@ -80,7 +106,7 @@ export class AddProductComponent implements OnInit {
   }
 
   startUpload(event: FileList) {
-    this.isPreview=true;
+    this.isPreview = true;
     // The File object
     const file = event.item(0);
 
@@ -102,31 +128,38 @@ export class AddProductComponent implements OnInit {
     // Progress monitoring
     this.percentage = this.task.percentageChanges();
 
-    // Download URL file
-    // this.snapshot.pipe(finalize(() => {
-    //   this.downloadURL = this.storage.ref(path).getDownloadURL();
-    //   console.log(this.downloadURL); // Get a Observable
-    // }) ).subscribe();
+    //Download URL file
+    this.snapshot = this.task
+      .snapshotChanges()
+      .pipe(
+        finalize(() => {
+          this.downloadURL = this.storage.ref(path).getDownloadURL()
+          console.log(this.downloadURL); // Get a Observable
+          this.downloadURL.subscribe(res => {
+            if (res) {
+              this.imgDownloadUrl = res;
+            }
+          });
+        })
+      );
 
-    this.snapshot = this.task.snapshotChanges().pipe(
-      // The file's download URL
-      finalize(() => (this.downloadURL = fileRef.getDownloadURL())),
-      tap(snap => {
-        console.log(snap);
-        if (snap.bytesTransferred === snap.totalBytes) {
-          // Update firestore on completion
-          
-          // this.db.collection("photos").add({ path, size: snap.totalBytes });
-          // this.downloadURL.subscribe(url=>{if(url){
-          //   this.imgDownloadUrl = url;
-          // }});
-          this.imgDownloadUrl = path;
-          
-          
-        }
-      })
-    );
-    
+    // this.snapshot = this.task.snapshotChanges().pipe(
+    //   // The file's download URL
+    //   finalize(() => (this.downloadURL = fileRef.getDownloadURL())),
+    //   tap(snap => {
+    //     console.log(snap);
+    //     if (snap.bytesTransferred === snap.totalBytes) {
+    //       // Update firestore on completion
+
+    //       // this.db.collection("photos").add({ path, size: snap.totalBytes });
+    //       // this.downloadURL.subscribe(url=>{if(url){
+    //       //   this.imgDownloadUrl = url;
+    //       // }});
+    //       // this.imgDownloadUrl = path;
+
+    //     }
+    //   })
+    // );
   }
 
   // Determines if the upload task is active

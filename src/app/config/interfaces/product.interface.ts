@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 export interface ProductInformation{
-    id: any;
+    // id: any;
     productname?: string;
     productprice?: number;
     productquantity?: number;
@@ -8,5 +8,5 @@ export interface ProductInformation{
     productImageUrl: string;
     // uid?: string;
     created: any;
-    // category?: string;
+    category?: string;
 }
