@@ -18,6 +18,7 @@ import * as firebase from "firebase";
 })
 export class ProductService {
   userId: string;
+  product: any;
   productCollection: AngularFirestoreCollection<ProductInformation>;
   productInfo: Observable<ProductInformation[]>;
   item: Observable<Item[]>;
@@ -27,7 +28,6 @@ export class ProductService {
     private angularfirestore: AngularFirestore,
     private util: UtilityService
   ) {
-
     this.angularfireauth.authState.subscribe(user => {
       if (user) this.userId = user.uid;
     });
@@ -82,48 +82,52 @@ export class ProductService {
       });
   }
 
-
-  getProductByUser():Observable<any> {
-    return new Observable(observer=>{
+  getProductByUser(): Observable<any> {
+    return new Observable(observer => {
       this.angularfireauth.authState.subscribe(user => {
         if (user) {
           this.userId = user.uid;
-          this.productCollection.doc(this.userId).collection('ProductList').snapshotChanges().subscribe(ress=>{
-            // console.log(ress);
-            observer.next(ress);
-          })
-          
-        }
-        else{
-          observer.next(null)
-        }
-
-      });
-    })
-    
-    
-  }
-
-    getAllProducts(){
-
-    }
-    
-    getProductByProductID(){
-      return new Observable(observer=>{
-        this.angularfireauth.authState.subscribe(user => {
-          if (user) {
-            this.userId = user.uid;
-            this.productCollection.doc(this.userId).collection('ProductList').doc('id').snapshotChanges().subscribe(ress=>{
+          this.productCollection
+            .doc(this.userId)
+            .collection("ProductList")
+            .snapshotChanges()
+            .subscribe(ress => {
               // console.log(ress);
               observer.next(ress);
-            })
-            
-          }
-          else{
-            observer.next(null)
-          }
-  
-        });
-      })
-    }
+            });
+        } else {
+          observer.next(null);
+        }
+      });
+    });
+  }
+
+  getAllProducts() {}
+
+  getProductByProductId(id): Observable<any> {
+    return new Observable(observer => {
+      this.angularfireauth.authState.subscribe(user => {
+        if (user) {
+          this.userId = user.uid;
+          this.productCollection
+            .doc(this.userId)
+            .collection("ProductList").doc(id)
+            .snapshotChanges()
+            .pipe(
+              map(changes => {
+                const data = changes.payload.data();
+                const id = changes.payload.id;
+                return { id, ...data };
+                
+              })
+              ).subscribe(res =>{
+                observer.next(res);
+              })
+              
+        } else {
+          observer.next(null);
+        }
+      });
+    });
+  }
 }
