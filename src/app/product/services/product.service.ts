@@ -60,6 +60,13 @@ export class ProductService {
     this.angularfirestore.collection("items").add(item);
   }
 
+  updateProduct(productInfo, productId) {
+    this.productCollection
+      .doc(this.userId)
+      .collection("ProductList")
+      .doc(productId).update(productInfo)
+  }
+
   getAllCategory() {
     // return this.angularfirestore.collection('/categories', {
     //   query: {
@@ -103,6 +110,8 @@ export class ProductService {
   }
 
   getAllProducts() {}
+
+
 
   getProductByProductId(id): Observable<any> {
     return new Observable(observer => {

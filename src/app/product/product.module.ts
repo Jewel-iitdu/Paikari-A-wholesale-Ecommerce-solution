@@ -31,8 +31,8 @@ const routes:Routes=[
     component:ProductListComponent
   },
   {
-    path: 'product-list/:id',
-    component: AddProductComponent
+    path: 'product-list/edit-product/:id',
+    component: ModifyProductComponent
   },
   {
     path: 'product-list/product/:id',

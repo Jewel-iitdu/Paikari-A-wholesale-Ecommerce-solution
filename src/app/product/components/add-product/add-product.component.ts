@@ -96,7 +96,7 @@ export class AddProductComponent implements OnInit {
   downloadURL: Observable<string>;
 
   //download url string
-  imgDownloadUrl: any;
+  imgDownloadUrl: string;
 
   // State for dropzone CSS toggling
   isHovering: boolean;

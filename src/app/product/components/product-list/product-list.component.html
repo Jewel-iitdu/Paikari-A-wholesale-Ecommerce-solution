@@ -27,7 +27,7 @@
 
       <ng-container matColumnDef="edit">
         <mat-header-cell *matHeaderCellDef> </mat-header-cell>
-        <mat-cell *matCellDef="let element"> <a [routerLink]="[ '/product/product-list', element.id ]">Modify Product</a> </mat-cell>
+        <mat-cell *matCellDef="let element"> <a [routerLink]="[ '/product/product-list/edit-product', element.id ]">Modify Product</a> </mat-cell>
       </ng-container>
   
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

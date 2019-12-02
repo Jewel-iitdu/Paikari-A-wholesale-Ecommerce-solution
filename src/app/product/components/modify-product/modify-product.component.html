@@ -1,27 +1,263 @@
-<form [formGroup]="modForm">
-  Value: {{modForm.value |json}}
-
-  <hr>
-
-  <mat-form-field appearance="outline">
-      <mat-label>Product Name</mat-label>
-      <input
-        type="text"
-        matInput
-        placeholder="Type in product name "
-        formControlName="title"
-      />
-      
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-        <mat-label>Product Name</mat-label>
-        <input
-          type="text"
-          matInput
-          placeholder="Type in product name "
-          formControlName="description"
-        />
-        
-      </mat-form-field>
-</form>
+<form [formGroup]="addProductForm" id="file-upload-form" class="uploader">
+    <div
+      fxLayout="row"
+      fxLayoutAlign="center center"
+      fxLayoutGap="30px"
+      class="mt-100"
+    >
+      <mat-card [class.mat-elevation-z10]="true">
+        <div
+          fxLayout="column"
+          fxLayoutAlign="center center"
+          fxLayoutGap="30px"
+          class="px-150"
+        >
+          <!-- <div class="dropzone" dropZone (hovered)="toggleHover($event)" (dropped)="startUpload($event)"
+            [class.hovering]="isHovering" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="50px">
+            <h3>Paikari.com</h3>
+            <p>Drag and drop or select Product Image</p>
+            <div class="file">
+              <label class="file-label">
+                <input class="file-input" type="file" (change)="startUpload($event.target.files)" />
+  
+                <span class="file-cta">
+                <span class="file-icon">
+                  <i class="fa fa-upload" ></i>
+                </span>
+                <span class="file-label">
+                  Choose a Image of the product…
+                </span>
+              </span>
+              </label>
+            </div>
+          </div> -->
+  
+          <div
+            class="dropzone"
+            DropZone
+            (hovered)="toggleHover($event)"
+            (dropped)="startUpload($event)"
+            [class.hovering]="isHovering"
+            fxLayout="column"
+            fxLayoutAlign="center center"
+            fxLayoutGap="10px"
+            style="width: 150%;"
+            class="pt-20"
+          >
+            <input
+              id="file-upload"
+              type="file"
+              name="fileUpload"
+              accept="image/*"
+              (change)="startUpload($event.target.files)"
+            />
+            <label for="file-upload" id="file-drag">
+              <img id="file-image" src="#" alt="Preview" class="hidden" />
+              <div id="start">
+                <i class="fa fa-upload" aria-hidden="true"></i>
+                <div>Select a file or drag here</div>
+                <div id="notimage" class="hidden">Please select an image</div>
+                <span id="file-upload-btn" class="btn btn-primary"
+                  >Select a file</span
+                >
+              </div>
+              <div id="response" class="hidden">
+                <div id="messages"></div>
+                <div *ngIf="percentage | async as pct">
+                  <progress
+                    class="progress is-info"
+                    [value]="pct"
+                    max="100"
+                    id="file-progress"
+                  >
+                    <span>{{ pct }}</span
+                    >%
+                  </progress>
+                </div>
+              </div>
+            </label>
+          </div>
+  
+          <div *ngIf="percentage | async as pct">
+            <progress class="progress is-info" [value]="pct" max="100">
+            </progress>
+  
+            {{ pct | number }}%
+          </div>
+  
+          <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+            <div>
+              <mat-form-field appearance="outline">
+                <mat-label>Product Name</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  placeholder="Type in product name "
+                  formControlName="productname"
+                />
+                <!-- <mat-error
+                    *ngIf="
+                      signupform.get('productname').touched &&
+                      signupform.get('productname').invalid
+                    "
+                  >
+                    {{ errormessages.productname }}</mat-error
+                  > -->
+              </mat-form-field>
+            </div>
+            <!-- <div>
+              <mat-form-field appearance="outline">
+                <mat-label>Categories</mat-label>
+                <mat-select
+                  formControlName="category"
+                  disableOptionCentering
+                >
+                  <mat-option
+                    *ngFor="let role of roles | keyvalue"
+                    [value]="role.key"
+                    >{{ role.value }}</mat-option
+                  >
+                </mat-select>
+                
+              </mat-form-field>
+            </div> -->
+            <div>
+              <mat-form-field appearance="outline">
+                <mat-label>Product price</mat-label>
+                <input
+                  type="number"
+                  matInput
+                  placeholder="Type in product price "
+                  formControlName="productprice"
+                />
+                <!-- <mat-error
+                    *ngIf="
+                      signupform.get('lastname').touched &&
+                      signupform.get('lastname').invalid
+                    "
+                  >
+                    {{ errormessages.lastname }}</mat-error
+                  > -->
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field appearance="outline">
+                <mat-label>Product quanity</mat-label>
+                <input
+                  type="number"
+                  matInput
+                  placeholder="Type in product unit"
+                  formControlName="productquantity"
+                />
+                <!-- <mat-error
+                    *ngIf="
+                      signupform.get('lastname').touched &&
+                      signupform.get('lastname').invalid
+                    "
+                  >
+                    {{ errormessages.lastname }}</mat-error
+                  > -->
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field appearance="outline">
+                <mat-label>Product Description</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  placeholder="Type in product Description"
+                  formControlName="productDescription"
+                />
+                <!-- <mat-error
+                    *ngIf="
+                      signupform.get('lastname').touched &&
+                      signupform.get('lastname').invalid
+                    "
+                  >
+                    {{ errormessages.lastname }}</mat-error
+                  > -->
+              </mat-form-field>
+            </div>
+  
+            <div>
+              <mat-form-field>
+                <mat-label>Category</mat-label>
+                <mat-select formControlName="category">
+                  <mat-option>-- None --</mat-option>
+                  <mat-optgroup
+                    *ngFor="let group of categoryData"
+                    [label]="group.name"
+                    [disabled]="group.disabled"
+                  >
+                    <mat-option
+                      *ngFor="let pokemon of group.pokemon"
+                      [value]="pokemon.value"
+                    >
+                      {{ pokemon.viewValue }}
+                    </mat-option>
+                  </mat-optgroup>
+                </mat-select>
+              </mat-form-field>
+            </div>
+  
+            <div>
+              <div>
+                <button
+                  type="submit"
+                  (click)="onSubmit()"
+                  mat-raised-button
+                  color="primary"
+                >
+                  Update Product
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+  
+      <div >
+        <div
+          fxLayout="row"
+          fxLayoutAlign="center center"
+          fxLayoutGap="10px"
+          class="mt-100"
+        >
+        <div *ngIf="productInfo">
+            <mat-card class="example-card" [class.mat-elevation-z8]="true">
+              <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>Jewel Rana</mat-card-title>
+                <mat-card-subtitle>Paikari.com</mat-card-subtitle>
+              </mat-card-header>
+              <div >
+                    <img [src]="productInfo.productImageUrl" />
+              </div>
+  
+              <mat-card-content>
+                <h1>{{ addProductForm.value.productname }}</h1>
+                <h3>BDT {{ addProductForm.value.productprice }} /Unit</h3>
+                <h4>
+                  Minimum Order- {{ addProductForm.value.productquantity }}
+                </h4>
+                <p>{{ addProductForm.value.productDescription }}</p>
+              </mat-card-content>
+              <div fxLayoutAlign="end end">
+                <mat-card-actions>
+                  <button
+                    class="cursor-pointer"
+                    color="primary"
+                    mat-fab
+                    aria-label="Example icon-button with a heart icon"
+                  >
+                    <mat-icon>add_shopping_cart</mat-icon>
+                  </button>
+                </mat-card-actions>
+              </div>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  
