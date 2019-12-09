@@ -37,20 +37,7 @@ export class ProductService {
     );
   }
 
-  // createProduct(productInfo) {
-  //   // this.angularfireauth.authState.subscribe(user => {
-  //   //   if (user) this.userId = user.uid;
-  //   // });
-  //   return this.angularfirestore
-  //     .collection("/Product").add(productInfo);
-  // }
-
   createProduct(productInfo) {
-    // this.angularfirestore.collection("Product").doc(this.userId).set(productInfo);
-    // this.angularfirestore.collection("Product").add(productInfo);
-    // let productCollection = this.angularfirestore.collection<ProductInformation>(Entities.Product);
-    // productCollection.doc(this.userId).collection("productList").add(productInfo);
-
     this.productCollection
       .doc(this.userId)
       .collection("ProductList")
@@ -68,18 +55,6 @@ export class ProductService {
   }
 
   getAllCategory() {
-    // return this.angularfirestore.collection('/categories', {
-    //   query: {
-    //     orderByChild: 'name'
-    //   }
-    // });
-    //   return this.angularfirestore.collection("Catergories").get().then(querySnapshot=> {
-    //     querySnapshot.forEach(doc=> {
-    //         // doc.data() is never undefined for query doc snapshots
-    //         console.log(doc.id, " => ", doc.data());
-    //     });
-    // });
-
     this.angularfirestore
       .collection("Categories")
       .get()
@@ -105,6 +80,25 @@ export class ProductService {
         } else {
           observer.next(null);
         }
+      });
+    });
+  }
+
+  getProduct(): Observable<any> {
+    return new Observable(observer => {
+      this.productCollection
+      .get()
+      .toPromise()
+      .then(snapshot => {
+        snapshot.docs.forEach(doc => {
+          // const documentID = doc.id;
+          this.productCollection
+            .doc(doc.id)
+            .collection("ProductList").snapshotChanges().subscribe(ress=>{
+              observer.next(ress);
+            })
+            
+        });
       });
     });
   }
