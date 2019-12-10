@@ -6,7 +6,7 @@ export interface ProductInformation{
     productquantity?: number;
     productDescription: string;
     productImageUrl: string;
-    // uid?: string;
+    supplierId: string;
     created: any;
     category?: string;
 }

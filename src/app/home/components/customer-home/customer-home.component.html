@@ -1,30 +1,34 @@
 <div
-fxLayout="row"
-fxLayoutAlign="center center"
-fxLayoutGap="10px"
-class="mt-100"
-
+  fxLayout="row wrap"
+  fxLayoutAlign="start start"
+  fxLayoutGap="20px"
+  class="mt-10"
 >
-<div >
-  <mat-card class="example-card" [class.mat-elevation-z8]="true">
+  >
+  <mat-card
+    [class.mat-elevation-z8]="true"
+    *ngFor="let product of productData"
+    class="card-size"
+  >
     <mat-card-header>
       <div mat-card-avatar class="example-header-image">
-        <img mat-card-avatar src="https://i.ibb.co/Jdx0NbM/27797943-1552092604911964-5726697049196892277-o.jpg">
+        <img
+          mat-card-avatar
+          src="https://i.ibb.co/Jdx0NbM/27797943-1552092604911964-5726697049196892277-o.jpg"
+        />
       </div>
       <mat-card-title>Jewel Rana</mat-card-title>
       <mat-card-subtitle>Paikari.com</mat-card-subtitle>
     </mat-card-header>
-    <div *ngIf="productData">
-          <img [src]="productData.productImageUrl" />
+    <div *ngIf="product.productImageUrl">
+      <img [src]="product.productImageUrl" />
     </div>
 
-    <mat-card-content *ngIf="productData">
-      <h1>{{ productData.productname }}</h1>
-      <h3>BDT {{ productData.productprice }} /Unit</h3>
-      <h4>
-        Minimum Order- {{ productData.productquantity }}
-      </h4>
-      <p>{{ productData.productDescription }}</p>
+    <mat-card-content *ngIf="product">
+      <h1>{{ product.productname }}</h1>
+      <h3>BDT {{ product.productprice }} /Unit</h3>
+      <h4>Minimum Order- {{ product.productquantity }}</h4>
+      <p>{{ product.productDescription }}</p>
     </mat-card-content>
     <div fxLayoutAlign="end end">
       <mat-card-actions>
@@ -40,5 +44,3 @@ class="mt-100"
     </div>
   </mat-card>
 </div>
-</div>
-  

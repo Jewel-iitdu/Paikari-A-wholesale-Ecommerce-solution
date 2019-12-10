@@ -20,53 +20,14 @@ export class CustomerHomeService {
     // );
   }
 
-  getAllProduct(): Observable <any> {
-    debugger
-    return new Observable(observer =>{
-    this.productCollection
-      .get()
-      .toPromise()
-      .then(snapshot => {
-        snapshot.docs.forEach(doc => {
-          const documentID = doc.id;
-          this.productCollection
-            .doc(documentID)
-            .collection("ProductList").snapshotChanges().subscribe(ress=>{
-              observer.next(ress);
-            })
-            
-        });
-      });
-    })
-  }
-
-  getProduct(): Observable<any> {
+  getAllProducts(): Observable<any> {
     return new Observable(observer => {
-      this.angularfirestore.collection('Product').get().toPromise().then(document=>{
-        observer.next(document.docs)
-      })
-      
+      this.angularfirestore
+        .collection<ProductInformation>("Product")
+        .snapshotChanges()
+        .subscribe(product => {
+          observer.next(product);
+        });
     });
   }
-
- 
-  getDocuments(){
-    return this.angularfirestore.collection('Product').snapshotChanges().forEach(e=>{
-      
-    });
-  }
-  getCollections(id){
-    // const collectionId = id;
-    this.productCollection.doc(id).collection('ProductList').snapshotChanges().subscribe(list =>{
-      const products = list.map(item => {
-        return {
-          id: item.payload.doc.id,
-          ...item.payload.doc.data()
-        }
-      });
-      return products;
-    })
-  }
-
-  
 }

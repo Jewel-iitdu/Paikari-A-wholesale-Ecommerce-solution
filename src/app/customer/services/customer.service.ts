@@ -1,3 +1,4 @@
+import { AngularFirestore } from 'angularfire2/firestore';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,5 +6,5 @@ import { Injectable } from '@angular/core';
 })
 export class CustomerService {
 
-  constructor() { }
+  constructor(private angularfirestore: AngularFirestore) { }
 }

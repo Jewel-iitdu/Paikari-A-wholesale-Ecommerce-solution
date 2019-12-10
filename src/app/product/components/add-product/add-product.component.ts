@@ -31,7 +31,8 @@ export class AddProductComponent implements OnInit {
     productImageUrl: "",
     productDescription: "",
     category:"",
-    created: null
+    created: null,
+    supplierId: "",
   };
   isPreview = false;
 
@@ -39,6 +40,7 @@ export class AddProductComponent implements OnInit {
   // categoryDataSource = new MatTreeNestedDataSource<CategoryList>();
 
   categoryData: any;
+  getSupplierID: string;
 
   constructor(
     private storage: AngularFireStorage,
@@ -70,6 +72,11 @@ export class AddProductComponent implements OnInit {
     // });
   }
 
+  getUserId(){
+      this.getSupplierID = this.ProductService.userId;
+  }
+
+
   onSubmit() {
     this.productInfo = {
       productname: this.addProductForm.value.productname,
@@ -78,7 +85,8 @@ export class AddProductComponent implements OnInit {
       productDescription: this.addProductForm.value.productDescription,
       productImageUrl: this.imgDownloadUrl,
       created: firebase.firestore.FieldValue.serverTimestamp(),
-      category: this.addProductForm.value.category
+      category: this.addProductForm.value.category,
+      supplierId: this.ProductService.userId
     };
     this.ProductService.createProduct(this.productInfo);
     // console.log(this.productInfo);

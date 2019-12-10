@@ -35,7 +35,8 @@ export class ModifyProductComponent implements OnInit {
     productImageUrl: "",
     productDescription: "",
     category:"",
-    created: null
+    created: null,
+    supplierId: ""
   };;
 
   isPreview = false;
@@ -101,7 +102,8 @@ export class ModifyProductComponent implements OnInit {
       productDescription: this.addProductForm.value.productDescription,
       productImageUrl: this.productInfo.productImageUrl,
       created: firebase.firestore.FieldValue.serverTimestamp(),
-      category: this.addProductForm.value.category
+      category: this.addProductForm.value.category,
+      supplierId: this.ProductService.userId
     };
     this.ProductService.updateProduct(this.productInfo, this.productid);
     // console.log(this.productInfo);
