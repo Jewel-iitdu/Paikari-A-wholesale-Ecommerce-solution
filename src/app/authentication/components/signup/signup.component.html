@@ -25,12 +25,12 @@
         <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="50px">
           <div>
             <mat-form-field appearance="outline">
-              <mat-label>First Name</mat-label>
+              <mat-label>Name</mat-label>
               <input
                 type="text"
                 matInput
                 placeholder="Type in name "
-                formControlName="firstname"
+                formControlName="name"
               />
               <!-- <mat-error
                 *ngIf="
@@ -42,25 +42,7 @@
               > -->
             </mat-form-field>
           </div>
-          <div>
-            <mat-form-field appearance="outline">
-              <mat-label>Last Name</mat-label>
-              <input
-                type="text"
-                matInput
-                placeholder="Type in name "
-                formControlName="lastname"
-              />
-              <!-- <mat-error
-                *ngIf="
-                  signupform.get('lastname').touched &&
-                  signupform.get('lastname').invalid
-                "
-              >
-                {{ errormessages.lastname }}</mat-error
-              > -->
-            </mat-form-field>
-          </div>
+          
         </div>
         <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="50px">
           <div>

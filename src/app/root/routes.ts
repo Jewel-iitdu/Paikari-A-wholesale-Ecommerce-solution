@@ -39,5 +39,16 @@ export const routes: Routes = [
           "../authentication/authentication.module#AuthenticationModule"
       }
     ]
+  },
+  {
+    path: "",
+    component: MenuItemBarComponent,
+    children: [
+      {
+        path: "user",
+        loadChildren:
+          "../customer/customer.module#CustomerModule"
+      }
+    ]
   }
 ];
