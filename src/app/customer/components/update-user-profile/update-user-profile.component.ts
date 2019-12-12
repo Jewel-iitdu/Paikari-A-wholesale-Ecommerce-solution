@@ -5,6 +5,7 @@ import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage'
 import { AngularFirestore } from 'angularfire2/firestore';
 import { finalize } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { CustomerService } from '../../services/customer.service';
 
 @Component({
   selector: 'app-update-user-profile',
@@ -18,10 +19,22 @@ export class UpdateUserProfileComponent implements OnInit {
 
   constructor(private storage: AngularFireStorage,
     private db: AngularFirestore,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    private customerService: CustomerService) { }
 
   ngOnInit() {
     this.makingAddProductForm();
+    this.customerService.getUserInfo().subscribe(res=>{
+      this.pathData(res);
+      this.userInfo = res;
+    })
+  }
+  pathData(res: CustomerUserInformation) {
+    this.UpdateProfileForm.patchValue({
+      name: res.name,
+      companyname: res.companyname,
+      useraddress: res.useraddress,
+    })
   }
   makingAddProductForm() {
     this.UpdateProfileForm = this.fb.group({
@@ -36,7 +49,21 @@ export class UpdateUserProfileComponent implements OnInit {
       name: this.UpdateProfileForm.value.name,
       companyname: this.UpdateProfileForm.value.companyname,
       useraddress: this.UpdateProfileForm.value.useraddress,
-      photoURL: this.imgDownloadUrl
+      photoURL: this.getImageUrl()
+    }
+    this.customerService.updateUserInfo(this.userInfo);
+  }
+  getImageUrl(){
+    if(this.imgDownloadUrl == null){
+      if(this.userInfo.photoURL == null){
+        return ""
+      }
+      else{
+        return this.userInfo.photoURL
+      }
+    }
+    else{
+      return this.imgDownloadUrl;
     }
   }
 

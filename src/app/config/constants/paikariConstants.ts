@@ -29,7 +29,7 @@ export const paikariMenuConst = {
   accountbar: [
     {
       name: "My Account",
-      url: "my-account"
+      url: "/user/my-account"
     },
     {
       name: "My Order",
@@ -132,6 +132,14 @@ export const urlPaths = {
     },
     ProductList: {
       url: "product/product-list"
+    }
+  },
+  UserProfile: {
+    MyAccount: {
+      url: "user/my-account"
+    },
+    UpdateProfile: {
+      url: "user/update-my-account"
     }
   }
 };

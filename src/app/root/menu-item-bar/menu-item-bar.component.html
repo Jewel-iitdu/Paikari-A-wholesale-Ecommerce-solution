@@ -130,7 +130,7 @@
       </button>
       <mat-menu #menu="matMenu">
         <div *ngFor="let accountItems of accountbar; let i = index">
-            <button mat-menu-item>{{accountItems.name}}</button>
+            <button mat-menu-item (click)="route(accountItems.url)">{{accountItems.name}}</button>
           <!-- <span>{{accountItems.name}}</span> -->
         </div>
       </mat-menu>

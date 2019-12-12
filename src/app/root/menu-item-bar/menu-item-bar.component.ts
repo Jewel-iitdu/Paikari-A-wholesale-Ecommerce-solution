@@ -19,6 +19,7 @@ export class MenuItemBarComponent implements OnInit {
   menuItems;
   selectedRow: number;
   
+  
   constructor(private router: Router) { }
 
   ngOnInit() {

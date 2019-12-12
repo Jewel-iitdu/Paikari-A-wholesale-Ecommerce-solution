@@ -1,36 +1,36 @@
-<div class="mt-40" fxLayoutAlign="center start">
+<div class="mt-40" fxLayoutAlign="center start" >
   <mat-card
     [class.mat-elevation-z4]="true"
     class="h-600 w-600"
     fxLayout="column"
   >
-    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
-      <div>
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px" *ngIf="userInfo">
+      <div >
         <img
-          src="https://i.ibb.co/Jdx0NbM/27797943-1552092604911964-5726697049196892277-o.jpg" alt="Please Update Your Profile"
+          [src]="userInfo.photoURL"
           class="userimg"
         />
       </div>
-      <div>
+      <div >
         <div>
-          <h2>Name: Jewel Rana dsfsfsdfdsfdsf</h2>
+          <h2>Name: {{userInfo.name}}</h2>
         </div>
         <div>
-            <h2>Company Name: Coca Cola</h2>
+            <h2>Company Name: {{userInfo.companyname}}</h2>
         </div>
         <div>
-          <h2>Email: jjjj@gail.com</h2>
+          <h2>Email: {{userInfo.email}}</h2>
         </div>
         <div>
-          <h2>Contact No: 0545641</h2>
+          <h2>Contact No: {{userInfo.phoneNumber}}</h2>
         </div>
         <div>
-          <h2>Address: 10235, dsafkjfas, hags</h2>
+          <h2>Address: {{userInfo.useraddress}}</h2>
         </div>
       </div>
       <div fxLayout="row" fxLayoutGap="40px" class="p-90">
         <div>
-          <button mat-raised-button color="primary">Update My Profile</button>
+          <button mat-raised-button color="primary" (click)="routeToUpdateProfile()">Update My Profile</button>
         </div>
         <div>
           <button mat-raised-button color="primary">Change Password</button>
