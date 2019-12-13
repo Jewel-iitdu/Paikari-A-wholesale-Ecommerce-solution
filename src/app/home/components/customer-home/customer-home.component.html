@@ -4,7 +4,7 @@
   fxLayoutGap="20px"
   class="mt-10"
 >
-  >
+  
   <mat-card
     [class.mat-elevation-z8]="true"
     *ngFor="let product of productData"
@@ -38,7 +38,7 @@
           mat-fab
           aria-label="Example icon-button with a heart icon"
         >
-          <mat-icon>add_shopping_cart</mat-icon>
+          <mat-icon (click)="addToCart(product)">add_shopping_cart</mat-icon>
         </button>
       </mat-card-actions>
     </div>
