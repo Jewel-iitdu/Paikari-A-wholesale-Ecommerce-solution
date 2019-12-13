@@ -56,6 +56,7 @@ export class AddProductComponent implements OnInit {
   // hasChild = (_: number, node: CategoryList) => !!node.children && node.children.length > 0;
 
   ngOnInit() {
+    this.getUserId();
     this.makingAddProductForm();
     this.ProductService.getAllCategory();
   }
@@ -73,7 +74,9 @@ export class AddProductComponent implements OnInit {
   }
 
   getUserId(){
-      this.getSupplierID = this.ProductService.userId;
+      this.ProductService.getUserId().subscribe(res=>{
+        this.getSupplierID = res;
+      })
   }
 
 
@@ -86,7 +89,7 @@ export class AddProductComponent implements OnInit {
       productImageUrl: this.imgDownloadUrl,
       created: firebase.firestore.FieldValue.serverTimestamp(),
       category: this.addProductForm.value.category,
-      supplierId: this.ProductService.userId
+      supplierId: this.getSupplierID
     };
     this.ProductService.createProduct(this.productInfo);
     // console.log(this.productInfo);

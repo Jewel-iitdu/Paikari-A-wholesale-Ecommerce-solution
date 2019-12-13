@@ -17,6 +17,7 @@ export class CustomerHomeComponent implements OnInit {
   firestoreData: Observable<any[]>;
   orderInfo: OrderInformation;
   singleProduct: ProductInformation;
+  userID: string;
   constructor(
     private homeService: CustomerHomeService,
     private orderService: OrderService, private productService: ProductService
@@ -24,6 +25,10 @@ export class CustomerHomeComponent implements OnInit {
 
   ngOnInit() {
     
+    this.orderService.getUserId().subscribe(res=>{
+      this.userID = res;
+    })
+
     this.homeService.getAllProducts().subscribe(
       list => {
           const products = list.map(item => {
@@ -47,7 +52,7 @@ export class CustomerHomeComponent implements OnInit {
       orderQuantity: this.singleProduct.productquantity,
       payment: false,
       date: firebase.firestore.FieldValue.serverTimestamp(),
-      userID: this.orderService.userId
+      userID: this.userID
     }
     this.orderService.createOrAddCart(this.orderInfo);
   }

@@ -1,7 +1,7 @@
 export interface OrderInformation{
-    productID: string;
+    productID?: string;
     orderQuantity?: number;
     userID?: string;
     payment?: boolean;
-    date: any;
+    date?: any;
 }

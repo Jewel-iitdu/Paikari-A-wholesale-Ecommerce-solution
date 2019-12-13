@@ -37,10 +37,12 @@ export class ProductService {
     );
   }
 
-  getSupplierId() {
-    this.angularfireauth.authState.subscribe(user => {
-      if (user) return user.uid;
-    });
+  getUserId(): Observable<any> {
+    return new Observable(observer=>{
+      this.angularfireauth.authState.subscribe(user => {
+      observer.next(user.uid)
+      });
+    })
   }
 
   createProduct(productInfo) {
