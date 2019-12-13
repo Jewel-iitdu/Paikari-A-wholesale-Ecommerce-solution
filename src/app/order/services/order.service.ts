@@ -29,7 +29,7 @@ export class OrderService {
           .where("productID", "==", order.productID)
           .where("payment", "==", "false");
       })
-      .valueChanges()
+      .snapshotChanges()
       .subscribe(res => {
         console.log(res);
       });
