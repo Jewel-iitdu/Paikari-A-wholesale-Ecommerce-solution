@@ -1,3 +1,4 @@
+import { ProfileService } from './../../../root/services/profile.service';
 import { UserInformation, CustomerUserInformation } from 'src/app/config/interfaces/user.interface';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -20,7 +21,8 @@ export class UpdateUserProfileComponent implements OnInit {
   constructor(private storage: AngularFireStorage,
     private db: AngularFirestore,
     private fb: FormBuilder,
-    private customerService: CustomerService) { }
+    private customerService: CustomerService
+    ) { }
 
   ngOnInit() {
     this.makingAddProductForm();
@@ -136,5 +138,7 @@ export class UpdateUserProfileComponent implements OnInit {
       snapshot.bytesTransferred < snapshot.totalBytes
     );
   }
+
+  
 
 }

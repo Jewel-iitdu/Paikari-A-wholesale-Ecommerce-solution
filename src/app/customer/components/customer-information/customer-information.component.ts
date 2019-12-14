@@ -1,3 +1,4 @@
+import { ProfileService } from './../../../root/services/profile.service';
 import { CustomerUserInformation } from './../../../config/interfaces/user.interface';
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../../services/customer.service';
@@ -12,7 +13,7 @@ import { urlPaths } from 'src/app/config/constants/paikariConstants';
 export class CustomerInformationComponent implements OnInit {
   userInfo: CustomerUserInformation;
 
-  constructor(private customerService: CustomerService,private router: Router) { }
+  constructor(private customerService: CustomerService,private router: Router,private profileService:ProfileService) { }
 
   ngOnInit() {
     this.customerService.getUserInfo().subscribe(res=>{
@@ -25,5 +26,8 @@ export class CustomerInformationComponent implements OnInit {
   routeToUpdateProfile(){
     this.router.navigate([urlPaths.UserProfile.UpdateProfile.url]);
   }
+  openChangePasswordModal() {
+		this.profileService.openPasswordChangeModal();
+	}
 
 }
