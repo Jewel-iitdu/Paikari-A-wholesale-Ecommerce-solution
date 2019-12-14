@@ -63,7 +63,8 @@ export class CustomerHomeComponent implements OnInit {
 			orderQuantity: this.singleProduct.productquantity,
 			payment: false,
 			date: firebase.firestore.FieldValue.serverTimestamp(),
-			userID: this.userID
+      customerID: this.userID,
+      supplierID: this.singleProduct.supplierId
 		};
     this.orderService.createOrAddCart(this.orderInfo).subscribe(res=>{
       this.sharedService.hideSpinner();

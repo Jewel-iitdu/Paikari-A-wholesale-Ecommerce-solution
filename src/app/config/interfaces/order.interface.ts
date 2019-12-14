@@ -2,7 +2,9 @@ export interface OrderInformation{
     id?: string;
     productID?: string;
     orderQuantity?: number;
-    userID?: string;
+    customerID?: string;
     payment?: boolean;
     date?: any;
+    supplierID?:string;
+    status?:string;
 }

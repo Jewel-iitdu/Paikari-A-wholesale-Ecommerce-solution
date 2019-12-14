@@ -100,13 +100,27 @@ export class ModifyProductComponent implements OnInit {
       productprice: this.addProductForm.value.productprice,
       productquantity: this.addProductForm.value.productquantity,
       productDescription: this.addProductForm.value.productDescription,
-      productImageUrl: this.productInfo.productImageUrl,
+      productImageUrl: this.getImageUrl(),
       created: firebase.firestore.FieldValue.serverTimestamp(),
       category: this.addProductForm.value.category,
       supplierId: this.ProductService.userId
     };
     this.ProductService.updateProduct(this.productInfo, this.productid);
     // console.log(this.productInfo);
+  }
+
+  getImageUrl(){
+    if(this.imgDownloadUrl == null){
+      if(this.productInfo.productImageUrl == null){
+        return ""
+      }
+      else{
+        return this.productInfo.productImageUrl;
+      }
+    }
+    else{
+      return this.imgDownloadUrl;
+    }
   }
 
   getProductby(productId) {
@@ -178,9 +192,8 @@ export class ModifyProductComponent implements OnInit {
         this.downloadURL = this.storage.ref(path).getDownloadURL();
         this.downloadURL.subscribe(res => {
           if (res) {
-            // this.imgDownloadUrl = res;
-            this.productInfo.productImageUrl = '';
-            this.productInfo.productImageUrl = res;
+            this.imgDownloadUrl = res;
+            
           }
         });
       })
