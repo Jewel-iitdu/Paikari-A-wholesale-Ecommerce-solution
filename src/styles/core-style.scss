@@ -389,17 +389,31 @@ $x1: 0;
 
 .mat-icon-size {
 	font-size: 40px;
-  }
+}
 
-  mat-card img{
-	object-fit: cover; /*this makes the image in src fit to the size specified below*/
-	width: 50%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
-	height: 50%
-
-  }
-  .card-size {
+// mat-card img {
+// 	object-fit: cover; /*this makes the image in src fit to the size specified below*/
+// 	width: 100%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
+// 	height: 100%;
+// }
+.card-size {
 	max-width: 400px;
 	max-height: 600px;
-  }
-  
+}
 
+
+.word-break-all{
+	word-break: break-all !important;
+}
+.recovery-snackbar {
+	text-align: center !important;
+	background: white !important;
+	min-width: 250px !important;
+	min-height: 64px !important;
+	font-size: 16px !important;
+	color: black !important;
+}
+
+input{
+	height: 20px !important;
+}
