@@ -67,7 +67,7 @@ export class ProductService {
       });
   }
 
-  getProductByUser(): Observable<any> {
+  getProductBySupplier(): Observable<any> {
     return new Observable(observer => {
       this.angularfireauth.authState.subscribe(user => {
         if (user) {

@@ -27,7 +27,7 @@ export class ProductListComponent implements OnInit {
     
   }
   ngOnInit() {
-    this.productService.getProductByUser().subscribe(
+    this.productService.getProductBySupplier().subscribe(
       list => {
           const products = list.map(item => {
           return {
@@ -35,7 +35,7 @@ export class ProductListComponent implements OnInit {
             ...item.payload.doc.data()
           }
         });
-        console.log(products)
+        // console.log(products)
         this.dataSource = new MatTableDataSource(products);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
