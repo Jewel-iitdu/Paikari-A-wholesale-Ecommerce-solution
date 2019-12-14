@@ -30,6 +30,9 @@ export class UtilityService {
 		this.angularfireauth.auth.currentUser.sendEmailVerification();
 
 	}
+	checkIfExists(val,array) {
+		return array.filter((data) =>  JSON.stringify(data).toLowerCase().indexOf(val.toLowerCase()) !== -1);
+	}
 }
 
 export class ErrorStateMatcherForsignUppage implements ErrorStateMatcher {

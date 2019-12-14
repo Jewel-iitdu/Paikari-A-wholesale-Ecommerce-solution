@@ -1,57 +1,25 @@
 <form [formGroup]="UpdateProfileForm" id="file-upload-form" class="uploader">
-  <div
-    fxLayout="row"
-    fxLayoutAlign="center center"
-    fxLayoutGap="30px"
-    class="mt-100"
-  >
+  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="30px" class="mt-100">
     <mat-card [class.mat-elevation-z10]="true">
-      <div
-        fxLayout="column"
-        fxLayoutAlign="center center"
-        fxLayoutGap="30px"
-        class="px-150"
-      >
-        <div
-          class="dropzone"
-          DropZone
-          (hovered)="toggleHover($event)"
-          (dropped)="startUpload($event)"
-          [class.hovering]="isHovering"
-          fxLayout="column"
-          fxLayoutAlign="center center"
-          fxLayoutGap="10px"
-          style="width: 150%;"
-          class="pt-20"
-        >
-          <input
-            id="file-upload"
-            type="file"
-            name="fileUpload"
-            accept="image/*"
-            (change)="startUpload($event.target.files)"
-          />
+      <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px" class="px-150">
+        <div class="dropzone" DropZone (hovered)="toggleHover($event)" (dropped)="startUpload($event)"
+          [class.hovering]="isHovering" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px"
+          style="width: 150%;" class="pt-20">
+          <input id="file-upload" type="file" name="fileUpload" accept="image/*"
+            (change)="startUpload($event.target.files)" />
           <label for="file-upload" id="file-drag">
             <img id="file-image" src="#" alt="Preview" class="hidden" />
             <div id="start">
               <i class="fa fa-upload" aria-hidden="true"></i>
               <div>Select a file or drag here</div>
               <div id="notimage" class="hidden">Please select an image</div>
-              <span id="file-upload-btn" class="btn btn-primary"
-                >Select a file</span
-              >
+              <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
             </div>
             <div id="response" class="hidden">
               <div id="messages"></div>
               <div *ngIf="percentage | async as pct">
-                <progress
-                  class="progress is-info"
-                  [value]="pct"
-                  max="100"
-                  id="file-progress"
-                >
-                  <span>{{ pct }}</span
-                  >%
+                <progress class="progress is-info" [value]="pct" max="100" id="file-progress">
+                  <span>{{ pct }}</span>%
                 </progress>
               </div>
             </div>
@@ -75,12 +43,7 @@
           <div>
             <mat-form-field appearance="outline">
               <mat-label>Name</mat-label>
-              <input
-                type="text"
-                matInput
-                placeholder="Type in Full Name "
-                formControlName="name"
-              />
+              <input type="text" matInput placeholder="Type in Full Name " formControlName="name" />
               <!-- <mat-error
                         *ngIf="
                           signupform.get('productname').touched &&
@@ -91,16 +54,11 @@
                       > -->
             </mat-form-field>
           </div>
-          
+
           <div>
             <mat-form-field appearance="outline">
               <mat-label>Company Name</mat-label>
-              <input
-                type="text"
-                matInput
-                placeholder="Type in Company Name "
-                formControlName="companyname"
-              />
+              <input type="text" matInput placeholder="Type in Company Name " formControlName="companyname" />
               <!-- <mat-error
                         *ngIf="
                           signupform.get('lastname').touched &&
@@ -114,12 +72,7 @@
           <div>
             <mat-form-field appearance="outline">
               <mat-label>Address</mat-label>
-              <input
-                type="text"
-                matInput
-                placeholder="Type in address"
-                formControlName="useraddress"
-              />
+              <input type="text" matInput placeholder="Type in address" formControlName="useraddress" />
               <!-- <mat-error
                         *ngIf="
                           signupform.get('lastname').touched &&
@@ -133,12 +86,7 @@
 
           <div>
             <div>
-              <button
-                type="submit"
-                (click)="onSubmit()"
-                mat-raised-button
-                color="primary"
-              >
+              <button type="submit" (click)="onSubmit()" mat-raised-button color="primary">
                 Update Profile
               </button>
             </div>

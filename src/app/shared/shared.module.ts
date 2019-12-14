@@ -20,7 +20,8 @@ import { SharedService } from './services/shared.service';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { MatTableModule, MatPaginatorModule, MatSortModule, MatTreeModule } from '@angular/material';
 import { CdkTreeModule } from '@angular/cdk/tree';
-
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { NgxSpinnerModule } from "ngx-spinner";
 @NgModule({
   declarations: [SnackbarComponent],
   imports: [
@@ -47,6 +48,8 @@ import { CdkTreeModule } from '@angular/cdk/tree';
     MatSortModule,
     CdkTreeModule,
     MatTreeModule,
+    MatTooltipModule,
+    NgxSpinnerModule
     
   ],
   exports: [
@@ -73,6 +76,8 @@ import { CdkTreeModule } from '@angular/cdk/tree';
     MatSortModule,
     CdkTreeModule,
     MatTreeModule,
+    MatTooltipModule,
+    NgxSpinnerModule
 
   ],
   providers:[SharedService],
