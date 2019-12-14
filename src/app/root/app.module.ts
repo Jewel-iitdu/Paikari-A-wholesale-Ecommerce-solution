@@ -34,6 +34,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HttpClientModule } from '@angular/common/http';
+import { PasswordChangeComponent } from './password-change/password-change.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { HttpClientModule } from '@angular/common/http';
     NavSideBarComponent,
     BlankComponent,
     MenuItemBarComponent,
+    PasswordChangeComponent,
   ],
   imports: [
     BrowserModule,
@@ -113,6 +115,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatPaginatorModule
   ],
   providers: [RootService, SharedService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ PasswordChangeComponent]
 })
 export class AppModule {}
