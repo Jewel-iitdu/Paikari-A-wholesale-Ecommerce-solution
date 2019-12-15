@@ -55,7 +55,8 @@ export class CustomerHomeComponent implements OnInit {
 	}
 
 	addToCart(product) {
-    this.sharedService.showSpinner();
+		debugger;
+		this.sharedService.showSpinner();
 
 		this.singleProduct = product;
 		this.orderInfo = {
@@ -63,24 +64,23 @@ export class CustomerHomeComponent implements OnInit {
 			orderQuantity: this.singleProduct.productquantity,
 			payment: false,
 			date: firebase.firestore.FieldValue.serverTimestamp(),
-      customerID: this.userID,
-      supplierID: this.singleProduct.supplierId
+			customerID: this.userID,
+			supplierID: this.singleProduct.supplierId
 		};
-    this.orderService.createOrAddCart(this.orderInfo).subscribe(res=>{
-      this.sharedService.hideSpinner();
-
-    });
+		this.orderService.createOrAddCart(this.orderInfo).subscribe((res) => {
+			this.sharedService.hideSpinner();
+		});
 		this.addedToCartSnackbar();
 	}
 
 	addedToCartSnackbar() {
 		this.sharedService.openSnackBar({
-      duration:3,
-      data: {
+			duration: 3,
+			data: {
 				isAccepted: true,
 				message: 'Product Added to cart'
-      },
-      panelClass: [ 'recovery-snackbar' ]
+			},
+			panelClass: [ 'recovery-snackbar' ]
 		});
 	}
 

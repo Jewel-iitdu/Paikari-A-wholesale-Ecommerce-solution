@@ -84,4 +84,22 @@ export class SecurityService {
 				() => observer.complete();
 		});
 	}
+
+	getRole():Observable<any>{
+		return new Observable(obs=>{
+			this.query
+				.getLoggedInUserID()
+				.pipe(
+					switchMap((res) => {
+						return this.query.getSingleData(Entities.Person, res);
+					})
+				)
+				.pipe(first())
+				.subscribe((res2) => {
+					obs.next(res2.role);
+				}),
+				(err) => obs.error(err),
+				() => obs.complete();
+		})
+	}
 }

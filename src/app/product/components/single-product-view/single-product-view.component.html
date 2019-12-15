@@ -1,41 +1,108 @@
-<div
-fxLayout="row"
-fxLayoutAlign="center center"
-fxLayoutGap="10px"
-class="mt-100"
+<!-- <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px" class="mt-100">
+  <div>
+    <mat-card class="example-card" [class.mat-elevation-z8]="true">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Jewel Rana</mat-card-title>
+        <mat-card-subtitle>Paikari.com</mat-card-subtitle>
+      </mat-card-header>
+      <div *ngIf="productData">
+        <img [src]="productData.productImageUrl" />
+      </div>
 
->
-<div >
-  <mat-card class="example-card" [class.mat-elevation-z8]="true">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Jewel Rana</mat-card-title>
-      <mat-card-subtitle>Paikari.com</mat-card-subtitle>
-    </mat-card-header>
-    <div *ngIf="productData">
-          <img [src]="productData.productImageUrl" />
+      <mat-card-content *ngIf="productData">
+        <h1>{{ productData.productname }}</h1>
+        <h3>BDT {{ productData.productprice }} /Unit</h3>
+        <h4>
+          Minimum Order- {{ productData.productquantity }}
+        </h4>
+        <p>{{ productData.productDescription }}</p>
+      </mat-card-content>
+      <div fxLayoutAlign="end end">
+        <mat-card-actions>
+          <button class="cursor-pointer" color="primary" mat-fab aria-label="Example icon-button with a heart icon">
+            <mat-icon>add_shopping_cart</mat-icon>
+          </button>
+        </mat-card-actions>
+      </div>
+    </mat-card>
+  </div>
+</div> -->
+
+
+<div class='p-64'>
+  <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="24px">
+    <div fxFlex='50'>
+      <div *ngIf="productData">
+        <img [src]="productData.data.productImageUrl" class='w-100-p h-100-p' />
+      </div>
+    </div>
+    <div *ngIf="productData" fxFlex='50'>
+      <div fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="24px" class='py-24'>
+
+        <div fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="12px" class='pb-24'>
+          <div class='font-size-36 pb-4'>{{ productData.data.productname }}
+            <hr>
+          </div>
+          <div fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="12px">
+            <div fxLayout="row" fxLayoutAlign="start start">
+              <div fxFlex='20' class='font-size-20'>Price:</div>
+              <div fxFlex='80' class='font-size-20'>BDT {{ productData.data.productprice }} /Unit</div>
+
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start start">
+              <div fxFlex='20' class='font-size-20'>Minimum Order:</div>
+              <div fxFlex='80' class='font-size-20'>{{ productData.data.productquantity }}</div>
+
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start start">
+              <div fxFlex='20' class='font-size-20'>Description:</div>
+              <div fxFlex='80' class='font-size-20 maxh-80' style='overflow: auto; '>{{ productData.data.productDescription }}</div>
+
+            </div>
+          </div>
+
+
+        </div>
+
+
+        <div *ngIf="supplierInfo" fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="12px">
+          <div class='font-size-36 pb-4'>Supplier Information
+            <hr>
+          </div>
+          <div fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="12px">
+            <!-- <div fxLayout="row" fxLayoutAlign="start start">
+              
+
+            </div> -->
+            <div fxLayout="row" fxLayoutAlign="start start">
+              <div  fxFlex='20'  class='font-size-20'>
+                Name:
+              </div>
+              <div fxFlex='80' class='font-size-20'>{{ supplierInfo.name }}</div>
+
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start start">
+              <div fxFlex='20' class='font-size-20'>Company Name:</div>
+              <div fxFlex='80' class='font-size-20'>{{ supplierInfo.companyname }}</div>
+
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start start">
+              <div fxFlex='20' class='font-size-20'>Phone number:</div>
+              <div fxFlex='80' class='font-size-20'>{{ supplierInfo.phoneNumber }}</div>
+
+            </div>
+          </div>
+
+
+        </div>
+
+        <div *ngIf='currentRole=="Customer"'>
+          <button mat-raised-button class='w-224' color='primary' (click)='buyProduct(productData)'>Buy Product</button>
+        </div>
+
+      </div>
     </div>
 
-    <mat-card-content *ngIf="productData">
-      <h1>{{ productData.productname }}</h1>
-      <h3>BDT {{ productData.productprice }} /Unit</h3>
-      <h4>
-        Minimum Order- {{ productData.productquantity }}
-      </h4>
-      <p>{{ productData.productDescription }}</p>
-    </mat-card-content>
-    <div fxLayoutAlign="end end">
-      <mat-card-actions>
-        <button
-          class="cursor-pointer"
-          color="primary"
-          mat-fab
-          aria-label="Example icon-button with a heart icon"
-        >
-          <mat-icon>add_shopping_cart</mat-icon>
-        </button>
-      </mat-card-actions>
-    </div>
-  </mat-card>
-</div>
+  </div>
 </div>
