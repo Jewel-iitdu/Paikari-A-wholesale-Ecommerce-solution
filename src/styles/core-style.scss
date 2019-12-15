@@ -173,6 +173,15 @@ $x1: 0;
 	}
 }
 
+$maxh: maxh !default;
+$x1: 0;
+@while $x1 < 800 {
+	$x1: $x1 + 2;
+	.#{$maxh}-#{$x1} {
+		max-height: 0px + $x1 !important;
+	}
+}
+
 // width percentage
 $w: w !default;
 $p: p !default;
