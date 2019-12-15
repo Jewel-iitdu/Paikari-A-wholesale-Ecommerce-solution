@@ -11,6 +11,9 @@ import { FileSizePipe } from './file-size.pipe';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
 import { SingleProductViewComponent } from './components/single-product-view/single-product-view.component';
+import { AuthGuard } from '../core/security-service/auth.guard';
+import { SupplierGuard } from '../core/security-service/supplier.guard';
+import { CustomerGuard } from '../core/security-service/customer.guard';
 
 const routes:Routes=[
   // {
@@ -20,23 +23,28 @@ const routes:Routes=[
 
   {
 		path: 'add-products',
-		component:AddProductComponent
+    component:AddProductComponent,
+    canActivate:[AuthGuard,SupplierGuard]
   },
   {
 		path: 'modify-products',
-		component:ModifyProductComponent
+    component:ModifyProductComponent,
+    canActivate:[AuthGuard,SupplierGuard]
   },
   {
     path: 'product-list',
-    component:ProductListComponent
+    component:ProductListComponent,
+    canActivate:[AuthGuard,SupplierGuard]
   },
   {
     path: 'product-list/edit-product/:id',
-    component: ModifyProductComponent
+    component: ModifyProductComponent,
+    canActivate:[AuthGuard,SupplierGuard]
   },
   {
     path: 'product-list/product/:id',
-    component: SingleProductViewComponent
+    component: SingleProductViewComponent,
+    canActivate:[AuthGuard,SupplierGuard,CustomerGuard]
   }
 
 ]

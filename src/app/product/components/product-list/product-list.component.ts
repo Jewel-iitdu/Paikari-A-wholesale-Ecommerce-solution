@@ -1,9 +1,11 @@
+import { urlPaths } from './../../../config/constants/paikariConstants';
 import { ProductService } from "./../../services/product.service";
 import { ProductInformation } from "src/app/config/interfaces/product.interface";
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatTableDataSource, MatSort, MatPaginator } from "@angular/material";
 import { Subscription } from "rxjs";
 import { map } from "rxjs/operators";
+import { Router } from '@angular/router';
 
 
 
@@ -21,7 +23,7 @@ export class ProductListComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService, private router: Router) {
 
 
     
@@ -40,6 +42,10 @@ export class ProductListComponent implements OnInit {
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
   })
+  }
+
+  addProductClick(){
+    this.router.navigate([urlPaths.Product.AddProduct.url]);
   }
 
  

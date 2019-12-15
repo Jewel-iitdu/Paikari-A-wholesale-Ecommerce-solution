@@ -5,16 +5,20 @@ import { CartListComponent } from "./components/cart-list/cart-list.component";
 import { OrderedListComponent } from "./components/ordered-list/ordered-list.component";
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '../core/security-service/auth.guard';
+import { CustomerGuard } from '../core/security-service/customer.guard';
 
 const routes:Routes=[
 
   {
 		path: 'cart',
-		component: CartListComponent
+    component: CartListComponent,
+    canActivate:[AuthGuard,CustomerGuard]
   },
   {
     path: 'order-list',
-    component: OrderedListComponent
+    component: OrderedListComponent,
+    canActivate:[AuthGuard,CustomerGuard]
   }
 ]
 

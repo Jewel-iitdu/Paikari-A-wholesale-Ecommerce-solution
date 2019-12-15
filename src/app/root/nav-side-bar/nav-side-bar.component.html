@@ -1,6 +1,6 @@
 <ngx-spinner></ngx-spinner>
 
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container class="sidenav-container" *ngIf="">
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
 
@@ -15,17 +15,11 @@
     </mat-toolbar>
 
     <mat-nav-list>
-      <div *ngFor="let content of sidebar;let i = index">
-        <!-- <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="12px"> -->
-
-        <a mat-list-item (click)="route(content.url) ; selectRow(i)" [class.active]="i == selectedRow"
-          class="cursor-pointer px-24 font-size-16">
-          <i class="material-icons-outlined mr-16">
-            {{content.icon}}
-          </i>
-          <span> {{content.name}}</span>
-
-        </a>
+      <div>
+        <button mat-list-item (click)="">My Products</button>
+      </div>
+      <div>
+        <button mat-list-item (click)="">Orders</button>
       </div>
     </mat-nav-list>
 
