@@ -1,7 +1,10 @@
+import { CustomerGuard } from './../core/security-service/customer.guard';
+import { AuthGuard } from './../core/security-service/auth.guard';
 import { MenuItemBarComponent } from './menu-item-bar/menu-item-bar.component';
 import { Routes } from "@angular/router";
 import { NavSideBarComponent } from "./nav-side-bar/nav-side-bar.component";
 import { BlankComponent } from "./blank/blank.component";
+import { canActivate } from '@angular/fire/auth-guard';
 
 export const routes: Routes = [
   //   {
@@ -17,7 +20,8 @@ export const routes: Routes = [
         path: "home",
         loadChildren: "../home/home.module#HomeModule"
       }
-    ]
+    ],
+    canActivate:[AuthGuard]
   },
   {
     path: "",
@@ -27,7 +31,8 @@ export const routes: Routes = [
         path: "product",
         loadChildren: "../product/product.module#ProductModule"
       }
-    ]
+    ],
+    canActivate:[AuthGuard]
   },
   {
     path: "",
@@ -49,7 +54,8 @@ export const routes: Routes = [
         loadChildren:
           "../customer/customer.module#CustomerModule"
       }
-    ]
+    ],
+    canActivate:[AuthGuard]
   },
   {
     path: "",
@@ -60,6 +66,7 @@ export const routes: Routes = [
         loadChildren:
           "../order/order.module#OrderModule"
       }
-    ]
+    ],
+    canActivate:[AuthGuard]
   }
 ];
