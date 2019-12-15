@@ -1,3 +1,7 @@
+import { AuthGuard } from './../core/security-service/auth.guard';
+import { AdminGuard } from './../core/security-service/admin.guard';
+import { SupplierGuard } from './../core/security-service/supplier.guard';
+import { CustomerGuard } from './../core/security-service/customer.guard';
 import { UpdateUserProfileComponent } from './components/update-user-profile/update-user-profile.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -11,11 +15,12 @@ const routes:Routes=[
 
   {
 		path: 'my-account',
-		component:CustomerInformationComponent
+    component:CustomerInformationComponent
   },
   {
 		path: 'update-my-account',
-		component:UpdateUserProfileComponent
+    component:UpdateUserProfileComponent
+    
   }
 ]
 
