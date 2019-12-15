@@ -1,8 +1,9 @@
+import { environment } from '../../../../environments/environment';
 import { Component, OnInit, HostListener } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import { OrderInformation } from 'src/app/config/interfaces/order.interface';
 import { OrderService } from '../../services/order.service';
-import { PaymentService } from 'src/app/payments/services/payment.service';
+import { OrderInformation } from '../../../config/interfaces/order.interface';
+import { PaymentService } from '../../../payments/services/payment.service';
+
 
 @Component({
   selector: "app-cart-list",
