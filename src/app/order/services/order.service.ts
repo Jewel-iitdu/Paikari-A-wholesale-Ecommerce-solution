@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { Item } from "./../../config/interfaces/item.interface";
 import { Observable } from "rxjs";
 import { OrderInformation } from "./../../config/interfaces/order.interface";
@@ -107,14 +108,11 @@ export class OrderService {
     });
   }
 
-  updateCartQuantity(oldQuantity, newQuantity, cartid) {
-    this.getCartItem(cartid);
-    this.updateQuantity(oldQuantity, newQuantity);
-
+  updateCartQuantity(newQuantity, cartid) {
     this.angularfirestore
       .collection("Order")
       .doc(cartid)
-      .update({ orderQuantity: this.updatedQuantity });
+      .update({ orderQuantity: newQuantity });
   }
 
   getOrderListByCustomerId(customerID): Observable<any> {
@@ -156,6 +154,22 @@ export class OrderService {
           observer.next(cart);
         });
     });
+  }
+
+  updatePaymentFlag(productID){
+    productID.forEach(element => {
+      this.angularfirestore
+        .collection("Order", ref => {
+          return ref
+            .where("productID", "==", element)
+        }).get()
+        .toPromise()
+        .then(snapshot=>{
+          snapshot.forEach(doc=>{
+            this.angularfirestore.collection("Order").doc(doc.id).update({payment: true})
+          })
+        })          
+        });       
   }
 
   removeFromCart(cartID): Observable<any> {
