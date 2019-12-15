@@ -33,7 +33,7 @@ export const paikariMenuConst = {
     },
     {
       name: "My Order",
-      url: "my-order-list"
+      url: "order/order-list"
     },
     {
       name: "Transaction History",
@@ -140,6 +140,14 @@ export const urlPaths = {
     },
     UpdateProfile: {
       url: "user/update-my-account"
+    }
+  },
+  Order: {
+    MyOrder: {
+      url: "order/order-list"
+    },
+    cart: {
+      url: "order/cart"
     }
   }
 };
