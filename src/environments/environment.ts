@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  stripeKey: 'YOUR_STRIPE_TEST_KEY',
+  stripeKey: 'pk_test_CN02kMHuatHVKeOYGNtqx8Nq00zeGY4ECH',
   
   firebase: {
     apiKey: "AIzaSyAXYiMneXQgr--H_zx2-ERW5d0HqX1FBj4",

@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "^8.2.14",
     "@angular/router": "^8.2.14",
     "@material/textfield": "^3.2.0",
+    "@types/stripejs": "^3.0.5",
     "angular-font-awesome": "^3.1.2",
     "angularfire2": "^5.2.3",
     "firebase": "^6.6.2",

@@ -38,11 +38,11 @@ export class ProductService {
   }
 
   getUserId(): Observable<any> {
-    return new Observable(observer=>{
+    return new Observable(observer => {
       this.angularfireauth.authState.subscribe(user => {
-      observer.next(user.uid)
+        observer.next(user.uid);
       });
-    })
+    });
   }
 
   createProduct(productInfo) {
@@ -50,9 +50,7 @@ export class ProductService {
   }
 
   updateProduct(productInfo, productId) {
-    this.productCollection
-      .doc(productId)
-      .update(productInfo);
+    this.productCollection.doc(productId).update(productInfo);
   }
 
   getAllCategory() {
@@ -85,7 +83,23 @@ export class ProductService {
     });
   }
 
-
+  getProfileBySupplierId(supplierID): Observable<any> {
+    return new Observable(observer => {
+      this.angularfirestore
+        .collection("Person")
+        .doc(supplierID)
+        .snapshotChanges()
+        .pipe(
+          map(changes => {
+            const data = changes.payload.data();
+            const id = changes.payload.id;
+            return { id, data };
+          })
+        ).subscribe(profile=>{
+          observer.next(profile);
+        })
+    });
+  }
 
   getProductByProductId(id): Observable<any> {
     return new Observable(observer => {
