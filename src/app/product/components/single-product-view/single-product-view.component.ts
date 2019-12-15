@@ -1,3 +1,4 @@
+import { CustomerUserInformation } from './../../../config/interfaces/user.interface';
 import { MatFormFieldModule } from "@angular/material";
 import { map } from "rxjs/operators";
 import { ProductService } from "./../../services/product.service";
@@ -14,7 +15,7 @@ import { ProductInformation } from "src/app/config/interfaces/product.interface"
 })
 export class SingleProductViewComponent implements OnInit {
   productData: ProductInformation;
-
+  supplierInfo: CustomerUserInformation;
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService
@@ -31,9 +32,14 @@ export class SingleProductViewComponent implements OnInit {
   // }
   getProductby(productId) {
     this.productService.getProductByProductId(productId).subscribe(item => {
-           this.productData = item;
+           this.productData = item.data;
            console.log(this.productData);
+           
+           this.productService.getProfileBySupplierId(item.data.supplierId).subscribe(res=>{
+            this.supplierInfo = res;
+            console.log(res)
+           })
+  });
   
-  })
 }
 }
