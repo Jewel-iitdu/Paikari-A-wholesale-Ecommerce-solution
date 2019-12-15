@@ -120,7 +120,7 @@ export class OrderService {
       .update({ orderQuantity: this.updatedQuantity });
   }
 
-  getOrderListByCustomerId(customerID): Observable<any>{
+  getOrderListByCustomerId(customerID): Observable<any> {
     return new Observable(observer => {
       this.angularfirestore
         .collection("Order", ref => {
@@ -140,7 +140,7 @@ export class OrderService {
         });
     });
   }
-  getOrderListBySupplierId(supplierID):Observable<any>{
+  getOrderListBySupplierId(supplierID): Observable<any> {
     return new Observable(observer => {
       this.angularfirestore
         .collection("Order", ref => {
@@ -158,6 +158,16 @@ export class OrderService {
           });
           observer.next(cart);
         });
+    });
+  }
+
+  removeFromCart(cartID): Observable<any> {
+    return new Observable(observer => {
+      this.angularfirestore
+        .collection("Order")
+        .doc(cartID)
+        .delete();
+      observer.next(true);
     });
   }
 }

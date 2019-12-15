@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-
+  stripeKey: 'YOUR_STRIPE_TEST_KEY',
+  
   firebase: {
     apiKey: "AIzaSyAXYiMneXQgr--H_zx2-ERW5d0HqX1FBj4",
     authDomain: "paikari-305f4.firebaseapp.com",
