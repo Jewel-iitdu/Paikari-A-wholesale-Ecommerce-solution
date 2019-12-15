@@ -51,8 +51,6 @@ export class ProductService {
 
   updateProduct(productInfo, productId) {
     this.productCollection
-      .doc(this.userId)
-      .collection("ProductList")
       .doc(productId)
       .update(productInfo);
   }

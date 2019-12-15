@@ -13,7 +13,7 @@ import { ProductInformation } from "src/app/config/interfaces/product.interface"
   styleUrls: ["./single-product-view.component.scss"]
 })
 export class SingleProductViewComponent implements OnInit {
-  productData: ProductInformation[];
+  productData: ProductInformation;
 
   constructor(
     private route: ActivatedRoute,
@@ -32,7 +32,7 @@ export class SingleProductViewComponent implements OnInit {
   getProductby(productId) {
     this.productService.getProductByProductId(productId).subscribe(item => {
            this.productData = item;
-          //  console.log(this.productData);
+           console.log(this.productData);
   
   })
 }
