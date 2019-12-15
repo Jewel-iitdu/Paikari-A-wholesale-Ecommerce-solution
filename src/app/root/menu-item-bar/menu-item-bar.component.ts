@@ -61,10 +61,21 @@ export class MenuItemBarComponent implements OnInit {
   }
   signOutClick(){
     this.auth.signOut();
-    this.router.navigate([urlPaths.Home.customerhome.url]);
+    this.routeToSignin();
   }
   routeToSignin() {
     this.router.navigate([urlPaths.Authentication.Signin.url]);
+  }
+
+  shoppingCartClick(){
+    this.router.navigate([urlPaths.Order.cart.url])
+  }
+
+  notificationClick(){
+
+  }
+  homeClick(){
+    this.router.navigate([urlPaths.Home.customerhome.url]);
   }
 
 }
