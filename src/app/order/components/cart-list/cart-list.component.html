@@ -1,17 +1,68 @@
-<div *ngFor="let item of cartList" fxLayout="row" fxLayoutGap="10px">
-<div>
-{{item.data.productName}}
-</div>
-<div>
-{{item.data.orderQuantity}}
-</div>
-<div>
-    {{item.data.productPrice}}
-</div>
-<div>
-    Total = {{ item.data.orderQuantity * item.data.productPrice}}
+<!-- <div *ngFor="let item of cartList" fxLayout="row" fxLayoutGap="10px">
+    <div>
+        {{item.data.productName}}
+    </div>
+    <div>
+        {{item.data.orderQuantity}}
+    </div>
+    <div>
+        {{item.data.productPrice}}
+    </div>
+    <div>
+        Total = {{ item.data.orderQuantity * item.data.productPrice}}
 
-<div>
-    <button (click)="handlePayment()">checkout</button>
+        <div>
+            <button (click)="handlePayment()">checkout</button>
+        </div>
+        <p>dd</p> -->
+
+
+<div class='p-64'>
+
+    <div fxLayout="row" fxLayoutAlign="center center" class='mb-16'>
+        <div fxFlex='10' fxLayoutAlign="center center" class='font-size-24'></div>
+        <div fxFlex='20' fxLayoutAlign="center center" class='font-size-24'>Product</div>
+        <div fxFlex='20' fxLayoutAlign="center center" class='font-size-24'>Quantity</div>
+        <div fxFlex='20' fxLayoutAlign="center center" class='font-size-24'>Price</div>
+
+        <div fxFlex='30' fxLayoutAlign="center center" class='font-size-24'>SubTotal</div>
+
+    </div>
+    <div *ngFor="let item of cartList;let i=index">
+        <div fxLayout="row" fxLayoutAlign="center center" class='font-size-16 my-4'>
+            <div fxFlex='10' fxLayoutAlign="center center">{{i+1}}</div>
+            <div fxFlex='20' fxLayoutAlign="center center">{{item.data.productName}}</div>
+            <div fxFlex='20' fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="12px">
+                <div>
+                    <button mat-icon-button color="warn" aria-label="Example icon-button with a heart icon" (click)='decreaseItem(item,i)'>
+                        <mat-icon>remove_circle_outline</mat-icon>
+                    </button>
+                </div>
+
+                <div> {{item.data.orderQuantity}}</div>
+                <div>
+                    <button mat-icon-button color="warn" aria-label="Example icon-button with a heart icon" (click)='increaseItem(item,i)'>
+                        <mat-icon>add_circle_outline</mat-icon>
+                    </button>
+                </div>
+
+
+
+            </div>
+            <div fxFlex='20' fxLayoutAlign="center center">{{item.data.productPrice}}</div>
+            <div fxFlex='30' fxLayoutAlign="center center"> {{ item.data.orderQuantity * item.data.productPrice}}</div>
+
+
+        </div>
+    </div>
+    <hr>
+    <div fxLayout="row" fxLayoutAlign="center center" class='my-24 font-size-24'>
+        <div>Total:</div>
+        <div>{{amount}}</div>
+
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="center center" >
+        <button mat-raised-button color='primary' class='font-size-20' (click)='checkout()'>Checkout</button>
+    </div>
 </div>
-<p>dd</p>
