@@ -15,12 +15,13 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       return new Observable(observer=>{
         this.af.authState.subscribe(res=>{
+          debugger;
           if(res){
             observer.next(true);
           }
           else if(!res){
             observer.next(false);
-            this.router.navigate(['/authentication']);
+            // this.router.navigate(['/authentication']);
           }
         })
       })

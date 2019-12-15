@@ -12,7 +12,7 @@ const routes:Routes=[
   {
 		path: '',
     component:CustomerHomeComponent,
-    canActivate:[AuthGuard,CustomerGuard]
+    // canActivate:[AuthGuard,CustomerGuard]
 	}
 ]
 

@@ -1,3 +1,4 @@
+import { SecurityService } from './../../core/security-service/security.service';
 import { Component, OnInit } from "@angular/core";
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 import { Observable, from } from "rxjs";
@@ -24,13 +25,17 @@ export class NavSideBarComponent implements OnInit {
   Username: string;
   menuItems;
   selectedRow: number;
+  role;
 
-  constructor(private breakpointObserver: BreakpointObserver, private router: Router, private auth: AuthenticationService) {}
+  constructor(private breakpointObserver: BreakpointObserver, private router: Router, private auth: AuthenticationService, private securityService: SecurityService) {}
 
   ngOnInit() {
     this.initiateVariables();
 		// this.selectedRow = 0;
-		// this.route(paikariconst.sidebar[0].url);
+    // this.route(paikariconst.sidebar[0].url);
+    this.securityService.getRole().subscribe(res=>{
+      this.role = res;
+    })
   }
   initiateVariables() {
     this.title = paikariconst.siteName.name;
