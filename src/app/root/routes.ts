@@ -50,5 +50,16 @@ export const routes: Routes = [
           "../customer/customer.module#CustomerModule"
       }
     ]
+  },
+  {
+    path: "",
+    component: MenuItemBarComponent,
+    children: [
+      {
+        path: "order",
+        loadChildren:
+          "../order/order.module#OrderModule"
+      }
+    ]
   }
 ];

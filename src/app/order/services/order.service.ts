@@ -17,18 +17,14 @@ export class OrderService {
   constructor(
     private angularfireauth: AngularFireAuth,
     private angularfirestore: AngularFirestore
-  ) {
-    this.angularfireauth.authState.subscribe(user => {
-      if (user) this.userId = user.uid;
-    });
-  }
+  ) {}
 
   createOrAddCart(order): Observable<any> {
     return new Observable(obs => {
       this.angularfirestore
         .collection("Order", ref => {
           return ref
-            .where("customerID", "==", order.userID)
+            .where("customerID", "==", order.customerID)
             .where("productID", "==", order.productID)
             .where("payment", "==", false);
         })
@@ -37,6 +33,7 @@ export class OrderService {
         .then(snapshot => {
           if (snapshot.empty) {
             this.angularfirestore.collection("Order").add(order);
+            obs.next(true);
           } else {
             snapshot.forEach(doc => {
               this.cartId = doc.id;
