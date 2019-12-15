@@ -1,6 +1,8 @@
-import { OrderInformation } from "./../../../config/interfaces/order.interface";
-import { OrderService } from "./../../services/order.service";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, HostListener } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { OrderInformation } from 'src/app/config/interfaces/order.interface';
+import { OrderService } from '../../services/order.service';
+import { PaymentService } from 'src/app/payments/services/payment.service';
 
 @Component({
   selector: "app-cart-list",
@@ -10,10 +12,22 @@ import { Component, OnInit } from "@angular/core";
 export class CartListComponent implements OnInit {
   customerID: string;
   cartList: OrderInformation;
-  constructor(private orderService: OrderService) {}
+  handler: any;
+  amount = 500;
+  orderIDs=["asdw", "dddd"];
+
+  constructor(private orderService: OrderService,private paymentSvc: PaymentService) {}
 
   ngOnInit() {
     this.setCartInformation();
+    this.handler = StripeCheckout.configure({
+      key: environment.stripeKey,
+      // image: '/your/awesome/logo.jpg',
+      locale: 'auto',
+      token: token => {
+        this.paymentSvc.processPayment(token, this.amount, this.orderIDs)
+      }
+    });
   }
 
   setCartInformation() {
@@ -25,4 +39,17 @@ export class CartListComponent implements OnInit {
       });
     });
   }
+
+  handlePayment() {
+    this.handler.open({
+      name: 'paikari.com',
+      excerpt: 'Deposit Funds to Account',
+      amount: this.amount
+    });
+  }
+
+  @HostListener('window:popstate')
+    onPopstate() {
+      this.handler.close()
+    }
 }

@@ -21,7 +21,7 @@ export class PaymentComponent implements OnInit {
       image: '/your/awesome/logo.jpg',
       locale: 'auto',
       token: token => {
-        this.paymentSvc.processPayment(token, this.amount)
+        // this.paymentSvc.processPayment(token, this.amount)
       }
     });
   }

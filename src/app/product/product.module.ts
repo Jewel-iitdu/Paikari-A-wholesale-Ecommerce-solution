@@ -29,22 +29,22 @@ const routes:Routes=[
   {
 		path: 'modify-products',
     component:ModifyProductComponent,
-    canActivate:[AuthGuard,SupplierGuard]
+    canActivate:[SupplierGuard,AuthGuard]
   },
   {
     path: 'product-list',
     component:ProductListComponent,
-    canActivate:[AuthGuard,SupplierGuard]
+    canActivate:[SupplierGuard, AuthGuard]
   },
   {
     path: 'product-list/edit-product/:id',
     component: ModifyProductComponent,
-    canActivate:[AuthGuard,SupplierGuard]
+    canActivate:[SupplierGuard, AuthGuard]
   },
   {
     path: 'product-list/product/:id',
     component: SingleProductViewComponent,
-    canActivate:[AuthGuard,SupplierGuard,CustomerGuard]
+    canActivate:[AuthGuard]
   }
 
 ]

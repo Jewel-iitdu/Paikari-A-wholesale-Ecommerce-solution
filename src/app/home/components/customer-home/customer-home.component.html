@@ -22,7 +22,7 @@
     </div>
     <div *ngIf="product" class='pt-12'>
       <div fxLayout="row" fxLayoutAlign="center center" class='pb-12'>
-        <div class='font-size-20'><span class='secondary-text-color'> {{ product.productname }}</span></div>
+        <div class='font-size-20'><span class='secondary-text-color cursor-pointer' (click)="singleProductView(product.id)"> {{ product.productname }}</span></div>
       </div>
     </div>
 
