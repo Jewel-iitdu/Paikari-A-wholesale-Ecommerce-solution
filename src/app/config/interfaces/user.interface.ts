@@ -21,3 +21,23 @@ export interface CustomerUserInformation {
 	companyname?: string;
 	
 }
+
+export interface Person{
+	companyname?: string;
+	email?: string;
+	name?:string;
+	phoneNumber?: string;
+	photoURL?:string;
+	role?: Roles;
+	uid?:string;
+	useraddress?:string;
+
+
+
+
+	
+
+
+
+
+}
