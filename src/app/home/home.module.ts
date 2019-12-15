@@ -1,3 +1,4 @@
+import { SingleProductViewComponent } from './../product/components/single-product-view/single-product-view.component';
 import { AuthGuard } from './../core/security-service/auth.guard';
 import { SharedModule } from './../shared/shared.module';
 import { RouterModule, Routes } from '@angular/router';
@@ -12,8 +13,8 @@ const routes:Routes=[
   {
 		path: '',
     component:CustomerHomeComponent,
-    canActivate:[AuthGuard,CustomerGuard]
-	}
+    // canActivate:[AuthGuard,CustomerGuard]
+  }
 ]
 
 @NgModule({

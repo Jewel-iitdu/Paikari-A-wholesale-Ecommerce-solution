@@ -56,11 +56,13 @@ export class SigninComponent implements OnInit {
 	}
   signinUser(user: UserInformation) {
 		this.authenticationservice.signin(user).pipe(first()).subscribe((res) => {
+			debugger;
 			if (res && res.code) {
 				console.log(res.code);
 				this.validateSignIn(res.code);
 				this.isLoading = false;
 			} else {
+				console.log("Logged in");
 				this.router.navigate([ urlPaths.Home.customerhome.url ]);
 				this.isLoading = false;
 

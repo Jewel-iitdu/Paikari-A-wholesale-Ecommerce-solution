@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { UtilityService } from 'src/app/core/utility-service/utility.service';
 import { ProductService } from './../../../product/services/product.service';
@@ -27,7 +28,8 @@ export class CustomerHomeComponent implements OnInit {
 		private orderService: OrderService,
 		private productService: ProductService,
 		private utility: UtilityService,
-		private sharedService: SharedService
+		private sharedService: SharedService,
+		private router: Router
 	) {}
 
 	ngOnInit() {
@@ -55,13 +57,14 @@ export class CustomerHomeComponent implements OnInit {
 	}
 
 	addToCart(product) {
-		debugger;
 		this.sharedService.showSpinner();
 
 		this.singleProduct = product;
 		this.orderInfo = {
 			productID: this.singleProduct.id,
 			orderQuantity: this.singleProduct.productquantity,
+			productName:this.singleProduct.productname,
+			productPrice:this.singleProduct.productprice,
 			payment: false,
 			date: firebase.firestore.FieldValue.serverTimestamp(),
 			customerID: this.userID,
@@ -88,5 +91,8 @@ export class CustomerHomeComponent implements OnInit {
 		value = String(value);
 		let x = this.utility.checkIfExists(value, this.filterData);
 		this.productData = x;
+	}
+	singleProductView(id){
+		this.router.navigateByUrl(`/product/product-list/product/${id}`)
 	}
 }

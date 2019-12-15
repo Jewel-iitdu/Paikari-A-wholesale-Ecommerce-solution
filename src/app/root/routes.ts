@@ -21,7 +21,7 @@ export const routes: Routes = [
         loadChildren: "../home/home.module#HomeModule"
       }
     ],
-    canActivate:[AuthGuard]
+    // canActivate:[AuthGuard]
   },
   {
     path: "",
@@ -32,7 +32,7 @@ export const routes: Routes = [
         loadChildren: "../product/product.module#ProductModule"
       }
     ],
-    canActivate:[AuthGuard]
+    // canActivate:[AuthGuard]
   },
   {
     path: "",
@@ -55,7 +55,7 @@ export const routes: Routes = [
           "../customer/customer.module#CustomerModule"
       }
     ],
-    canActivate:[AuthGuard]
+    // canActivate:[AuthGuard]
   },
   {
     path: "",
@@ -67,6 +67,6 @@ export const routes: Routes = [
           "../order/order.module#OrderModule"
       }
     ],
-    canActivate:[AuthGuard]
+    // canActivate:[AuthGuard]
   }
 ];

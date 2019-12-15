@@ -1,1 +1,17 @@
-<p>cart-list works!</p>
+<div *ngFor="let item of cartList" fxLayout="row" fxLayoutGap="10px">
+<div>
+{{item.data.productName}}
+</div>
+<div>
+{{item.data.orderQuantity}}
+</div>
+<div>
+    {{item.data.productPrice}}
+</div>
+<div>
+    Total = {{ item.data.orderQuantity * item.data.productPrice}}
+
+<div>
+    <button (click)="handlePayment()">checkout</button>
+</div>
+<p>dd</p>

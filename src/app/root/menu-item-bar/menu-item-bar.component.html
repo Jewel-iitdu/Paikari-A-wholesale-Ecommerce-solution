@@ -5,6 +5,7 @@
   fxLayout="row"
   fxLayoutAlign="space-between center"
   color="primary"
+  
 >
   <div
     fxLayout="row"
@@ -38,21 +39,44 @@
       <button mat-button [matMenuTriggerFor]="menu">
         <mat-icon class="mat-icon-size"> account_circle </mat-icon>
       </button>
-      <mat-menu #menu="matMenu">
-        <div>
-          <button mat-menu-item (click)="myAccountClick()">My Account</button>
-        </div>
-        <div>
-          <button mat-menu-item (click)="myOrderClick()">My Order</button>
-        </div>
-        <div>
-          <button mat-menu-item (click)="transactionHistoryClick()">Transaction History</button>
-        </div>
-        <div>
-          <button mat-menu-item (click)="signOutClick()">Sign Out</button>
-        </div>
-      </mat-menu>
+      <div >
+        <mat-menu #menu="matMenu" >
+          <div *ngIf='role=="Customer"'>
+            <div>
+              <button mat-menu-item (click)="myAccountClick()">My Account</button>
+            </div>
+            <div>
+              <button mat-menu-item (click)="myOrderClick()">My Order</button>
+            </div>
+            <div>
+              <button mat-menu-item (click)="transactionHistoryClick()">Transaction History</button>
+            </div>
+            <div>
+              <button mat-menu-item (click)="signOutClick()">Sign Out</button>
+            </div>
+          </div>
+          <div *ngIf='role=="Supplier"'>
+            <div>
+              <button mat-menu-item (click)="myAccountClick()">My Account</button>
+            </div>
+            <div>
+              <button mat-menu-item (click)="myOrderClick()">Orders</button>
+            </div>
+            <div>
+              <button mat-menu-item (click)="myProductClick()">Products</button>
+            </div>
+            <div>
+              <button mat-menu-item (click)="transactionHistoryClick()">Transaction History</button>
+            </div>
+            <div>
+              <button mat-menu-item (click)="signOutClick()">Sign Out</button>
+            </div>
+          </div>
+        </mat-menu>
+      </div>
+      
     </div>
   </div>
 </mat-toolbar>
+
 <router-outlet></router-outlet>

@@ -1,6 +1,6 @@
 <ngx-spinner></ngx-spinner>
 
-<mat-sidenav-container class="sidenav-container" *ngIf="">
+<mat-sidenav-container class="sidenav-container" *ngIf="role == 'Supplier'">
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
 
@@ -16,10 +16,10 @@
 
     <mat-nav-list>
       <div>
-        <button mat-list-item (click)="">My Products</button>
+        <button mat-list-item >My Products</button>
       </div>
       <div>
-        <button mat-list-item (click)="">Orders</button>
+        <button mat-list-item>Orders</button>
       </div>
     </mat-nav-list>
 

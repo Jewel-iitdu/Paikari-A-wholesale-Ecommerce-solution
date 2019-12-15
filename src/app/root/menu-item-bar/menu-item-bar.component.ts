@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { paikariconst, paikariMenuConst, urlPaths } from 'src/app/config/constants/paikariConstants';
 import {MatMenuTrigger} from '@angular/material'
 import { AuthenticationService } from 'src/app/authentication/services/authentication.service';
+import { SecurityService } from 'src/app/core/security-service/security.service';
 
 @Component({
   selector: 'app-menu-item-bar',
@@ -19,12 +20,16 @@ export class MenuItemBarComponent implements OnInit {
   Username: string;
   menuItems;
   selectedRow: number;
+  role;
   
-  
-  constructor(private router: Router, private auth: AuthenticationService) { }
+  constructor(private router: Router, private auth: AuthenticationService, private securityService: SecurityService) { }
 
   ngOnInit() {
     this.initiateVariables();
+    this.securityService.getRole().subscribe(res=>{
+      this.role = res;
+      console.log(res);
+    })
   }
   initiateVariables() {
     this.title = paikariMenuConst.siteName.name;
@@ -76,6 +81,9 @@ export class MenuItemBarComponent implements OnInit {
   }
   homeClick(){
     this.router.navigate([urlPaths.Home.customerhome.url]);
+  }
+  myProductClick(){
+    this.router.navigate([urlPaths.Product.ProductList.url])
   }
 
 }
