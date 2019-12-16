@@ -1,3 +1,4 @@
+import { StarsRating } from 'stars-rating';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
@@ -22,6 +23,8 @@ import { MatTableModule, MatPaginatorModule, MatSortModule, MatTreeModule } from
 import { CdkTreeModule } from '@angular/cdk/tree';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { NgxSpinnerModule } from "ngx-spinner";
+
+import { NgxStarRatingModule } from 'ngx-star-rating';
 @NgModule({
   declarations: [SnackbarComponent],
   imports: [
@@ -49,7 +52,9 @@ import { NgxSpinnerModule } from "ngx-spinner";
     CdkTreeModule,
     MatTreeModule,
     MatTooltipModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgxStarRatingModule
+    
     
   ],
   exports: [
@@ -77,7 +82,9 @@ import { NgxSpinnerModule } from "ngx-spinner";
     CdkTreeModule,
     MatTreeModule,
     MatTooltipModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgxStarRatingModule
+    
 
   ],
   providers:[SharedService],
