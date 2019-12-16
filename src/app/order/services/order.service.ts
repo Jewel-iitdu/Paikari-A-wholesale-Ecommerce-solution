@@ -181,4 +181,8 @@ export class OrderService {
       observer.next(true);
     });
   }
+
+  updateOrderStatus(orderID, statusInfo){
+    this.angularfirestore.collection("Order").doc(orderID).update({status: statusInfo});
+  }
 }
