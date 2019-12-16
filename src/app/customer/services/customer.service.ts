@@ -41,6 +41,5 @@ export class CustomerService {
   updateUserInfo(userInfo){
       this.angularfirestore.collection("Person").doc(this.userId).update(userInfo);
     
-
   }
 }

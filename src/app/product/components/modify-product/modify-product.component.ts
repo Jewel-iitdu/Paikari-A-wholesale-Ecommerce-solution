@@ -120,7 +120,6 @@ export class ModifyProductComponent implements OnInit {
   getImageUrl(){
     if(this.imgDownloadUrl == null){
       if(this.productInfo.productImageUrl == null){
-        return ""
       }
       else{
         return this.productInfo.productImageUrl;

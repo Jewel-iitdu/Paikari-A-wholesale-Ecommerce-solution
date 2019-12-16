@@ -29,13 +29,14 @@ export class UpdateUserProfileComponent implements OnInit {
     this.customerService.getUserInfo().subscribe(res=>{
       this.pathData(res);
       this.userInfo = res;
+      console.log(res)
     })
   }
-  pathData(res: CustomerUserInformation) {
+  pathData(res) {
     this.UpdateProfileForm.patchValue({
-      name: res.name,
-      companyname: res.companyname,
-      useraddress: res.useraddress,
+      name: res.data.name,
+      companyname: res.data.companyname,
+      useraddress: res.data.useraddress
     })
   }
   makingAddProductForm() {
@@ -58,7 +59,7 @@ export class UpdateUserProfileComponent implements OnInit {
   getImageUrl(){
     if(this.imgDownloadUrl == null){
       if(this.userInfo.photoURL == null){
-        return ""
+        
       }
       else{
         return this.userInfo.photoURL
