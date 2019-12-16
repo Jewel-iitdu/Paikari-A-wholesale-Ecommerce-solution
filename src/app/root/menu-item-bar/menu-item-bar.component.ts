@@ -28,7 +28,6 @@ export class MenuItemBarComponent implements OnInit {
     this.initiateVariables();
     this.securityService.getRole().subscribe(res=>{
       this.role = res;
-      console.log(res);
     })
   }
   initiateVariables() {

@@ -27,6 +27,7 @@ export class ModifyProductComponent implements OnInit {
   addProductForm: FormGroup;
   productid: any;
   // productData: any[];
+  supplierID: string;
 
   productInfo: ProductInformation = {
     productname: "",
@@ -37,7 +38,7 @@ export class ModifyProductComponent implements OnInit {
     category:"",
     created: null,
     supplierId: ""
-  };;
+  };
 
   isPreview = false;
 
@@ -55,19 +56,20 @@ export class ModifyProductComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     // this.categoryDataSource.data = catergoryService.getCategories();
-    this.categoryData = catergoryService.getCategories();
-    let productId = this.route.snapshot.paramMap.get("id");
-    if (productId) {
-      this.getProductby(productId);
-      this.productid = productId;
-    }
+    
   }
 
   // hasChild = (_: number, node: CategoryList) => !!node.children && node.children.length > 0;
 
   ngOnInit() {
     this.makingAddProductForm();
-    this.ProductService.getAllCategory();
+    // this.ProductService.getAllCategory();
+    this.categoryData = this.catergoryService.getCategories();
+    let productId = this.route.snapshot.paramMap.get("id");
+    if (productId) {
+      this.getProductby(productId);
+      this.productid = productId;
+    }
     // this.onChanges();
   }
   makingAddProductForm() {
@@ -103,10 +105,16 @@ export class ModifyProductComponent implements OnInit {
       productImageUrl: this.getImageUrl(),
       created: firebase.firestore.FieldValue.serverTimestamp(),
       category: this.addProductForm.value.category,
-      supplierId: this.ProductService.userId
+      supplierId: this.supplierID
     };
     this.ProductService.updateProduct(this.productInfo, this.productid);
     // console.log(this.productInfo);
+  }
+
+  getSupplierID(){
+    this.ProductService.getUserId().subscribe(res=>{
+      this.supplierID = res;
+    })
   }
 
   getImageUrl(){
@@ -125,8 +133,8 @@ export class ModifyProductComponent implements OnInit {
 
   getProductby(productId) {
     this.ProductService.getProductByProductId(productId).subscribe(product => {
-      this.patchData(product);
-      this.productInfo = product;
+      this.patchData(product.data);
+      this.productInfo = product.data;
     });
     // console.log(this.productInfo););
   }

@@ -1,1 +1,12 @@
-<p>ordered-list works!</p>
+<div *ngFor="let item of orderList">
+  <div>
+    ProductName: {{item.data.productName}}
+  </div>
+  <div>
+    Quantity: {{item.data.orderQuantity}}
+  </div>
+  <div>Paid: BDT {{item.data.orderQuantity*item.data.productPrice}}</div>
+  <div>
+      Order Status: d
+  </div>
+</div>

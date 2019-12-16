@@ -7,11 +7,11 @@ import { BlankComponent } from "./blank/blank.component";
 import { canActivate } from '@angular/fire/auth-guard';
 
 export const routes: Routes = [
-  //   {
-  //     path: "",
-  //     redirectTo: "authentication",
-  //     pathMatch: "full"
-  //   },
+    {
+      path: "",
+      redirectTo: "authentication",
+      pathMatch: "full"
+    },
   {
     path: "",
     component: MenuItemBarComponent,
