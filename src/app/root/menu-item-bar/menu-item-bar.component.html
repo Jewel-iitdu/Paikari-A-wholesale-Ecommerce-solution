@@ -23,13 +23,13 @@
     fxLayoutGap="12px"
     class="cursor-pointer"
   >
-    <div>
+    <div >
       <button mat-button (click)="notificationClick()">
         <mat-icon class="mat-icon-size"> notification_important </mat-icon>
       </button>      
     </div>
 
-    <div>
+    <div *ngIf='role=="Customer"'>
       <button mat-button (click)="shoppingCartClick()">
         <mat-icon class="mat-icon-size"> shopping_cart </mat-icon>
       </button>    

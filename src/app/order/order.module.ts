@@ -18,7 +18,7 @@ const routes:Routes=[
   {
     path: 'order-list',
     component: OrderedListComponent,
-    canActivate:[AuthGuard,CustomerGuard]
+    canActivate:[AuthGuard]
   }
 ]
 

@@ -1,3 +1,4 @@
+import { SecurityService } from 'src/app/core/security-service/security.service';
 import { Router } from '@angular/router';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { UtilityService } from 'src/app/core/utility-service/utility.service';
@@ -23,18 +24,23 @@ export class CustomerHomeComponent implements OnInit {
 	orderInfo: OrderInformation;
 	singleProduct: ProductInformation;
 	userID: string;
+	role;
 	constructor(
 		private homeService: CustomerHomeService,
 		private orderService: OrderService,
 		private productService: ProductService,
 		private utility: UtilityService,
 		private sharedService: SharedService,
-		private router: Router
+		private router: Router,
+		private security: SecurityService
 	) {}
 
 	ngOnInit() {
 		this.setUserID();
 		this.setAllProducts();
+		this.security.getRole().subscribe(res=>{
+			this.role = res;
+		})
 	}
 
 	setUserID() {
@@ -95,4 +101,5 @@ export class CustomerHomeComponent implements OnInit {
 	singleProductView(id){
 		this.router.navigateByUrl(`/product/product-list/product/${id}`)
 	}
+	
 }

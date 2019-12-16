@@ -38,7 +38,7 @@
     </mat-card-content>
 
     <mat-card-actions>
-      <div fxLayout="row" fxLayoutAlign="end center">
+      <div fxLayout="row" fxLayoutAlign="end center" *ngIf="role=='Customer'">
         <button class="cursor-pointer" color="primary" mat-fab aria-label="Example icon-button with a heart icon" matTooltip="Add product to cart">
           <mat-icon (click)="addToCart(product)">add_shopping_cart</mat-icon>
         </button>

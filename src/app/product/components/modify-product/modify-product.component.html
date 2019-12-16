@@ -230,7 +230,7 @@
                 <mat-card-title>Jewel Rana</mat-card-title>
                 <mat-card-subtitle>Paikari.com</mat-card-subtitle>
               </mat-card-header>
-              <div >
+              <div *ngIf="productInfo.productImageUrl">
                     <img [src]="productInfo.productImageUrl" />
               </div>
   
@@ -243,16 +243,7 @@
                 <p>{{ addProductForm.value.productDescription }}</p>
               </mat-card-content>
               <div fxLayoutAlign="end end">
-                <mat-card-actions>
-                  <button
-                    class="cursor-pointer"
-                    color="primary"
-                    mat-fab
-                    aria-label="Example icon-button with a heart icon"
-                  >
-                    <mat-icon>add_shopping_cart</mat-icon>
-                  </button>
-                </mat-card-actions>
+                
               </div>
             </mat-card>
           </div>
