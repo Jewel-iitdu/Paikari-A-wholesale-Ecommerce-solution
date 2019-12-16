@@ -1,4 +1,4 @@
-<div *ngFor="let item of orderList">
+<!-- <div *ngFor="let item of orderList">
   <div>
     ProductName: {{item.data.productName}}
   </div>
@@ -7,6 +7,59 @@
   </div>
   <div>Paid: BDT {{item.data.orderQuantity*item.data.productPrice}}</div>
   <div>
-      Order Status: d
+    Order Status: d
+  </div>
+</div> -->
+
+<div class='p-64'>
+  <div fxLayout="column" fxLayoutAlign="center center" class='mb-24 font-size-24'>
+    My Orders
+  </div>
+  <div *ngFor="let item of orderList;let i=index">
+
+    <div fxLayout="column" fxLayoutAlign="center center" class='mb-24'>
+      <mat-card class='p-64 w-500'>
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="24px">
+          <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="12px">
+            <div class='font-size-20'>Product</div>
+            <div class='font-size-16 bold'>{{item.data.productName}}</div>
+
+          </div>
+          <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="12px">
+            <div class='font-size-20'>Price x Quantity</div>
+            <div class='font-size-16 bold'>{{item.data.productPrice}}*{{item.data.orderQuantity}}</div>
+
+          </div>
+          <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="12px">
+            <div class='font-size-20'>SubTotal</div>
+            <div class='font-size-16 bold'>{{item.data.orderQuantity*item.data.productPrice}}</div>
+
+          </div>
+        </div>
+        <hr class='my-16'>
+        <div fxLayout="row" fxLayoutAlign="space-between center" class='mb-16'>
+          <div class='font-size-16'>Total Paid</div>
+          <div class='font-size-16 bold'>{{item.data.orderQuantity*item.data.productPrice}}</div>
+
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between center" class='mb-16'>
+          <div class='font-size-16'>Order Status</div>
+          <div *ngIf='role=="Customer"' class='font-size-16 bold'>{{item.data.status}}</div>
+          <div *ngIf='role=="Supplier"' class='font-size-16 bold'>
+            <mat-form-field  >
+              <mat-label>Order Status</mat-label>
+              <mat-select [(value)]="orderList[i].data.status" (selectionChange)="updateStatus(item,orderList[i].data.status)">
+                <mat-option *ngFor="let j of getOrderStatus(orderList[i].data.status)"  [value]="j.value">
+                  {{j.value}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+
+        </div>
+      </mat-card>
+    </div>
+
   </div>
 </div>

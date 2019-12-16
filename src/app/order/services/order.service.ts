@@ -166,7 +166,7 @@ export class OrderService {
         .toPromise()
         .then(snapshot=>{
           snapshot.forEach(doc=>{
-            this.angularfirestore.collection("Order").doc(doc.id).update({payment: true})
+            this.angularfirestore.collection("Order").doc(doc.id).update({payment: true,status:"Paid"})
           })
         })          
         });       

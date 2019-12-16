@@ -112,4 +112,12 @@ export class CartListComponent implements OnInit {
 		}
 		this.handlePayment();
 	}
+
+	removeProduct(index){
+		debugger;
+		let id=this.cartList[index].id;
+		this.orderService.removeFromCart(id).subscribe(res=>{
+			this.setCartInformation();
+		});
+	}
 }

@@ -11,7 +11,18 @@ export const paikariconst = {
   },
   defaultPhonenumberCode: "bd",
   emailsent: "Email sent successfully",
-  checkEmail: "Verification email sent"
+  checkEmail: "Verification email sent",
+  orderStatus:[
+    {value: 'Paid'},
+
+    {value: 'Confirmed'},
+    {value: 'Processing'},
+    {value: 'Shipped'},
+    {value: 'Refund'},
+    {value: 'Complete'}
+
+  
+  ]
 };
 
 export const paikariMenuConst = {
@@ -149,5 +160,8 @@ export const urlPaths = {
     cart: {
       url: "order/cart"
     }
-  }
+  },
+  
 };
+
+
