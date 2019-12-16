@@ -1,10 +1,39 @@
 <div fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="12px">
-<div class='px-64 pb-12 pt-64'> 
-    <mat-form-field  appearance="outline" class='w-100-p'>
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Products">
-    <mat-icon matPrefix class='mr-16'>search</mat-icon>
-    </mat-form-field>
-</div>
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="24px" class='px-64 pb-12 pt-64'> 
+    <div fxFlex='80'>
+      <mat-form-field  appearance="outline" class='w-100-p'>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Products">
+      <mat-icon matPrefix class='mr-16'>search</mat-icon>
+      </mat-form-field>
+    </div>
+    <div fxFlex='20'>
+      <!-- <mat-form-field  appearance="outline" class='w-100-p'>
+        <mat-select [(ngModel)]="selectedCategory" (ngModelChange)="onCategorySelection()" placeholder='Choose category'>
+          <mat-option *ngFor="let food of categories| keyvalue" [value]="food.category">
+            {{food.category}}
+          </mat-option>
+        </mat-select>
+        </mat-form-field> -->
+        <mat-form-field appearance='outline' class='w-100-p'>
+          <mat-label>Category</mat-label>
+          <mat-select [(ngModel)]="selectedCategory" (ngModelChange)="onCategorySelection()" placeholder='Choose category'>
+            <mat-option>-- None --</mat-option>
+            <mat-optgroup
+              *ngFor="let group of categoryData"
+              [label]="group.name"
+              [disabled]="group.disabled"
+            >
+              <mat-option
+                *ngFor="let pokemon of group.pokemon"
+                [value]="pokemon.value"
+              >
+                {{ pokemon.viewValue }}
+              </mat-option>
+            </mat-optgroup>
+          </mat-select>
+        </mat-form-field>
+    </div>
+  </div>
 <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="20px" class="px-64 pb-64">
     
     

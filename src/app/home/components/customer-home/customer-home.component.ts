@@ -1,3 +1,4 @@
+import { CatergoryService } from './../../../product/services/catergory.service';
 import { SecurityService } from 'src/app/core/security-service/security.service';
 import { Router } from '@angular/router';
 import { SharedService } from 'src/app/shared/services/shared.service';
@@ -19,7 +20,8 @@ import * as firebase from 'firebase/app';
 export class CustomerHomeComponent implements OnInit {
 	productData: ProductInformation[] = [];
 	filterData: ProductInformation[] = [];
-
+	categoryData=[];
+	selectedCategory;
 	firestoreData: Observable<any[]>;
 	orderInfo: OrderInformation;
 	singleProduct: ProductInformation;
@@ -32,16 +34,21 @@ export class CustomerHomeComponent implements OnInit {
 		private utility: UtilityService,
 		private sharedService: SharedService,
 		private router: Router,
-		private security: SecurityService
+		private security: SecurityService,
+		private categoryService:CatergoryService
 	) {}
 
 	ngOnInit() {
 		this.setUserID();
 		this.setAllProducts();
+		this.setAllCategory();
 		this.security.getRole().subscribe(res=>{
 			this.role = res;
 		})
 	}
+
+
+
 
 	setUserID() {
 		this.orderService.getUserId().subscribe((res) => {
@@ -103,6 +110,21 @@ export class CustomerHomeComponent implements OnInit {
 	}
 	singleProductView(id){
 		this.router.navigateByUrl(`/product/product-list/product/${id}`)
+	}
+	onCategorySelection(){
+		console.log(this.selectedCategory);
+		if(this.selectedCategory){
+			this.applyFilter(this.selectedCategory);
+		}
+		else{
+			this.applyFilter('');
+
+		}
+	}
+
+	setAllCategory(){
+		this.categoryData=this.categoryService.getCategories();
+
 	}
 	
 }

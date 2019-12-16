@@ -1,3 +1,61 @@
-<div>
+<!-- <div *ngIf='shownComplaints'>
+    <div *ngFor='let i of shownComplaints'>
+        <div>{{i.customerName}}</div>
+
+        <div>{{i.complaintText}}</div>
+        <div>{{i.supplierName}}</div>
+
+    </div>
     
+</div> -->
+
+<div *ngIf='shownComplaints' fxLayout="column" fxLayoutAlign="center center" class='my-64 font-size-24'>
+    Complaint History
+</div>
+<hr *ngIf='shownComplaints'>
+<div *ngIf='shownComplaints' fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="16px" class='px-64 pb-32 pt-16'>
+    <mat-card *ngFor="let i of shownComplaints;let j =index">
+        <div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="24px" class='p-20 font-size-20'>
+            <div>{{j+1}}</div>
+            <div fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="16px">
+                <div fxLayout="row" fxLayoutAlign="center stretch" fxLayoutGap="24px">
+                    <div fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="16px">
+                        <div>Customer Name: </div>
+
+                        <div>Complain Description: </div>
+                        <div>Supplier Name: </div>
+
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="16px">
+                        <div>{{i.customerName}} </div>
+
+                        <div class='accepted-color word-break-all'>{{i.complaintText}} </div>
+                        <div>{{i.supplierName}} </div>
+                    </div>
+                </div>
+                <!-- <div fxLayout="row" fxLayoutAlign="center center">
+                    <div fxFlex='40'>Id: </div>
+                    <div fxFlex='60'>{{item.id}}</div>
+
+
+                </div>
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <div fxFlex='40'>Amount: </div>
+                    <div fxFlex='60'>{{item.data.amount}}</div>
+
+
+                </div>
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <div fxFlex='40'>Date: </div>
+                    <div fxFlex='60'>{{item.data.date.toDate() | date:'medium'}}</div>
+
+
+                </div> -->
+
+
+            </div>
+        </div>
+
+
+    </mat-card>
 </div>

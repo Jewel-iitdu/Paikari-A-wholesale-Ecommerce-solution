@@ -1,11 +1,61 @@
-<div *ngFor="let item of paymentInfo">
-  <div>
-      id: {{item.id}}
-  </div>
-  <div>
-      amount: {{item.data.amount}}
-  </div>
-  <div>
-      date: {{item.data.date}}
-  </div>
+<!-- <div *ngFor="let item of paymentInfo">
+    <div>
+        id: {{item.id}}
+    </div>
+    <div>
+        amount: {{item.data.amount}}
+    </div>
+    <div>
+        date: {{item.data.date}}
+    </div>
+</div> -->
+<div fxLayout="column" fxLayoutAlign="center center" class='my-64 font-size-24'>
+    Transaction History
+</div>
+<hr>
+<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="16px" class='px-64 pb-32 pt-16'>
+    <mat-card *ngFor="let item of paymentInfo;let i =index">
+        <div fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="24px" class='p-20 font-size-20'>
+            <div><button mat-mini-fab color='primary'>{{i+1}}.</button></div>
+            <div fxLayout="column" fxLayoutAlign="center start" fxLayoutGap="16px">
+                <div fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="24px">
+                    <div fxLayout="column" fxLayoutAlign="center start" fxLayoutGap="16px">
+                        <div>Id: </div>
+
+                        <div>Amount: </div>
+                        <div>Date: </div>
+
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="center start" fxLayoutGap="16px">
+                        <div>{{item.id}} </div>
+
+                        <div class='accepted-color'>{{item.data.amount}} </div>
+                        <div>{{item.data.date.toDate() | date:'medium'}} </div>
+                    </div>
+                </div>
+                <!-- <div fxLayout="row" fxLayoutAlign="center center">
+                    <div fxFlex='40'>Id: </div>
+                    <div fxFlex='60'>{{item.id}}</div>
+
+
+                </div>
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <div fxFlex='40'>Amount: </div>
+                    <div fxFlex='60'>{{item.data.amount}}</div>
+
+
+                </div>
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <div fxFlex='40'>Date: </div>
+                    <div fxFlex='60'>{{item.data.date.toDate() | date:'medium'}}</div>
+
+
+                </div> -->
+
+
+            </div>
+        </div>
+
+
+    </mat-card>
 </div>
