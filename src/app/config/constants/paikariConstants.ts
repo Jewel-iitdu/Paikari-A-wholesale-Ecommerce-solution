@@ -151,6 +151,9 @@ export const urlPaths = {
     },
     UpdateProfile: {
       url: "user/update-my-account"
+    },
+    Transaction:{
+      url: "user/transactions"
     }
   },
   Order: {

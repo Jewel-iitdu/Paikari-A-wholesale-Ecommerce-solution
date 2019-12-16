@@ -185,4 +185,12 @@ export class OrderService {
   updateOrderStatus(orderID, statusInfo){
     this.angularfirestore.collection("Order").doc(orderID).update({status: statusInfo});
   }
+
+  updateRatingStatus(orderID){
+    this.angularfirestore.collection("Order").doc(orderID).update({rated: true});
+  }
+  updateRatings(supplierID, ratingValue){
+    this.angularfirestore.collection("Person").doc(supplierID).update({rating: ratingValue});
+  }
+  
 }

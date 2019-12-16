@@ -19,7 +19,7 @@ export interface CustomerUserInformation {
 	useraddress?:string;
 	photoURL?:string;
 	companyname?: string;
-	
+	rating?: number;
 }
 
 export interface Person{

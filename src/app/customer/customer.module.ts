@@ -16,12 +16,18 @@ const routes:Routes=[
   {
 		path: 'my-account',
     component:CustomerInformationComponent,
-    canActivate:[AuthGuard,CustomerGuard,SupplierGuard]
+    canActivate:[AuthGuard]
   },
   {
 		path: 'update-my-account',
     component:UpdateUserProfileComponent,
-    canActivate:[AuthGuard,CustomerGuard,SupplierGuard]
+    canActivate:[AuthGuard]
+    
+  },
+  {
+		path: 'transactions',
+    component:TransactionHistoryComponent,
+    canActivate:[AuthGuard,CustomerGuard]
     
   }
 ]
