@@ -55,7 +55,10 @@ const pokemonGroups: PokemonGroup[] = [
     pokemon: [
       {value: 'Shirt-0', viewValue: 'Shirt'},
       {value: 'Pant-1', viewValue: 'Pant'},
-      {value: 'T-shirt-2', viewValue: 'T-shirt'}
+      {value: 'T-shirt-2', viewValue: 'T-shirt'},
+      {value: 'Jacket-0', viewValue: 'Jacket'},
+      {value: 'Polo-1', viewValue: 'Polo Shirt'},
+      {value: 'jeans-2', viewValue: 'Others'}
     ]
   },
   {
@@ -63,25 +66,43 @@ const pokemonGroups: PokemonGroup[] = [
     pokemon: [
       {value: 'BagsandBackpacks-3', viewValue: 'Bags and Backpacks'},
       {value: 'Eyeware-4', viewValue: 'Eyeware'},
-      // {value: 'horsea-5', viewValue: 'Horsea'}
+      {value: 'Money-3', viewValue: 'Money Bag'},
+      {value: 'watch-4', viewValue: 'watch'},
+      {value: 'Glass-3', viewValue: 'Glass'},
+      {value: 'Germents-4', viewValue: 'Shoe'},
+      {value: 'other-4', viewValue: 'Others'}
+
     ]
   },
-  // {
-  //   name: 'Fire',
-  //   disabled: true,
-  //   pokemon: [
-  //     {value: 'charmander-6', viewValue: 'Charmander'},
-  //     {value: 'vulpix-7', viewValue: 'Vulpix'},
-  //     {value: 'flareon-8', viewValue: 'Flareon'}
-  //   ]
-  // },
-  // {
-  //   name: 'Psychic',
-  //   pokemon: [
-  //     {value: 'mew-9', viewValue: 'Mew'},
-  //     {value: 'mewtwo-10', viewValue: 'Mewtwo'},
-  //   ]
-  // }
+  {
+    name: 'Computer',
+    pokemon: [
+      {value: 'pc-1', viewValue: 'Computer Component'},
+      {value: 'pc-2', viewValue: 'Laptop'},
+      {value: 'pc-3', viewValue: 'Phone'},
+      {value: 'pc-4', viewValue: 'Printer'},
+      {value: 'pc-5', viewValue: 'Tablet'},
+      {value: 'pc-6', viewValue: 'Others'}
+    ]
+  },
+  {
+    name: 'Transport',
+    pokemon: [
+      {value: 'tc-1', viewValue: 'Bike'},
+      {value: 'tc-2', viewValue: 'Car'},
+      {value: 'tc-3', viewValue: 'Motorcycle'},
+      {value: 'tc-4', viewValue: 'Scooter'},
+      {value: 'tc-5', viewValue: 'Skate Board'},
+      {value: 'tc-6', viewValue: 'Others'}
+    ]
+  },
+  {
+    name: 'Others',
+    pokemon: [
+      {value: 'o-6', viewValue: 'Others'}
+    ]
+  }
+
 ];
 
 @Injectable({
