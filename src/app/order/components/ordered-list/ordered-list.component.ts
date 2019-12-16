@@ -1,3 +1,4 @@
+import { paikariconst } from 'src/app/config/constants/paikariConstants';
 import { SecurityService } from "src/app/core/security-service/security.service";
 import { Component, OnInit } from "@angular/core";
 import { OrderInformation } from "src/app/config/interfaces/order.interface";
@@ -12,6 +13,7 @@ export class OrderedListComponent implements OnInit {
   userID: string;
   orderList: OrderInformation;
   role: string;
+  orderStatus=paikariconst.orderStatus;
 
   constructor(
     private orderService: OrderService,
@@ -32,6 +34,7 @@ export class OrderedListComponent implements OnInit {
             .getOrderListBySupplierId(this.userID)
             .subscribe(list => {
               this.orderList = list;
+              // console.log(this.orderList[1].data.status);
               console.log(list);
             });
         }
@@ -56,4 +59,23 @@ export class OrderedListComponent implements OnInit {
       this.role = res;
     });
   }
+
+  getOrderStatus(status){
+    let x=[];
+    let startPushing=false;
+    for(let i of this.orderStatus){
+      if(status==i.value || startPushing){
+        x.push(i);
+        startPushing=true;
+
+      }
+    }
+    return x;
+  }
+
+  updateStatus(item,status){
+    this.orderService.updateOrderStatus(item.id,status);
+  }
+
+ 
 }
