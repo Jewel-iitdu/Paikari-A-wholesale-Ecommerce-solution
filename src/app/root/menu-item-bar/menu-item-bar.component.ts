@@ -61,7 +61,7 @@ export class MenuItemBarComponent implements OnInit {
     this.router.navigate([urlPaths.Order.MyOrder.url]);
   }
   transactionHistoryClick(){
-
+    this.router.navigate([urlPaths.UserProfile.Transaction.url]);
   }
   signOutClick(){
     this.auth.signOut();

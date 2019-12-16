@@ -26,7 +26,7 @@ export class CustomerService {
           this.angularfirestore.collection("Person").doc(this.userId).snapshotChanges().pipe(map(changes=>{
             const data = changes.payload.data();
                 const id = changes.payload.id;
-                return { id, ...data };
+                return { id, data };
           })).subscribe(res=>{
             observer.next(res)
           })

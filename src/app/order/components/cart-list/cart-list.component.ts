@@ -4,6 +4,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { OrderService } from '../../services/order.service';
 import { OrderInformation } from '../../../config/interfaces/order.interface';
 import { PaymentService } from '../../../payments/services/payment.service';
+import * as firebase from "firebase/app";
 
 import _ from 'lodash';
 
@@ -19,6 +20,7 @@ export class CartListComponent implements OnInit {
 	handler: any;
 	amount = 0;
 	orderIDs = [];
+	date: firebase.firestore.Timestamp;
 
 	constructor(
 		private orderService: OrderService,
@@ -34,7 +36,7 @@ export class CartListComponent implements OnInit {
 			locale: 'auto',
 			token: (token) => {
 				
-				this.paymentSvc.processPayment(token, this.amount, this.orderIDs);
+				this.paymentSvc.processPayment(token, this.amount, this.orderIDs,this.customerID, this.date);
 				this.paymentFlagCheck();
 			}
 		});

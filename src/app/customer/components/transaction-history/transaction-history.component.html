@@ -1,1 +1,11 @@
-<p>transaction-history works!</p>
+<div *ngFor="let item of paymentInfo">
+  <div>
+      id: {{item.id}}
+  </div>
+  <div>
+      amount: {{item.data.amount}}
+  </div>
+  <div>
+      date: {{item.data.date}}
+  </div>
+</div>

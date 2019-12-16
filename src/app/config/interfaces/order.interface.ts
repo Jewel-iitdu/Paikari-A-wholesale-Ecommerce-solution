@@ -9,4 +9,7 @@ export interface OrderInformation{
     date?: any;
     supplierID?:string;
     status?:string;
+    rated?: boolean;
+    complaint?:boolean;
+    compmaintText?:string;
 }

@@ -68,6 +68,7 @@ export class SignupComponent implements OnInit, OnDestroy {
           email: this.signupform.value.email,
           role: this.signupform.value.role,
           phoneNumber: this.signupform.value.phone,
+          rating: 100
           // homeAddress: this.signupform.value.homeAddress,
           // shopAddress: this.signupform.value.shopAddress,
           // enquiryLimit: defaultConst.defaultEnquiryLimit,
