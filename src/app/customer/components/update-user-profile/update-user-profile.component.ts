@@ -7,6 +7,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { finalize } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { CustomerService } from '../../services/customer.service';
+import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
   selector: 'app-update-user-profile',
@@ -21,7 +22,8 @@ export class UpdateUserProfileComponent implements OnInit {
   constructor(private storage: AngularFireStorage,
     private db: AngularFirestore,
     private fb: FormBuilder,
-    private customerService: CustomerService
+    private customerService: CustomerService,
+    private sharedService: SharedService
     ) { }
 
   ngOnInit() {
@@ -29,13 +31,14 @@ export class UpdateUserProfileComponent implements OnInit {
     this.customerService.getUserInfo().subscribe(res=>{
       this.pathData(res);
       this.userInfo = res;
+      console.log(res)
     })
   }
-  pathData(res: CustomerUserInformation) {
+  pathData(res) {
     this.UpdateProfileForm.patchValue({
-      name: res.name,
-      companyname: res.companyname,
-      useraddress: res.useraddress,
+      name: res.data.name,
+      companyname: res.data.companyname,
+      useraddress: res.data.useraddress
     })
   }
   makingAddProductForm() {
@@ -54,11 +57,23 @@ export class UpdateUserProfileComponent implements OnInit {
       photoURL: this.getImageUrl()
     }
     this.customerService.updateUserInfo(this.userInfo);
+    this.showSnackbar();
   }
+
+  showSnackbar() {
+		this.sharedService.openSnackBar({
+			duration: 2,
+			data: {
+				isAccepted: true,
+				message: 'Profile Information Updated'
+			},
+			panelClass: [ 'recovery-snackbar' ]
+		});
+	}
   getImageUrl(){
     if(this.imgDownloadUrl == null){
       if(this.userInfo.photoURL == null){
-        return ""
+        
       }
       else{
         return this.userInfo.photoURL

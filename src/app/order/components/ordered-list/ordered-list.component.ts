@@ -5,6 +5,7 @@ import { Component, OnInit, EventEmitter } from "@angular/core";
 import { OrderInformation } from "src/app/config/interfaces/order.interface";
 import { OrderService } from "../../services/order.service";
 import { first } from 'rxjs/operators';
+import { SharedService } from 'src/app/shared/services/shared.service';
 @Component({
   selector: "app-ordered-list",
   templateUrl: "./ordered-list.component.html",
@@ -19,7 +20,9 @@ export class OrderedListComponent implements OnInit {
   constructor(
     private orderService: OrderService,
     private security: SecurityService,
-    private fb:FormBuilder
+    private fb:FormBuilder,
+    private sharedService: SharedService
+
   ) {}
 
   ngOnInit() {
@@ -70,6 +73,17 @@ export class OrderedListComponent implements OnInit {
     });
   }
 
+  showSnackbar() {
+		this.sharedService.openSnackBar({
+			duration: 2,
+			data: {
+				isAccepted: true,
+				message: 'Review Submitted Successfully'
+			},
+			panelClass: [ 'recovery-snackbar' ]
+		});
+	}
+
   getOrderStatus(status){
     let x=[];
     let startPushing=false;
@@ -99,7 +113,7 @@ export class OrderedListComponent implements OnInit {
       this.orderService.makeComplain(item.id,complain);
     })
     
-
+    this.showSnackbar();
   }
  
   

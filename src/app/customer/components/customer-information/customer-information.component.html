@@ -7,25 +7,25 @@
     <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px" *ngIf="userInfo">
       <div >
         <img
-          [src]="userInfo.photoURL"
+          [src]="userInfo.data.photoURL"
           class="userimg"
         />
       </div>
       <div >
         <div>
-          <h2>Name: {{userInfo.name}}</h2>
+          <h2>Name: {{userInfo.data.name}}</h2>
         </div>
         <div>
-            <h2>Company Name: {{userInfo.companyname}}</h2>
+            <h2>Company Name: {{userInfo.data.companyname}}</h2>
         </div>
         <div>
-          <h2>Email: {{userInfo.email}}</h2>
+          <h2>Email: {{userInfo.data.email}}</h2>
         </div>
         <div>
-          <h2>Contact No: {{userInfo.phoneNumber}}</h2>
+          <h2>Contact No: {{userInfo.data.phoneNumber}}</h2>
         </div>
         <div>
-          <h2>Address: {{userInfo.useraddress}}</h2>
+          <h2>Address: {{userInfo.data.useraddress}}</h2>
         </div>
       </div>
       <div fxLayout="row" fxLayoutGap="40px" class="p-90">

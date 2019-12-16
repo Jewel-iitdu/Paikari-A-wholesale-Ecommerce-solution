@@ -1,3 +1,4 @@
+import { SharedService } from './../../../shared/services/shared.service';
 import { CatergoryService } from './../../services/catergory.service';
 import { ProductService } from "./../../services/product.service";
 import { ProductInformation } from "./../../../config/interfaces/product.interface";
@@ -47,7 +48,8 @@ export class AddProductComponent implements OnInit {
     private db: AngularFirestore,
     private fb: FormBuilder,
     private ProductService: ProductService,
-    private catergoryService: CatergoryService
+    private catergoryService: CatergoryService,
+    private sharedService: SharedService
   ) {
     // this.categoryDataSource.data = catergoryService.getCategories();
     this.categoryData = catergoryService.getCategories();
@@ -92,8 +94,20 @@ export class AddProductComponent implements OnInit {
       supplierId: this.getSupplierID
     };
     this.ProductService.createProduct(this.productInfo);
+    this.showSnackbar();
     // console.log(this.productInfo);
   }
+
+  showSnackbar() {
+		this.sharedService.openSnackBar({
+			duration: 1,
+			data: {
+				isAccepted: true,
+				message: 'Product Created Successfully'
+			},
+			panelClass: [ 'recovery-snackbar' ]
+		});
+	}
 
   // Main task
   task: AngularFireUploadTask;

@@ -68,5 +68,18 @@ export const routes: Routes = [
       }
     ],
     // canActivate:[AuthGuard]
+  },
+  {
+    path: "",
+    component: MenuItemBarComponent,
+    children: [
+      {
+        path: "admin",
+        loadChildren:
+          "../admin/admin.module#AdminModule"
+      }
+    ],
+    // canActivate:[AuthGuard]
   }
+
 ];

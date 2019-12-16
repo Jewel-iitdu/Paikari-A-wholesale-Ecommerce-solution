@@ -17,6 +17,7 @@ import * as firebase from "firebase/app";
 import { NestedTreeControl } from "@angular/cdk/tree";
 import { MatTreeNestedDataSource } from "@angular/material";
 import { ActivatedRoute } from "@angular/router";
+import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
   selector: "app-modify-product",
@@ -53,7 +54,8 @@ export class ModifyProductComponent implements OnInit {
     private fb: FormBuilder, 
     private ProductService: ProductService,
     private catergoryService: CatergoryService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private sharedService: SharedService
   ) {
     // this.categoryDataSource.data = catergoryService.getCategories();
     
@@ -108,8 +110,20 @@ export class ModifyProductComponent implements OnInit {
       supplierId: this.supplierID
     };
     this.ProductService.updateProduct(this.productInfo, this.productid);
+    this.showSnackbar();
     // console.log(this.productInfo);
   }
+
+  showSnackbar() {
+		this.sharedService.openSnackBar({
+			duration: 1,
+			data: {
+				isAccepted: true,
+				message: 'Product Created Successfully'
+			},
+			panelClass: [ 'recovery-snackbar' ]
+		});
+	}
 
   getSupplierID(){
     this.ProductService.getUserId().subscribe(res=>{
@@ -120,7 +134,6 @@ export class ModifyProductComponent implements OnInit {
   getImageUrl(){
     if(this.imgDownloadUrl == null){
       if(this.productInfo.productImageUrl == null){
-        return ""
       }
       else{
         return this.productInfo.productImageUrl;
