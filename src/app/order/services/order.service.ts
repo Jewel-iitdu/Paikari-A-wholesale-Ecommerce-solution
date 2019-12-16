@@ -192,6 +192,16 @@ export class OrderService {
   updateRatings(supplierID, ratingValue){
     this.angularfirestore.collection("Person").doc(supplierID).update({rating: ratingValue});
   }
+  getRatings(supplierID):Observable<any>{
+    return new Observable(obs=>{
+      this.angularfirestore.collection("Person").doc(supplierID).snapshotChanges().subscribe(res=>{
+        obs.next(res.payload.data()['rating']);
+      },err=>{
+        obs.error(err);
+      })
+    })
+   
+  }
 
   makeComplain(orderID, complaintext){
     this.angularfirestore.collection("Order").doc(orderID).update({complaint: true, complaintText: complaintext});

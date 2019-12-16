@@ -45,6 +45,8 @@
         <div fxLayout="row" fxLayoutAlign="space-between center" class='mb-16'>
           <div class='font-size-16'>Order Status</div>
           <div *ngIf='role=="Customer"' class='font-size-16 bold'>{{item.data.status}}</div>
+         
+
           <div *ngIf='role=="Supplier"' class='font-size-16 bold'>
             <mat-form-field  >
               <mat-label>Order Status</mat-label>
@@ -57,6 +59,25 @@
           </div>
 
 
+        </div>
+        <div *ngIf='role=="Customer" && item.data.status=="Confirmed" && item.data.rated==false' fxLayout="column" fxLayoutAlign="center stretch" class='font-size-16 bold'>
+          <form [formGroup]="ratingform">
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div>
+              <mat-form-field appearance="outline">
+                <mat-label>Submit any complain</mat-label>
+                <input matInput formControlName="complaint" placeholder="Complain">
+              </mat-form-field>
+
+            </div>
+            <div class='pb-20'>
+              <ngx-star-rating formControlName="rating" [id]="'rating'"></ngx-star-rating>
+            </div>
+          </div>
+
+        </form>
+        <button mat-raised-button color="warn" (click)="submitRating(item)">Submit</button>
+         
         </div>
       </mat-card>
     </div>
