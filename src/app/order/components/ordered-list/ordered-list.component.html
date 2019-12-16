@@ -60,7 +60,7 @@
 
 
         </div>
-        <div *ngIf='role=="Customer" && item.data.status=="Confirmed" && item.data.rated==false' fxLayout="column" fxLayoutAlign="center stretch" class='font-size-16 bold'>
+        <div *ngIf='role=="Customer" && item.data.status=="Complete" && item.data.rated==false' fxLayout="column" fxLayoutAlign="center stretch" class='font-size-16 bold'>
           <form [formGroup]="ratingform">
             <div fxLayout="row" fxLayoutAlign="space-between center">
             <div>
