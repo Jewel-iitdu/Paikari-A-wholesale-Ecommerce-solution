@@ -48,7 +48,7 @@ export class SingleProductViewComponent implements OnInit {
 	setRole() {
 		this.security.getRole().subscribe((role) => {
 			this.currentRole = role;
-			console.log(role);
+			// console.log(role);
 		});
 	}
 	// getProduct(id) {
@@ -62,14 +62,14 @@ export class SingleProductViewComponent implements OnInit {
 			(item) => {
 				// this.productObject = item;
 				this.productData = item;
-				console.log(this.productData);
+				// console.log(this.productData);
 
 				this.productService.getProfileBySupplierId(item.data.supplierId).subscribe(
 					(res) => {
 						this.supplierInfo = res.data;
 						this.sharedService.hideSpinner();
 
-						console.log(res);
+						// console.log(res);
 					},
 					(err) => {
 						this.sharedService.hideSpinner();
@@ -89,7 +89,6 @@ export class SingleProductViewComponent implements OnInit {
 	// }
 
 	buyProduct(product) {
-		debugger;
 		this.sharedService.showSpinner();
 		this.order.getUserId().subscribe((res) => {
 			this.userID = res;

@@ -8,6 +8,7 @@ import { finalize } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { CustomerService } from '../../services/customer.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
+import { SecurityService } from 'src/app/core/security-service/security.service';
 
 @Component({
   selector: 'app-update-user-profile',
@@ -18,12 +19,14 @@ export class UpdateUserProfileComponent implements OnInit {
 
   UpdateProfileForm:FormGroup;
   userInfo: CustomerUserInformation;
+  role;
 
   constructor(private storage: AngularFireStorage,
     private db: AngularFirestore,
     private fb: FormBuilder,
     private customerService: CustomerService,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private sec:SecurityService
     ) { }
 
   ngOnInit() {
@@ -31,20 +34,23 @@ export class UpdateUserProfileComponent implements OnInit {
     this.customerService.getUserInfo().subscribe(res=>{
       this.pathData(res);
       this.userInfo = res;
-      console.log(res)
+      // console.log(res)
+    });
+    this.sec.getRole().subscribe(res=>{
+      this.role = res;
     })
   }
   pathData(res) {
     this.UpdateProfileForm.patchValue({
       name: res.data.name,
-      companyname: res.data.companyname,
+      // companyname: res.data.companyname,
       useraddress: res.data.useraddress
     })
   }
   makingAddProductForm() {
     this.UpdateProfileForm = this.fb.group({
       name: ["", [Validators.required]],
-      companyname: ["", [Validators.required]],
+      // companyname: ["", [Validators.required]],
       useraddress: ["", [Validators.required]],
     });
   }
@@ -52,7 +58,7 @@ export class UpdateUserProfileComponent implements OnInit {
   onSubmit(){
     this.userInfo ={
       name: this.UpdateProfileForm.value.name,
-      companyname: this.UpdateProfileForm.value.companyname,
+      // companyname: this.UpdateProfileForm.value.companyname,
       useraddress: this.UpdateProfileForm.value.useraddress,
       photoURL: this.getImageUrl()
     }
@@ -73,7 +79,7 @@ export class UpdateUserProfileComponent implements OnInit {
   getImageUrl(){
     if(this.imgDownloadUrl == null){
       if(this.userInfo.photoURL == null){
-        
+        return ""
       }
       else{
         return this.userInfo.photoURL

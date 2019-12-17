@@ -52,7 +52,9 @@ export class SignupComponent implements OnInit, OnDestroy {
       email: ["", [Validators.required, Validators.email]],
       password: ["", Validators.required],
       phone: ["", Validators.required],
-      role: ["", Validators.required]
+      role: ["", Validators.required],
+      companyname: ["",],
+      useraddress: ["", Validators.required]
     });
   }
 
@@ -68,6 +70,8 @@ export class SignupComponent implements OnInit, OnDestroy {
           email: this.signupform.value.email,
           role: this.signupform.value.role,
           phoneNumber: this.signupform.value.phone,
+          useraddress: this.signupform.value.useraddress,
+          companyname: this.signupform.value.companyname,
           rating: 100
           // homeAddress: this.signupform.value.homeAddress,
           // shopAddress: this.signupform.value.shopAddress,

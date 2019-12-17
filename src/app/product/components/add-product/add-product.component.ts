@@ -52,7 +52,6 @@ export class AddProductComponent implements OnInit {
     private sharedService: SharedService
   ) {
     // this.categoryDataSource.data = catergoryService.getCategories();
-    this.categoryData = catergoryService.getCategories();
   }
 
   // hasChild = (_: number, node: CategoryList) => !!node.children && node.children.length > 0;
@@ -60,11 +59,13 @@ export class AddProductComponent implements OnInit {
   ngOnInit() {
     this.getUserId();
     this.makingAddProductForm();
-    this.ProductService.getAllCategory();
+    this.categoryData = this.catergoryService.getCategories();
+
+    // this.ProductService.getAllCategory();
   }
   makingAddProductForm() {
     this.addProductForm = this.fb.group({
-      productname: ["", [Validators.required]],
+      productname:  ["",[Validators.required]],
       productprice: ["", [Validators.required]],
       productquantity: ["", [Validators.required]],
       productDescription: ["", [Validators.required]],

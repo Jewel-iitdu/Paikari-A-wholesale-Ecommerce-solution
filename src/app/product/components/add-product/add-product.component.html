@@ -124,11 +124,11 @@
           </div>
           <div>
             <mat-form-field appearance="outline">
-              <mat-label>Product quanity</mat-label>
+              <mat-label>Minimum Order quanity</mat-label>
               <input
                 type="number"
                 matInput
-                placeholder="Type in product unit"
+                placeholder="Type in minimum quantity"
                 formControlName="productquantity"
               />
               <!-- <mat-error
@@ -189,6 +189,7 @@
                 (click)="onSubmit()"
                 mat-raised-button
                 color="primary"
+                [disabled]="!addProductForm.valid"
               >
                 Create Product
               </button>
@@ -199,13 +200,8 @@
     </mat-card>
 
     <div *ngIf="isPreview">
-      <div
-        fxLayout="row"
-        fxLayoutAlign="center center"
-        fxLayoutGap="10px"
-        class="mt-100"
-      >
-      <div>
+      
+      <!-- <div>
           <mat-card class="example-card" [class.mat-elevation-z8]="true">
             <mat-card-header>
               <div mat-card-avatar class="example-header-image"></div>
@@ -239,8 +235,44 @@
               </mat-card-actions>
             </div>
           </mat-card>
-        </div>
-      </div>
+        </div> -->
+    
+    
+          <mat-card [class.mat-elevation-z8]="true" class="w-350 h-440 scrollable-content">
+            <!-- <mat-card-header>
+              <div mat-card-avatar class="example-header-image">
+                <img mat-card-avatar src="https://i.ibb.co/Jdx0NbM/27797943-1552092604911964-5726697049196892277-o.jpg" />
+              </div>
+              <mat-card-title>Jewel Rana</mat-card-title>
+              <mat-card-subtitle>Paikari.com</mat-card-subtitle>
+            </mat-card-header> -->
+        
+            <div *ngIf="snapshot | async as snap" fxLayout="row" fxLayoutAlign="center center" class='mb-16 w-280 h-200'>
+              <div *ngIf="downloadURL | async as url">
+                  <img [src]="url"  />
+              </div>
+            </div>
+            
+            <div  class='pt-12'>
+              <div fxLayout="row" fxLayoutAlign="center center" class='pb-12'>
+                <div class='font-size-20'><span class='secondary-text-color cursor-pointer'> {{ addProductForm.value.productname }}</span></div>
+              </div>
+            </div>
+        
+            <mat-card-content class='h-100'>
+        
+              <div  class='py-12'>
+                <div fxLayout="column" fxLayoutAlign="center start" fxLayoutGap="8px">
+                  <div class='font-size-16'>Price: <span class='accepted-color'>BDT {{ addProductForm.value.productprice }}/Unit</span></div>
+                  <div class='font-size-16'>Minimum Order- <span class='rejected-color'>{{ addProductForm.value.productquantity }}</span></div>
+                  <!-- <div class='font-size-12 word-break-all'>{{ addProductForm.value.productDescription }}</div> -->
+                </div>
+              </div>
+            </mat-card-content>
+        
+          </mat-card>
+        
+      
     </div>
   </div>
 </form>

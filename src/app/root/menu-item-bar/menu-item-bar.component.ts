@@ -84,5 +84,8 @@ export class MenuItemBarComponent implements OnInit {
   myProductClick(){
     this.router.navigate([urlPaths.Product.ProductList.url])
   }
+  complainClick(){
+    this.router.navigate([urlPaths.Admin.Complain.url]);
+  }
 
 }

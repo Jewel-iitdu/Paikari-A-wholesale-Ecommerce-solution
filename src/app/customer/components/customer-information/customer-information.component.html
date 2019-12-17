@@ -15,7 +15,7 @@
         <div>
           <h2>Name: {{userInfo.data.name}}</h2>
         </div>
-        <div>
+        <div *ngIf="role=='Supplier'">
             <h2>Company Name: {{userInfo.data.companyname}}</h2>
         </div>
         <div>

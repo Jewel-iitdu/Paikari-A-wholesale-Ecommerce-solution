@@ -13,9 +13,7 @@ export class CustomerService {
   userId: string;
 
   constructor(private angularfirestore: AngularFirestore, private angularfireauth: AngularFireAuth) { 
-    this.angularfireauth.authState.subscribe(user => {
-      if (user) this.userId = user.uid;
-    });
+    
   }
 
   getUserInfo():Observable<any>{
@@ -39,7 +37,11 @@ export class CustomerService {
   }
 
   updateUserInfo(userInfo){
-      this.angularfirestore.collection("Person").doc(this.userId).update(userInfo);
+    this.angularfireauth.authState.subscribe(user => {
+      if (user) this.userId = user.uid;
+      this.angularfirestore.collection("Person").doc(user.uid).update(userInfo);
+    });
+      
     
   }
 }

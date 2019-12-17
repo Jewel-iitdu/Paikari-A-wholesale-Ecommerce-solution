@@ -56,7 +56,6 @@ export class SigninComponent implements OnInit {
 	}
   signinUser(user: UserInformation) {
 		this.authenticationservice.signin(user).pipe(first()).subscribe((res) => {
-			debugger;
 			if (res && res.code) {
 				console.log(res.code);
 				this.validateSignIn(res.code);

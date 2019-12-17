@@ -17,7 +17,7 @@ import { Router } from '@angular/router';
 export class ProductListComponent implements OnInit {
   //products: ProductInformation[];
 
-  displayedColumns: string[] = ["productname", "productprice", "created", "edit"];
+  displayedColumns: string[] = ["productname", "productprice", "created", "edit", "remove"];
   dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -46,6 +46,10 @@ export class ProductListComponent implements OnInit {
 
   addProductClick(){
     this.router.navigate([urlPaths.Product.AddProduct.url]);
+  }
+
+  removeProduct(id){
+    this.productService.removeProductByID(id);
   }
 
  

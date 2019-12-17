@@ -29,6 +29,10 @@
         <mat-header-cell *matHeaderCellDef> </mat-header-cell>
         <mat-cell *matCellDef="let element"> <a [routerLink]="[ '/product/product-list/edit-product', element.id ]">Modify Product</a> </mat-cell>
       </ng-container>
+      <ng-container matColumnDef="remove">
+        <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="cursor-pointer"> <a (click)="removeProduct(element.id)" ><mat-icon>delete_sweep</mat-icon></a> </mat-cell>
+      </ng-container>
   
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>

@@ -9,8 +9,8 @@ export class PaymentService {
 
   constructor(private angularFirestore: AngularFirestore) { }
 
-  processPayment(token: any, amount: number, productID, customerID, date) {
-    const payment = { token, amount, productID, customerID, date }
+  processPayment(token: any, amount: number, productIDs, customerID,date ) {
+    const payment = { token, amount,productIDs, customerID, date }
     return this.angularFirestore.collection("Payment").add(payment);
   }
 

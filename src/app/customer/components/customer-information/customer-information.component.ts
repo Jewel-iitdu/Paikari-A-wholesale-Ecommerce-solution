@@ -1,3 +1,4 @@
+import { SecurityService } from './../../../core/security-service/security.service';
 import { ProfileService } from './../../../root/services/profile.service';
 import { CustomerUserInformation } from './../../../config/interfaces/user.interface';
 import { Component, OnInit } from '@angular/core';
@@ -12,15 +13,20 @@ import { urlPaths } from 'src/app/config/constants/paikariConstants';
 })
 export class CustomerInformationComponent implements OnInit {
   userInfo: CustomerUserInformation;
+  role;
 
-  constructor(private customerService: CustomerService,private router: Router,private profileService:ProfileService) { }
+  constructor(private customerService: CustomerService,private router: Router,private profileService:ProfileService, private sec:SecurityService) { }
 
   ngOnInit() {
     this.customerService.getUserInfo().subscribe(res=>{
       
       this.userInfo = res;
-      console.log(this.userInfo)
+      // console.log(this.userInfo)
     })
+    this.sec.getRole().subscribe(res=>{
+      this.role = res;
+    })
+
   }
 
   routeToUpdateProfile(){

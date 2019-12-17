@@ -42,6 +42,25 @@
               > -->
             </mat-form-field>
           </div>
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>Company Name</mat-label>
+              <input
+                type="text"
+                matInput
+                placeholder="Type in your company name "
+                formControlName="compnayname"
+              />
+              <!-- <mat-error
+                *ngIf="
+                  signupform.get('firstname').touched &&
+                  signupform.get('firstname').invalid
+                "
+              >
+                {{ errormessages.firstname }}</mat-error
+              > -->
+            </mat-form-field>
+          </div>
           
         </div>
         <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="50px">
@@ -123,6 +142,28 @@
                 </mat-form-field>
           </div>
         </div>
+        <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="50px">
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>Address</mat-label>
+              <input
+                type="text"
+                matInput
+                placeholder="Type in Address "
+                formControlName="useraddress"
+              />
+              <!-- <mat-error
+                *ngIf="
+                  signupform.get('firstname').touched &&
+                  signupform.get('firstname').invalid
+                "
+              >
+                {{ errormessages.firstname }}</mat-error
+              > -->
+            </mat-form-field>
+          </div>
+        </div>
+
         <div>
             <div><button type="submit" (click)="onSubmit()" mat-raised-button color="primary" class="w-180 mt-30" >Sign Up</button></div>
         </div>

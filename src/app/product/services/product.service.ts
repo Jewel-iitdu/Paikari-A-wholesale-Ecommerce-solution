@@ -101,6 +101,10 @@ export class ProductService {
     });
   }
 
+  removeProductByID(id){
+    this.angularfirestore.collection("Product").doc(id).delete();
+  }
+
   getProductByProductId(id): Observable<any> {
     return new Observable(observer => {
       this.productCollection

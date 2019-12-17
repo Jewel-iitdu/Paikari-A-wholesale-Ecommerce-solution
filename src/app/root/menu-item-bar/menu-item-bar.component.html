@@ -64,6 +64,15 @@
               <button mat-menu-item (click)="signOutClick()">Sign Out</button>
             </div>
           </div>
+          <div *ngIf='role=="Admin"'>
+            <div>
+              <button mat-menu-item (click)="complainClick()">Complaint Box</button>
+            </div>
+            
+            <div>
+              <button mat-menu-item (click)="signOutClick()">Sign Out</button>
+            </div>
+          </div>
         </mat-menu>
       </div>
       

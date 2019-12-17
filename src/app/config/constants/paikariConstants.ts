@@ -164,6 +164,11 @@ export const urlPaths = {
       url: "order/cart"
     }
   },
+  Admin: {
+    Complain: {
+      url: "admin/complaint-box"
+    }
+  }
   
 };
 
