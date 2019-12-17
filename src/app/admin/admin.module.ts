@@ -1,3 +1,4 @@
+import { AdminGuard } from './../core/security-service/admin.guard';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ComplaintBoxComponent } from './components/complaint-box/complaint-box.component';
@@ -10,7 +11,7 @@ const routes:Routes=[
   {
 		path: 'complaint-box',
     component:ComplaintBoxComponent,
-    canActivate:[]
+    canActivate:[AuthGuard, AdminGuard]
   }]
 
 @NgModule({
