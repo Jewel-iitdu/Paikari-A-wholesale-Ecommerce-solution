@@ -77,12 +77,12 @@ export class UpdateUserProfileComponent implements OnInit {
 		});
 	}
   getImageUrl(){
-    if(this.imgDownloadUrl == null){
-      if(this.userInfo.photoURL == null){
+    if(this.imgDownloadUrl == ""){
+      if(this.userInfo.photoURL == ""){
         return ""
       }
       else{
-        return this.userInfo.photoURL
+        return this.userInfo.photoURL;
       }
     }
     else{

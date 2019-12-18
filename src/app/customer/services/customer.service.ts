@@ -39,7 +39,7 @@ export class CustomerService {
   updateUserInfo(userInfo){
     this.angularfireauth.authState.subscribe(user => {
       if (user) this.userId = user.uid;
-      this.angularfirestore.collection("Person").doc(user.uid).update(userInfo);
+      this.angularfirestore.collection("Person").doc(this.userId).update(userInfo);
     });
       
     

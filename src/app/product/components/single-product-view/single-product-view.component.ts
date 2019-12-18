@@ -90,9 +90,13 @@ export class SingleProductViewComponent implements OnInit {
 
 	buyProduct(product) {
 		this.sharedService.showSpinner();
+		console.log(product);
 		this.order.getUserId().subscribe((res) => {
 			this.userID = res;
 			this.productObject = product;
+			console.log(this.productObject);
+
+			debugger
 			let orderInfo = {
 				productID: this.productObject.id,
 				orderQuantity: this.productObject.data.productquantity,
@@ -101,6 +105,7 @@ export class SingleProductViewComponent implements OnInit {
 				customerID: this.userID,
 				supplierID: this.productObject.data.supplierId
 			};
+			console.log(orderInfo);
 			this.order.createOrAddCart(orderInfo).subscribe((res) => {
 				this.sharedService.hideSpinner();
 			},err=>{

@@ -11,5 +11,5 @@ export interface OrderInformation{
     status?:string;
     rated?: boolean;
     complaint?:boolean;
-    compmaintText?:string;
+    complaintText?:string;
 }

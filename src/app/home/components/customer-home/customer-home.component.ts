@@ -84,7 +84,7 @@ export class CustomerHomeComponent implements OnInit {
 			supplierID: this.singleProduct.supplierId,
 			rated: false,
 			complaint:false,
-			compmaintText: ""
+			complaintText: ""
 		};
 		this.orderService.createOrAddCart(this.orderInfo).subscribe((res) => {
 			this.sharedService.hideSpinner();
@@ -94,7 +94,7 @@ export class CustomerHomeComponent implements OnInit {
 
 	addedToCartSnackbar() {
 		this.sharedService.openSnackBar({
-			duration: 3,
+			duration: 1,
 			data: {
 				isAccepted: true,
 				message: 'Product Added to cart'
