@@ -33,7 +33,7 @@
     "font-awesome": "^4.7.0",
     "hammerjs": "^2.0.8",
     "intl-tel-input": "^16.0.8",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "mdbootstrap": "^4.10.1",
     "ng-starrating": "^1.0.11",
     "ngx-spinner": "^8.1.0",
